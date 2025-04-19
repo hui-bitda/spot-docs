@@ -1,0 +1,2633 @@
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="images/favicon-dede8a83.ico" rel="icon" type="image/ico" />
+    <title>BitDa API 文档</title>
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-8fbe0af4.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-92353496.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch-c275c2f6.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <header>
+      <div class="flex_box">
+        <a href="https://www.bitda.com">
+          <img src="images/logo-412170ab.svg" class="logo" alt="" />
+        </a>
+        <div class="nav_box">
+          <span class="nav_cell" style="display: none">
+            <a href="javascript:;" class="nav_first">v1<i class="icon_nav"></i></a>
+            <ul class="nav_ul">
+              <li>
+                <a href="/spot/v1/en/" id="v1_url">v1</a>
+              </li>
+            </ul>
+          </span>
+          <span class="nav_cell nav_tab">
+            <a href="/spot/v1/en/" id="btn_spot">现货API</a>
+          </span>
+        </div>
+      </div>
+      <a href="/spot/v1/cn/" class="lang" id="lang_box">简体中文</a>
+    </header>
+    <div class="toc-wrapper">
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api" class="toc-h2 toc-link" data-title="API 简介">API 简介</a>
+                  </li>
+                  <li>
+                    <a href="#495cebdeec" class="toc-h2 toc-link" data-title="公共接口">公共接口</a>
+                  </li>
+                  <li>
+                    <a href="#313142e077" class="toc-h2 toc-link" data-title="鉴权接口">鉴权接口</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#2d07d50c97" class="toc-h1 toc-link" data-title="接入说明">接入说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#restful-host" class="toc-h2 toc-link" data-title="Restful host:">Restful host:</a>
+                  </li>
+                  <li>
+                    <a href="#websocket-host" class="toc-h2 toc-link" data-title="Websocket host:">Websocket host:</a>
+                  </li>
+                  <li>
+                    <a href="#17fef2a7cd" class="toc-h2 toc-link" data-title="鉴权说明">鉴权说明</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#websocket" class="toc-h1 toc-link" data-title="WebSocket说明">WebSocket说明</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#65cd7614bc" class="toc-h2 toc-link" data-title="订阅主题">订阅主题</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#41654e0268" class="toc-h1 toc-link" data-title="基础信息">基础信息</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#ebe64e52ff" class="toc-h2 toc-link" data-title="所有交易对">所有交易对</a>
+                  </li>
+                  <li>
+                    <a href="#870c0ab88b" class="toc-h2 toc-link" data-title="账户余额">账户余额</a>
+                  </li>
+                  <li>
+                    <a href="#fc5a31ea39" class="toc-h2 toc-link" data-title="服务器时间戳">服务器时间戳</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#d9d514d202" class="toc-h1 toc-link" data-title="行情数据">行情数据</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#k-2" class="toc-h2 toc-link" data-title="市场k线数据">市场k线数据</a>
+                  </li>
+                  <li>
+                    <a href="#0f7bd4961a" class="toc-h2 toc-link" data-title="市场深度数据">市场深度数据</a>
+                  </li>
+                  <li>
+                    <a href="#5" class="toc-h2 toc-link" data-title="获取最近5条成交">获取最近5条成交</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#0a97ff03df" class="toc-h1 toc-link" data-title="现货">现货</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#fd6ce2a756" class="toc-h2 toc-link" data-title="下单">下单</a>
+                  </li>
+                  <li>
+                    <a href="#7742416be6" class="toc-h2 toc-link" data-title="撤销单个订单">撤销单个订单</a>
+                  </li>
+                  <li>
+                    <a href="#cedb99e805" class="toc-h2 toc-link" data-title="撤销部分或所有委托中订单">撤销部分或所有委托中订单</a>
+                  </li>
+                  <li>
+                    <a href="#c2313ec9bf" class="toc-h2 toc-link" data-title="委托中列表">委托中列表</a>
+                  </li>
+                  <li>
+                    <a href="#cbbcc98be2" class="toc-h2 toc-link" data-title="订单列表">订单列表</a>
+                  </li>
+                  <li>
+                    <a href="#3fbc9cb788" class="toc-h2 toc-link" data-title="单个订单成交明细">单个订单成交明细</a>
+                  </li>
+                  <li>
+                    <a href="#d1baf83d74" class="toc-h2 toc-link" data-title="分页获取订单成交明细">分页获取订单成交明细</a>
+                  </li>
+                  <li>
+                    <a href="#6033256dc0" class="toc-h2 toc-link" data-title="获取用户某个交易对手续费">获取用户某个交易对手续费</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#495cebdeec-2" class="toc-h1 toc-link" data-title="公共接口">公共接口</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#ebe64e52ff-2" class="toc-h2 toc-link" data-title="所有交易对">所有交易对</a>
+                  </li>
+                  <li>
+                    <a href="#a1128a972d-2" class="toc-h2 toc-link" data-title="深度">深度</a>
+                  </li>
+                  <li>
+                    <a href="#775841b581-2" class="toc-h2 toc-link" data-title="逐笔成交">逐笔成交</a>
+                  </li>
+                  <li>
+                    <a href="#k-3" class="toc-h2 toc-link" data-title="k线数据">k线数据</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-2" class="toc-h1 toc-link" data-title="现货API调用示例">现货API调用示例</a>
+          </li>
+          <li>
+            <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket示例">Websocket示例</a>
+          </li>
+      </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>API 简介</h2>
+<p>欢迎使用BitDa API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。</p>
+
+<p>在文档的右侧是代码，目前我们仅提供针对 <code>shell</code> 的代码示例。</p>
+
+<p>可以使用以下域名访问：api.bitda.com</p>
+
+<p>欢迎有优秀 maker 策略且交易量大的机构参与长期做市商项目。</p>
+<h2 id='495cebdeec'>公共接口</h2>
+<p>不需要鉴权可访问接口如下：</p>
+
+<table><thead>
+<tr>
+<th>接口</th>
+<th>说明</th>
+<th>市场</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#495cebdeec-2">GET /open/v1/tickers/market</a></td>
+<td>所有交易对</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#a1128a972d-2">GET /open/v1/depth/market</a></td>
+<td>深度</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#775841b581-2">GET /open/v1/trade/market</a></td>
+<td>逐笔成交</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#k-3">GET /open/v1/kline/market</a></td>
+<td>k线数据</td>
+<td>现货</td>
+</tr>
+</tbody></table>
+<h2 id='313142e077'>鉴权接口</h2>
+<p>可以访问的接口如下：</p>
+
+<table><thead>
+<tr>
+<th>接口</th>
+<th>说明</th>
+<th>市场</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#ebe64e52ff">GET /open/v1/tickers</a></td>
+<td>全部或指定交易对</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#870c0ab88b">GET /open/v1/balance</a></td>
+<td>获取余额</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#fc5a31ea39">GET /open/v1/timestamp</a></td>
+<td>服务器时间戳</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#k-2">GET /open/v1/kline</a></td>
+<td>市场k线数据</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#0f7bd4961a">GET /open/v1/depth</a></td>
+<td>市场深度数据</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#5">GET /open/v1/tickers/trade</a></td>
+<td>获取最近5条成交记录</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#fd6ce2a756">POST /open/v1/orders/place</a></td>
+<td>下单</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#7742416be6">POST /open/v1/orders/cancel</a></td>
+<td>撤销单个订单</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#cedb99e805">POST /open/v1/orders/batcancel</a></td>
+<td>撤销全部或部分委托中订单</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#c2313ec9bf">GET /open/v1/orders/last</a></td>
+<td>委托中列表</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#cbbcc98be2">GET /open/v1/orders</a></td>
+<td>订单列表</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#3fbc9cb788">GET /open/v1/orders/detail</a></td>
+<td>单个订单成交明细</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#d1baf83d74">GET /open/v1/orders/detailmore</a></td>
+<td>分页获取成交明细</td>
+<td>现货</td>
+</tr>
+<tr>
+<td><a href="#6033256dc0">GET /open/v1/orders/fee-rate</a></td>
+<td>获取用户某个交易对手续费</td>
+<td>现货</td>
+</tr>
+</tbody></table>
+<h1 id='2d07d50c97'>接入说明</h1><h2 id='restful-host'>Restful host:</h2>
+<p>https://api.bitda.com</p>
+<h2 id='websocket-host'>Websocket host:</h2>
+<p>现货交易
+    wss://api.bitda.com/ws</p>
+<h2 id='17fef2a7cd'>鉴权说明</h2>
+<ol>
+<li><p>所有接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。</p></li>
+<li><p>client_id为api key，ts为当前时间戳，与服务器时间差正负5秒会被拒绝，nonce为随机字符串，不能与上次请求所使用相同。</p></li>
+<li><p>签名方法, 将client_id, ts, nonce进行排序连接，使用hmac-sha256方法进行签名，例如待签名字符串为: client_id=abc&amp;nonce=xyz&amp;ts=1571293029</p></li>
+<li><p>签名: sign = hmac.New(client_key, sign_str, sha256)</p></li>
+<li><p>Content-Type: application/x-www-form-urlencoded</p></li>
+<li><p>现货接口，post接口请求请将参数放在请求体里面，get接口请求携带在url链接中。</p></li>
+</ol>
+<h1 id='websocket'>WebSocket说明</h1>
+<ol>
+<li><p>需要先进行鉴权，才可进行订阅。</p></li>
+<li><p>鉴权格式: {&quot;op&quot;:&quot;apilogin&quot;,&quot;sign&quot;:&quot;&quot;,&quot;client_id&quot;:&quot;&quot;,&quot;nonce&quot;:&quot;&quot;,&quot;ts&quot;: int type},如:{&quot;op&quot;:&quot;apilogin&quot;,&quot;sign&quot;:&quot;abc123&quot;,&quot;client_id&quot;:&quot;abc123&quot;,&quot;nonce&quot;:&quot;1&quot;,&quot;ts&quot;: 1576207749}</p></li>
+<li><p>心跳处理，客户端需定时上发心跳信息，任意字符串，服务端每30秒会检查心跳，超时没有收到自动关闭连接。{&quot;op&quot;:&quot;sub&quot;, &quot;topic&quot;:&quot;hb&quot;}</p></li>
+</ol>
+<h2 id='65cd7614bc'>订阅主题</h2>
+<p>{&quot;op&quot;:&quot;sub&quot;, &quot;topic&quot;: &quot;&quot;}</p>
+<h3 id='k'>K线数据</h3><h4 id='1f9ac54b15'>请求参数</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kline:1Min:BTC-USDT"</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: center">参数</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">kline:1Min:BTC-USDT</td>
+<td style="text-align: center">BTC-USDT的1分钟k线</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ticks"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"close"</span><span class="p">:</span><span class="s2">"2.62"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"high"</span><span class="p">:</span><span class="s2">"3.11"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"low"</span><span class="p">:</span><span class="s2">"2.62"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"open"</span><span class="p">:</span><span class="s2">"3.01"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1572851100</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"17.55"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1572851160917</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"kline:1Min:BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"60000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='7bf990a9a9'>数据更新字段列表</h4>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">ticks</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">␈k线信息</td>
+</tr>
+<tr>
+<td style="text-align: center">close</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段收盘价</td>
+</tr>
+<tr>
+<td style="text-align: center">high</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段最高价</td>
+</tr>
+<tr>
+<td style="text-align: center">low</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段最低价</td>
+</tr>
+<tr>
+<td style="text-align: center">open</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段开盘价</td>
+</tr>
+<tr>
+<td style="text-align: center">timestamp</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">时间戳 毫秒</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交量</td>
+</tr>
+</tbody></table>
+<h3 id='775841b581'>逐笔成交</h3><h4 id='1f9ac54b15-2'>请求参数</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade:BTC-USDT"</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: center">参数</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">trade:BTC-USDT</td>
+<td style="text-align: center">BTC-USDT逐笔成交记录</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"7.473"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"2.82"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1572851197910</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"trade:BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"2.65"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='7bf990a9a9-2'>数据更新字段列表</h4>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交价</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">成交方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">timestamp</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">时间戳 毫秒</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交量</td>
+</tr>
+</tbody></table>
+<h3 id='a1128a972d'>深度</h3><h4 id='1f9ac54b15-3'>请求参数</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"depth:0:BTC-USDT"</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: center">参数</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">depth:0:BTC-USDT</td>
+<td style="text-align: center">深度</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"bids"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.923</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">12</span><span class="err">'</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.823</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">12</span><span class="err">'</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.723</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">16</span><span class="err">'</span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w"> 
+    </span><span class="nl">"asks"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.48</span><span class="err">'</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.31</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">5</span><span class="err">'</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.55</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">10</span><span class="err">'</span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1572851208935</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"depth:0:BTC-USDT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='7bf990a9a9-3'>数据更新字段列表</h4>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">bids</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">当前所有买单[{price 价格, quantity 数量}]</td>
+</tr>
+<tr>
+<td style="text-align: center">asks</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">当前所有卖单[{price 价格, quantity 数量}]</td>
+</tr>
+</tbody></table>
+<h3 id='8e4b902c12'>行情</h3><h4 id='1f9ac54b15-4'>请求参数</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quotes"</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: center">参数</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">quotes</td>
+<td style="text-align: center">行情</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="s2">"52080.1255"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"change"</span><span class="p">:</span><span class="s2">"0.00949367"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"3.19"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1572851216950</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"quotes"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"volume"</span><span class="p">:</span><span class="s2">"17965.65"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='7bf990a9a9-4'>数据更新字段列表</h4>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">change</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">涨跌幅</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">当前价</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">timestamp</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">时间戳 毫秒</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时成交量</td>
+</tr>
+</tbody></table>
+<h3 id='d749c63cbe'>账户余额变化</h3><h4 id='1f9ac54b15-5'>请求参数</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: center">参数</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">accounts</td>
+<td style="text-align: center">账户余额变化</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"available"</span><span class="p">:</span><span class="s2">"4194.3466678"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"freeze"</span><span class="p">:</span><span class="s2">"71.609185"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="s2">"4265.9558528"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='7bf990a9a9-5'>数据更新字段列表</h4>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">available</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">可用余额</td>
+</tr>
+<tr>
+<td style="text-align: center">freeze</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">冻结余额</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">币种</td>
+</tr>
+<tr>
+<td style="text-align: center">total</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">总余额</td>
+</tr>
+</tbody></table>
+<h3 id='8cc1291b9a'>委托变化</h3><h4 id='1f9ac54b15-6'>请求参数</h4><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"op"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="w"> </span><span class="nl">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders:BTC-USDT"</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th style="text-align: center">参数</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">orders:BTC-USDT</td>
+<td style="text-align: center">委托变化</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">下单</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"left"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_id"</span><span class="p">:</span><span class="s2">"11574948935833473"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"80000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1574949805841</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"orders:BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"trade_no"</span><span class="p">:</span><span class="s2">"499081745280826070655"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"match_qty"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">撤单</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"left"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_id"</span><span class="p">:</span><span class="s2">"11574948935833473"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="s2">"80000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"side"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1574949805841</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"orders:BTC-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"trade_no"</span><span class="p">:</span><span class="s2">"499081745280826070655"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"match_qty"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"match_price"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h4 id='aceee0d936'>返回字段</h4>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">left</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">剩余数量</td>
+</tr>
+<tr>
+<td style="text-align: center">order_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单id</td>
+</tr>
+<tr>
+<td style="text-align: center">order_type</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">订单类型,1限价，3市价</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托价</td>
+</tr>
+<tr>
+<td style="text-align: center">quantity</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托数量</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">status</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">timestamp</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">创建时间 毫秒</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_no</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单流水号</td>
+</tr>
+<tr>
+<td style="text-align: center">match_qty</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">已成交数量</td>
+</tr>
+<tr>
+<td style="text-align: center">match_price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交均价</td>
+</tr>
+</tbody></table>
+<h1 id='41654e0268'>基础信息</h1><h2 id='ebe64e52ff'>所有交易对</h2>
+<p>此接口返回全部或指定BitDa支持的交易对。</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>现货市场
+
+<span class="s2">"https://api.bitda.com/open/v1/tickers"</span>
+
+</code></pre></div><h3 id='http'>HTTP请求</h3>
+<p>现货市场
+- GET <code>/open/v1/tickers</code></p>
+
+<aside class="notice">限速1r/s</aside>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">交易对，如: BTC-USDT</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mf">1.586</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'change':</span><span class="w"> </span><span class="err">'</span><span class="mf">-0.235462</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'high':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'low':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'symbol':</span><span class="w"> </span><span class="err">'BTC-USDT'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'amt_num':</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="err">'qty_num':</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="err">'volume':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.52</span><span class="err">'</span><span class="w">
+            </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-2'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">change</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时涨跌幅</td>
+</tr>
+<tr>
+<td style="text-align: center">high</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时最高</td>
+</tr>
+<tr>
+<td style="text-align: center">low</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时最低</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">当前价</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">amt_num</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">价格精度</td>
+</tr>
+<tr>
+<td style="text-align: center">qty_num</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">数量精度</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时成交量</td>
+</tr>
+</tbody></table>
+<h2 id='870c0ab88b'>账户余额</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货市场
+
+<span class="s2">"https://api.bitda.com/open/v1/balance"</span>
+
+</code></pre></div><h3 id='http-2'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/balance</code></p>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
+<p>无</p>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mf">4317.6696678</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'symbol':</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'freeze':</span><span class="w"> </span><span class="err">'</span><span class="mf">71.609185</span><span class="err">'</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-3'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">可用余额</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">币种</td>
+</tr>
+<tr>
+<td style="text-align: center">freeze</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">冻结余额</td>
+</tr>
+</tbody></table>
+<h2 id='fc5a31ea39'>服务器时间戳</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/timestamp"</span>
+</code></pre></div><h3 id='http-3'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/timestamp</code></p>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>无</p>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12354534"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-4'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">data</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">时间戳</td>
+</tr>
+</tbody></table>
+<h1 id='d9d514d202'>行情数据</h1><h2 id='k-2'>市场k线数据</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/kline"</span>
+</code></pre></div><h3 id='http-4'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/kline</code></p>
+
+<aside class="notice">限速0.1r/s</aside>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对，如: BTC-USDT</td>
+</tr>
+<tr>
+<td style="text-align: center">type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">类型1Min, 5Min, 15Min, 30Min等</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'close':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w">    
+            </span><span class="err">'high':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'low':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'open':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'time':</span><span class="w"> </span><span class="mi">1571812440</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'volume':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-5'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">close</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段收盘价</td>
+</tr>
+<tr>
+<td style="text-align: center">high</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段最高价</td>
+</tr>
+<tr>
+<td style="text-align: center">low</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段最低价</td>
+</tr>
+<tr>
+<td style="text-align: center">open</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段开盘价</td>
+</tr>
+<tr>
+<td style="text-align: center">time</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">时间</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交量</td>
+</tr>
+</tbody></table>
+<h2 id='0f7bd4961a'>市场深度数据</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/depth"</span>
+</code></pre></div><h3 id='http-5'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/depth</code></p>
+
+<aside class="notice">限速10r/s</aside>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">'bids':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.923</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">12</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.823</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">12</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.813</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">14</span><span class="err">'</span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w"> 
+        </span><span class="err">'asks':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.48</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.31</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">15</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.923</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">15</span><span class="err">'</span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+    </span><span class="err">'msg':</span><span class="w"> </span><span class="err">'ok'</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-6'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">bids</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">当前所有买单[{price 价格, quantity 数量}]</td>
+</tr>
+<tr>
+<td style="text-align: center">asks</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">当前所有卖单[{price 价格, quantity 数量}]</td>
+</tr>
+</tbody></table>
+<h2 id='5'>获取最近5条成交</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/tickers/trade"</span>
+</code></pre></div><h3 id='http-6'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/tickers/trade</code></p>
+
+<aside class="notice">限速10r/s</aside>
+<h3 id='1f9ac54b15-12'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.918</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.04</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'side':</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="err">'time':</span><span class="w"> </span><span class="mi">1574942822160</span><span class="p">,</span><span class="w">
+        </span><span class="err">'volume':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.45</span><span class="err">'</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-7'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交价</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">成交方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">time</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">时间</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交量</td>
+</tr>
+</tbody></table>
+<h1 id='0a97ff03df'>现货</h1><h2 id='fd6ce2a756'>下单</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/orders/place"</span>
+</code></pre></div><h3 id='http-7'>HTTP请求</h3>
+<p>现货交易
+- POST <code>/open/v1/orders/place</code></p>
+<h3 id='1f9ac54b15-13'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">价格，如果是限价单，必填</td>
+</tr>
+<tr>
+<td style="text-align: center">quantity</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">数量</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">方向,1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">order_type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">买卖单类型,LIMIT限价单（默认）,MARKET市价单</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">无论买或卖，quantity都表示交易币，如BTC-USDT，quantity都代表eos的数量</aside>
+
+<aside class="warning">现货新上交易对第一笔订单必须通过此接口下单，成交后用户才能下单</aside>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"trade_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-8'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">order_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托号</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_no</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">流水号</td>
+</tr>
+</tbody></table>
+<h2 id='7742416be6'>撤销单个订单</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/orders/cancel"</span>
+</code></pre></div><h3 id='http-8'>HTTP请求</h3>
+<p>现货交易
+- POST <code>/open/v1/orders/cancel</code></p>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">order_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">委托号</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_no</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">流水号</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-9'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>无</p>
+<h2 id='cedb99e805'>撤销部分或所有委托中订单</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/orders/batcancel"</span>
+</code></pre></div><h3 id='http-9'>HTTP请求</h3>
+<p>现货交易
+- POST <code>/open/v1/orders/batcancel</code></p>
+
+<aside class="notice">限速1r/s</aside>
+<h3 id='1f9ac54b15-15'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">order_ids</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">交易对id，1000,2000,3000， 英文逗号分隔订单id，为空全部撤单</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-10'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>无</p>
+<h2 id='c2313ec9bf'>委托中列表</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/orders/last"</span>
+</code></pre></div><h3 id='http-10'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/orders/last</code></p>
+<h3 id='1f9ac54b15-16'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="err">'symbol':</span><span class="w"> </span><span class="err">'BTC-USDT'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'order_id':</span><span class="w"> </span><span class="err">'</span><span class="mi">11574744030837944</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'trade_no':</span><span class="w"> </span><span class="err">'</span><span class="mi">499016576021202015341</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mi">7900</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'match_amt':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'match_qty':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'match_price':</span><span class="w"> </span><span class="err">''</span><span class="p">,</span><span class="w">
+            </span><span class="err">'side':</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="err">'order_type':</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="err">'create_at':</span><span class="w"> </span><span class="mi">1574744151836</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">],</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-11'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">order_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单ID</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_no</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单流水号</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托价</td>
+</tr>
+<tr>
+<td style="text-align: center">quantity</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托数量</td>
+</tr>
+<tr>
+<td style="text-align: center">match_amt</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">已成交金额</td>
+</tr>
+<tr>
+<td style="text-align: center">match_qty</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">已成交数量</td>
+</tr>
+<tr>
+<td style="text-align: center">match_price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交均价</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">order_type</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">订单类型,1限价，3市价</td>
+</tr>
+<tr>
+<td style="text-align: center">create_at</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">创建时间</td>
+</tr>
+</tbody></table>
+<h2 id='cbbcc98be2'>订单列表</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/orders"</span>
+</code></pre></div><h3 id='http-11'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/orders</code></p>
+
+<aside class="notice">限速0.5r/s</aside>
+<h3 id='1f9ac54b15-17'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对,如BTC-USDT</td>
+</tr>
+<tr>
+<td style="text-align: center">pagenum</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">页码</td>
+</tr>
+<tr>
+<td style="text-align: center">pagesize</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">页大小,最小10, 最大50,默认20</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">方向，1买，-1卖，0所有</td>
+</tr>
+<tr>
+<td style="text-align: center">start</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">时间，时间戳</td>
+</tr>
+<tr>
+<td style="text-align: center">end</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">结束时间，时间戳</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'msg':</span><span class="w"> </span><span class="err">'ok'</span><span class="p">,</span><span class="w">
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">'count':</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'orders':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="err">'order_id':</span><span class="w"> </span><span class="err">'</span><span class="mi">11574744030837944</span><span class="err">'</span><span class="p">,</span><span class="w">
+                </span><span class="err">'trade_no':</span><span class="w"> </span><span class="err">'</span><span class="mi">499016576021202015341</span><span class="err">'</span><span class="p">,</span><span class="w">
+                </span><span class="err">'symbol':</span><span class="w"> </span><span class="err">'BTC-USDT'</span><span class="p">,</span><span class="w">
+                </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mi">7900</span><span class="err">'</span><span class="p">,</span><span class="w">
+                </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">,</span><span class="w">
+                </span><span class="err">'match_amt':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+                </span><span class="err">'match_qty':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+                </span><span class="err">'match_price':</span><span class="w"> </span><span class="err">''</span><span class="p">,</span><span class="w">
+                </span><span class="err">'side':</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="err">'order_type':</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="err">'status':</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="err">'create_at':</span><span class="w"> </span><span class="mi">1574744151836</span><span class="w">
+            </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-12'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">order_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单id</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_no</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单流水号</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托价</td>
+</tr>
+<tr>
+<td style="text-align: center">quantity</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托数量</td>
+</tr>
+<tr>
+<td style="text-align: center">match_amt</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">已成交金额</td>
+</tr>
+<tr>
+<td style="text-align: center">match_qty</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">已成交数量</td>
+</tr>
+<tr>
+<td style="text-align: center">match_price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交均价</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">order_type</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">订单类型,1限价，3市价</td>
+</tr>
+<tr>
+<td style="text-align: center">status</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消</td>
+</tr>
+<tr>
+<td style="text-align: center">create_at</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">创建时间</td>
+</tr>
+</tbody></table>
+<h2 id='3fbc9cb788'>单个订单成交明细</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/orders/detail"</span>
+</code></pre></div><h3 id='http-12'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/orders/detail</code></p>
+
+<aside class="notice">限速6r/s</aside>
+<h3 id='1f9ac54b15-18'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对,如BTC-USDT</td>
+</tr>
+<tr>
+<td style="text-align: center">order_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">委托订单id</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">'order_id':</span><span class="w"> </span><span class="err">'</span><span class="mi">11574751725833010</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'trade_no':</span><span class="w"> </span><span class="err">'</span><span class="mi">499073202290421221116</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'symbol':</span><span class="w"> </span><span class="err">'BTC-USDT'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mi">70000</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0001</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'match_amt':</span><span class="w"> </span><span class="err">'</span><span class="mi">7</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'match_qty':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0001</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'match_price':</span><span class="w"> </span><span class="err">'</span><span class="mi">70000</span><span class="err">'</span><span class="p">,</span><span class="w">  
+        </span><span class="err">'fee':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0112</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'side':</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'order_type':</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="err">'status':</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="err">'create_at':</span><span class="w"> </span><span class="mi">1574922846832</span><span class="p">,</span><span class="w">
+        </span><span class="err">'trades':</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="err">'trade_id':</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mi">7</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mi">70000</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0001</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'fee':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0112</span><span class="err">'</span><span class="p">,</span><span class="w">  
+            </span><span class="err">'time':</span><span class="w"> </span><span class="mi">1574922846833</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-13'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">order_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单id</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_no</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">订单流水号</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托价</td>
+</tr>
+<tr>
+<td style="text-align: center">quantity</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">委托数量</td>
+</tr>
+<tr>
+<td style="text-align: center">match_amt</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">已成交金额</td>
+</tr>
+<tr>
+<td style="text-align: center">match_qty</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">已成交数量</td>
+</tr>
+<tr>
+<td style="text-align: center">match_price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交均价</td>
+</tr>
+<tr>
+<td style="text-align: center">fee</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">手续费</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">order_type</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">订单类型,1限价，3市价</td>
+</tr>
+<tr>
+<td style="text-align: center">status</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消</td>
+</tr>
+<tr>
+<td style="text-align: center">create_at</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">委托单创建时间</td>
+</tr>
+<tr>
+<td style="text-align: center">trades</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">已成交数据[{</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_id</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交记录id</td>
+</tr>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的成交价</td>
+</tr>
+<tr>
+<td style="text-align: center">quantity</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的成交量</td>
+</tr>
+<tr>
+<td style="text-align: center">fee</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的手续费</td>
+</tr>
+<tr>
+<td style="text-align: center">time</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">每条成交记录的成交时间}]</td>
+</tr>
+</tbody></table>
+<h2 id='d1baf83d74'>分页获取订单成交明细</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/orders/detailmore"</span>
+</code></pre></div><h3 id='http-13'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/orders/detailmore</code></p>
+
+<aside class="notice">限速6r/s</aside>
+<h3 id='1f9ac54b15-19'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对,如BTC-USDT</td>
+</tr>
+<tr>
+<td style="text-align: center">pagesize</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">页大小,最小10, 最大50,默认10</td>
+</tr>
+<tr>
+<td style="text-align: center">pagenum</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">页码，默认为1</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">'count':</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="err">'trades':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mi">11574751725833010</span><span class="err">'</span><span class="p">,</span><span class="w">
+              </span><span class="err">'fee':</span><span class="w"> </span><span class="err">'</span><span class="mi">499073202290421221116</span><span class="err">'</span><span class="p">,</span><span class="w">
+              </span><span class="err">'symbol':</span><span class="w"> </span><span class="err">'BTC-USDT'</span><span class="p">,</span><span class="w">
+              </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mi">70000</span><span class="err">'</span><span class="p">,</span><span class="w">
+              </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0001</span><span class="err">'</span><span class="p">,</span><span class="w">
+              </span><span class="err">'side':</span><span class="w"> </span><span class="err">'</span><span class="mi">7</span><span class="err">'</span><span class="p">,</span><span class="w">
+              </span><span class="err">'time':</span><span class="w"> </span><span class="mi">1574922846833</span><span class="p">,</span><span class="w">
+              </span><span class="err">'trade_id':</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-14'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">count</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">成交订单数量</td>
+</tr>
+<tr>
+<td style="text-align: center">trades</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">已成交数据[{</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">trade_id</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">成交记录id</td>
+</tr>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的成交价</td>
+</tr>
+<tr>
+<td style="text-align: center">quantity</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的成交量</td>
+</tr>
+<tr>
+<td style="text-align: center">fee</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">每条成交记录的手续费</td>
+</tr>
+<tr>
+<td style="text-align: center">time</td>
+<td style="text-align: center">int</td>
+<td style="text-align: center">每条成交记录的成交时间}]</td>
+</tr>
+</tbody></table>
+<h2 id='6033256dc0'>获取用户某个交易对手续费</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货市场
+
+<span class="s2">"https://api.bitda.com/open/v1/fee-rate"</span>
+</code></pre></div><h3 id='http-14'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/fee-rate</code></p>
+<h3 id='1f9ac54b15-20'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">'maker_fee':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0001</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'taker_fee':</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-15'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">maker_fee</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">挂单手续费</td>
+</tr>
+<tr>
+<td style="text-align: center">taker_fee</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">吃单手续费</td>
+</tr>
+</tbody></table>
+<h1 id='495cebdeec-2'>公共接口</h1><h2 id='ebe64e52ff-2'>所有交易对</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/tickers/market"</span>
+</code></pre></div><h3 id='http-15'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/tickers/market</code></p>
+
+<aside class="notice">限速6r/s</aside>
+<h3 id='1f9ac54b15-21'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mf">1.586</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'change':</span><span class="w"> </span><span class="err">'</span><span class="mf">-0.235462</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'high':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'low':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'symbol':</span><span class="w"> </span><span class="err">'BTC-USDT'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'amt_num':</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="err">'qty_num':</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="err">'volume':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.52</span><span class="err">'</span><span class="w">
+            </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-16'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">change</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时涨跌幅</td>
+</tr>
+<tr>
+<td style="text-align: center">high</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时最高</td>
+</tr>
+<tr>
+<td style="text-align: center">low</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时最低</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">当前价</td>
+</tr>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">交易对</td>
+</tr>
+<tr>
+<td style="text-align: center">amt_num</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">价格精度</td>
+</tr>
+<tr>
+<td style="text-align: center">qty_num</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">数量精度</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">24小时成交量</td>
+</tr>
+</tbody></table>
+<h2 id='a1128a972d-2'>深度</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/depth/market"</span>
+</code></pre></div><h3 id='http-16'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/depth/market</code></p>
+
+<aside class="notice">限速5r/s</aside>
+<h3 id='1f9ac54b15-22'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对名称,如BTC-USDT</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">'bids':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.923</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">12</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.823</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">12</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.813</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">14</span><span class="err">'</span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w"> 
+        </span><span class="err">'asks':</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.48</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.31</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">15</span><span class="err">'</span><span class="p">},</span><span class="w"> 
+            </span><span class="p">{</span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.923</span><span class="err">'</span><span class="p">,</span><span class="w"> </span><span class="err">'quantity':</span><span class="w"> </span><span class="err">'</span><span class="mi">15</span><span class="err">'</span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+    </span><span class="err">'msg':</span><span class="w"> </span><span class="err">'ok'</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-17'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">bids</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">当前所有买单[{price 价格, quantity 数量}]</td>
+</tr>
+<tr>
+<td style="text-align: center">asks</td>
+<td style="text-align: center">object</td>
+<td style="text-align: center">当前所有卖单[{price 价格, quantity 数量}]</td>
+</tr>
+</tbody></table>
+<h2 id='775841b581-2'>逐笔成交</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/trade/market"</span>
+</code></pre></div><h3 id='http-17'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/trade/market</code></p>
+
+<aside class="notice">限速10r/s</aside>
+<h3 id='1f9ac54b15-23'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对名称,如BTC-USDT</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.918</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'price':</span><span class="w"> </span><span class="err">'</span><span class="mf">2.04</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">'side':</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="err">'time':</span><span class="w"> </span><span class="mi">1574942822160</span><span class="p">,</span><span class="w">
+        </span><span class="err">'volume':</span><span class="w"> </span><span class="err">'</span><span class="mf">0.45</span><span class="err">'</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-18'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">price</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交价</td>
+</tr>
+<tr>
+<td style="text-align: center">side</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">成交方向，1买，-1卖</td>
+</tr>
+<tr>
+<td style="text-align: center">time</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">时间</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交量</td>
+</tr>
+</tbody></table>
+<h2 id='k-3'>k线数据</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
+
+<span class="s2">"https://api.bitda.com/open/v1/kline/market"</span>
+</code></pre></div><h3 id='http-18'>HTTP请求</h3>
+<p>现货交易
+- GET <code>/open/v1/kline/market</code></p>
+
+<aside class="notice">限速1r/s</aside>
+<h3 id='1f9ac54b15-24'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">symbol</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">交易对，如: BTC-USDT</td>
+</tr>
+<tr>
+<td style="text-align: center">type</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">类型1Min, 5Min, 15Min, 30Min等</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'code':</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+    </span><span class="err">'data':</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="err">'amount':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="p">,</span><span class="w">
+            </span><span class="err">'close':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w">    
+            </span><span class="err">'high':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'low':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'open':</span><span class="w"> </span><span class="err">'</span><span class="mf">3.05</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'time':</span><span class="w"> </span><span class="mi">1571812440</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">'volume':</span><span class="w"> </span><span class="err">'</span><span class="mi">0</span><span class="err">'</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='aceee0d936-19'>返回字段</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">参数名</th>
+<th style="text-align: center">参数类型</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">amount</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交额</td>
+</tr>
+<tr>
+<td style="text-align: center">close</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段收盘价</td>
+</tr>
+<tr>
+<td style="text-align: center">high</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段最高价</td>
+</tr>
+<tr>
+<td style="text-align: center">low</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段最低价</td>
+</tr>
+<tr>
+<td style="text-align: center">open</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">本阶段开盘价</td>
+</tr>
+<tr>
+<td style="text-align: center">time</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">时间</td>
+</tr>
+<tr>
+<td style="text-align: center">volume</td>
+<td style="text-align: center">string</td>
+<td style="text-align: center">成交量</td>
+</tr>
+</tbody></table>
+<h1 id='api-2'>现货API调用示例</h1>
+<blockquote>
+<p>Python:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="c1"># -*- coding:utf-8 -*-
+</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">ujson</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">host</span> <span class="o">=</span> <span class="s">"https://api.bitda.com.io"</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">client_key</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="k">def</span> <span class="nf">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">):</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">())</span>
+    <span class="n">nonce</span> <span class="o">=</span> <span class="s">"abcdefg"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">"ts"</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span> <span class="s">"nonce"</span><span class="p">:</span> <span class="n">nonce</span><span class="p">,</span> <span class="s">"sign"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span> <span class="s">"client_id"</span><span class="p">:</span> <span class="n">client_id</span><span class="p">}</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s">"client_id=%s&amp;nonce=%s&amp;ts=%s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span> 
+    <span class="n">v</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">client_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">s</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">[</span><span class="s">"sign"</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">obj</span> 
+
+<span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取open委托中"</span><span class="p">)</span>
+<span class="c1"># 现货交易
+</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/last"</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取单个订单成交明细"</span><span class="p">)</span>
+<span class="c1"># 现货交易
+</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/detail"</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"order_id"</span><span class="p">:</span> <span class="s">"11574751725833010"</span><span class="p">,</span> <span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"&gt; 分页获取成交明细"</span><span class="p">)</span>
+<span class="c1"># 现货交易
+</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/detailmore"</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"pagesize"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s">"pagenum"</span><span class="p">:</span> <span class="mi">1</span><span class="s">"})
+res = requests.get(host + path, params=obj)
+print(ujson.loads(res.content))
+
+print("</span><span class="o">&gt;</span> <span class="n">获取用户某个交易对手续费</span><span class="s">")
+# 现货交易
+path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">orders</span><span class="o">/</span><span class="n">fee</span><span class="o">-</span><span class="n">rate</span><span class="s">"
+obj = gen_sign(client_id, client_key)
+obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">"})
+res = requests.get(host + path, params=obj)
+print(ujson.loads(res.content))
+
+print("</span><span class="o">&gt;</span> <span class="n">获取kline</span><span class="s">")
+# 现货交易
+path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">kline</span><span class="s">"
+obj = gen_sign(client_id, client_key)
+obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">", "</span><span class="nb">type</span><span class="s">": "</span><span class="mi">1</span><span class="n">Min</span><span class="s">"})
+res = requests.get(host + path, params=obj)
+print(ujson.loads(res.content))
+
+print("</span><span class="o">&gt;</span> <span class="n">获取余额</span><span class="s">")
+# 现货交易
+path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">balance</span><span class="s">"
+obj = gen_sign(client_id, client_key)
+res = requests.get(host + path, params=obj)
+print(ujson.loads(res.content))
+
+print("</span><span class="o">&gt;</span> <span class="n">获取最近成交记录</span><span class="s">")
+# 现货交易
+path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">tickers</span><span class="o">/</span><span class="n">trade</span><span class="s">"
+obj = gen_sign(client_id, client_key)
+obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">"})
+res = requests.get(host + path, params=obj)
+print(ujson.loads(res.content))
+
+print("</span><span class="o">&gt;</span> <span class="n">下单</span><span class="s">")
+# 现货交易
+path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">orders</span><span class="o">/</span><span class="n">place</span><span class="s">"
+obj = gen_sign(client_id, client_key)
+obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">", "</span><span class="n">price</span><span class="s">": "</span><span class="mf">8850.21</span><span class="s">", "</span><span class="n">quantity</span><span class="s">": "</span><span class="mf">0.1</span><span class="s">", "</span><span class="n">side</span><span class="s">": "</span><span class="mi">1</span><span class="s">", "</span><span class="n">order_type</span><span class="s">": "</span><span class="n">LIMIT</span><span class="s">"})
+res = requests.post(host + path, data=obj)
+print(ujson.loads(res.content))
+</span></code></pre></div><h1 id='websocket-2'>Websocket示例</h1><div class="highlight"><pre class="highlight python tab-python"><code><span class="c1"># -*- coding:utf-8 -*-
+</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">websockets</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">uvloop</span>
+
+<span class="n">asyncio</span><span class="p">.</span><span class="n">set_event_loop_policy</span><span class="p">(</span><span class="n">uvloop</span><span class="p">.</span><span class="n">EventLoopPolicy</span><span class="p">())</span>
+
+<span class="c1"># 现货交易
+</span><span class="n">host</span> <span class="o">=</span> <span class="s">"wss://api.bitda.com/ws"</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">client_key</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">())</span>
+    <span class="n">nonce</span> <span class="o">=</span> <span class="s">"abcdefg"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">"ts"</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span> <span class="s">"nonce"</span><span class="p">:</span> <span class="n">nonce</span><span class="p">,</span> <span class="s">"sign"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span> <span class="s">"client_id"</span><span class="p">:</span> <span class="n">client_id</span><span class="p">,</span> <span class="s">"op"</span><span class="p">:</span> <span class="s">"apilogin"</span><span class="p">}</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s">"client_id=%s&amp;nonce=%s&amp;ts=%s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">client_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">s</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">[</span><span class="s">"sign"</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">obj</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="n">sub</span> <span class="o">=</span> <span class="s">"depth:0:BTC-USDT"</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"op"</span><span class="p">:</span> <span class="s">"sub"</span><span class="p">,</span> <span class="s">"topic"</span><span class="p">:</span> <span class="n">sub</span><span class="p">}))</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">startup</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"start to connect %s..."</span> <span class="o">%</span> <span class="n">host</span><span class="p">)</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
+
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">login</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="k">await</span> <span class="n">sub_topic</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">recv</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">websockets</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">ConnectionClosed</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"connect closed..."</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="p">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+    <span class="n">loop</span><span class="p">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">startup</span><span class="p">())</span>
+</code></pre></div>
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+    <script>
+      const lang_btn = document.getElementById('lang_box');
+      const btn_spot = document.getElementById('btn_spot');
+      const v1_url = document.getElementById('v1_url');
+      const url = GetUrlRelativePath();
+      if(url.indexOf('cn') != -1){
+        //如果是中文环境
+        lang_btn.innerHTML = 'English';
+        btn_spot.innerHTML = '现货API';
+        lang_btn.href = url.replace('cn/', 'en/');
+        btn_spot.href = btn_spot.href.replace('en/', 'cn/');
+      }else{
+        //如果是英文环境
+        lang_btn.innerHTML = '中文';
+        btn_spot.innerHTML = 'Spot API';
+        lang_btn.href = url.replace('en/', 'cn/');
+        btn_spot.href = btn_spot.href.replace('cn/', 'en/');
+        v1_url.href = '/spot/v1/en/';
+      }
+      lang_btn.style.display = 'block';
+      function GetUrlRelativePath(){
+        let url = document.location.toString();
+        let arrUrl = url.split("//");
+        let start = arrUrl[1].indexOf("/");
+        let relUrl = arrUrl[1].substring(start);
+        if(relUrl.indexOf("?") != -1){
+          relUrl = relUrl.split("?")[0];
+        }
+        if(relUrl.indexOf("#") != -1){
+          relUrl = relUrl.split("#")[0];
+        }
+        return relUrl;
+  　　}
+    </script>
+  </body>
+</html>
