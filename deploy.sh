@@ -226,6 +226,12 @@ commit+push() {
     git push --quiet $repo $deploy_branch
   fi
   enable_expanded_output
+  # 把当前目录下的gh-pages目录复制并覆盖到../docs目录
+  # 如果不存在，则创建
+  if [ ! -d "../docs" ]; then
+    mkdir ../docs
+  fi
+  cp -r $gh_pages_directory/* ../docs
 }
 
 #echo expanded commands as they are executed (for debugging)

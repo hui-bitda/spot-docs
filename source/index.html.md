@@ -106,7 +106,7 @@ title: BitDa API 文档
             "volume":"17.55"
         }
     ],
-    "timestamp":1572851160917,
+    "timestamp":1572851160.917,
     "topic":"kline:1Min:BTC-USDT",
     "type":"60000"
 }
@@ -121,7 +121,7 @@ title: BitDa API 文档
 |   high    |  string  | 本阶段最高价 |
 |    low    |  string  | 本阶段最低价 |
 |   open    |  string  | 本阶段开盘价 |
-| timestamp | integer  | 时间戳 毫秒  |
+| timestamp |  float   |  时间戳 秒   |
 |  volume   |  string  |    成交量    |
 
 ### 逐笔成交
@@ -143,7 +143,7 @@ title: BitDa API 文档
     "price":"2.82",
     "side":1,
     "symbol":"BTC-USDT",
-    "timestamp":1572851197910,
+    "timestamp":1572851197.910,
     "topic":"trade:BTC-USDT",
     "volume":"2.65"
 }
@@ -157,7 +157,7 @@ title: BitDa API 文档
 |   price   |  string  |       成交价        |
 |   side    | integer  | 成交方向，1买，-1卖 |
 |  symbol   |  string  |       交易对        |
-| timestamp | integer  |     时间戳 毫秒     |
+| timestamp |  float   |      时间戳 秒      |
 |  volume   |  string  |       成交量        |
 
 ### 深度
@@ -186,7 +186,7 @@ title: BitDa API 文档
         {'price': '3.55', 'quantity': '10'}
     ],
     "symbol":"BTC-USDT",
-    "timestamp":1572851208935,
+    "timestamp":1572851208.935,
     "topic":"depth:0:BTC-USDT"
 }
 ```
@@ -217,7 +217,7 @@ title: BitDa API 文档
     "change":"0.00949367",
     "price":"3.19",
     "symbol":"BTC-USDT",
-    "timestamp":1572851216950,
+    "timestamp":1572851216.950,
     "topic":"quotes",
     "volume":"17965.65"
 }
@@ -230,7 +230,7 @@ title: BitDa API 文档
 |  change   |  string  |    涨跌幅    |
 |   price   |  string  |    当前价    |
 |  symbol   |  string  |    交易对    |
-| timestamp | integer  | 时间戳 毫秒  |
+| timestamp |  float   |  时间戳 秒   |
 |  volume   |  string  | 24小时成交量 |
 
 ### 账户余额变化
@@ -289,7 +289,7 @@ title: BitDa API 文档
     "side":-1,
     "status":2,
     "symbol":"BTC-USDT",
-    "timestamp":1574949805841,
+    "timestamp":1574949805.841,
     "topic":"orders:BTC-USDT",
     "trade_no":"499081745280826070655",
     "match_qty":"0"
@@ -305,7 +305,7 @@ title: BitDa API 文档
     "side":-1,
     "status":6,
     "symbol":"BTC-USDT",
-    "timestamp":1574949805841,
+    "timestamp":1574949805.841,
     "topic":"orders:BTC-USDT",
     "trade_no":"499081745280826070655",
     "match_qty":"0",
@@ -325,7 +325,7 @@ title: BitDa API 文档
 |    side     |   int    |                         方向，1买，-1卖                         |
 |   status    |   int    | 状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消 |
 |   symbol    |  string  |                             交易对                              |
-|  timestamp  |   int    |                          创建时间 毫秒                          |
+|  timestamp  |  float   |                           创建时间 秒                           |
 |  trade_no   |  string  |                           订单流水号                            |
 |  match_qty  |  string  |                           已成交数量                            |
 | match_price |  string  |                            成交均价                             |
@@ -359,17 +359,19 @@ title: BitDa API 文档
 
 ```json
 {  
-    'code': 0, 
-    'data': [
-            {'amount': '1.586',
-            'change': '-0.235462',
-            'high': '3.05',
-            'low': '3.05',
-            'price': '0',
-            'symbol': 'BTC-USDT',
-            'amt_num': 4,
-            'qty_num': 2,
-            'volume': '0.52'
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": [
+            {"amount": "1.586",
+            "change": "-0.235462",
+            "high": "3.05",
+            "low": "3.05",
+            "price": "0",
+            "symbol": "BTC-USDT",
+            "amt_num": 4,
+            "qty_num": 2,
+            "volume": "0.52"
             }, 
         ]
 }
@@ -409,12 +411,14 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': [
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": [
         {
-            'amount': '4317.6696678', 
-            'symbol': "USDT", 
-            'freeze': '71.609185'
+            "amount": '4317.6696678', 
+            "symbol": "USDT", 
+            "freeze": '71.609185'
         },
     ]
 }
@@ -452,6 +456,7 @@ title: BitDa API 文档
     "code": 0,
     "msg": "ok",
     "data": "12354534",
+    "time": 1745208892.421363,
 }
 ```
 
@@ -488,8 +493,10 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': [
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": [
         {
             'amount': '0',
             'close': '3.05',    
@@ -539,19 +546,20 @@ title: BitDa API 文档
 ```json
 {
     'code': 0, 
-    'data': {
-        'bids': [
-            {'price': '2.923', 'quantity': '12'}, 
-            {'price': '2.823', 'quantity': '12'}, 
-            {'price': '2.813', 'quantity': '14'}
+    "time": 1745208892.421363,
+    "data": {
+        "bids": [
+            {"price": "2.923", "quantity": "12"}, 
+            {"price": "2.823", "quantity": "12"}, 
+            {"price": "2.813", "quantity": "14"}
         ], 
-        'asks': [
-            {'price': '3.05', 'quantity': '3.48'}, 
-            {'price': '3.31', 'quantity': '15'}, 
-            {'price': '3.923', 'quantity': '15'}
+        "asks": [
+            {"price": "3.05", "quantity": "3.8"}, 
+            {"price": "3.31", "quantity": "15"}, 
+            {"price": "3.92", "quantity": "15"}
             ]
         }, 
-    'msg': 'ok'
+    "msg": "ok"
 }
 ```
 
@@ -585,13 +593,15 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': [{
-        'amount': '0.918',
-        'price': '2.04',
-        'side': -1,
-        'time': 1574942822160,
-        'volume': '0.45'
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": [{
+        "amount": "0.918",
+        "price": "2.04",
+        "side": -1,
+        "time": 1574942822160,
+        "volume": "0.45"
         }]
 }
 ```
@@ -639,6 +649,7 @@ title: BitDa API 文档
 {
     "code": 0,
     "msg": "ok",
+    "time": 1745208892.421363,
     "data": {
         "order_id": "xxx",
         "trade_no": "xxx",
@@ -678,6 +689,7 @@ title: BitDa API 文档
 {
     "code": 0,
     "msg": "ok",
+    "time": 1745208892.421363,
 }
 ```
 
@@ -713,6 +725,7 @@ title: BitDa API 文档
 {
     "code": 0,
     "msg": "ok",
+    "time": 1745208892.421363,
 }
 ```
 
@@ -743,20 +756,22 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': [
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": [
         {
-            'symbol': 'BTC-USDT',
-            'order_id': '11574744030837944',
-            'trade_no': '499016576021202015341',
-            'price': '7900',
-            'quantity': '1',
-            'match_amt': '0',
-            'match_qty': '0',
-            'match_price': '',
-            'side': -1,
-            'order_type': 1,
-            'create_at': 1574744151836
+            "symbol": "BTC-USDT",
+            "order_id": "11574744030837944",
+            "trade_no": "499016576021202015341",
+            "price": "7900",
+            "quantity": "1",
+            "match_amt": "0",
+            "match_qty": "0",
+            "match_price'"": "",
+            "side": -1,
+            "order_type": 1,
+            "create_at": 1574744151.836
         }, 
     ], 
 }
@@ -806,24 +821,25 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'msg': 'ok',
-    'data': {
-        'count': 4, 
-        'orders': [
+    "code": 0, 
+    "msg": 'ok',
+    "time": 1745208892.421363,
+    "data": {
+        "count": 4, 
+        "orders": [
             {
-                'order_id': '11574744030837944',
-                'trade_no': '499016576021202015341',
-                'symbol': 'BTC-USDT',
-                'price': '7900',
-                'quantity': '1',
-                'match_amt': '0',
-                'match_qty': '0',
-                'match_price': '',
-                'side': -1,
-                'order_type': 1,
-                'status': 6,
-                'create_at': 1574744151836
+                "order_id": "11574744030837944",
+                "trade_no": "499016576021202015341",
+                "symbol": "BTC-USDT",
+                "price": "7900",
+                "quantity": "1",
+                "match_amt": "0",
+                "match_qty": "0",
+                "match_price": "",
+                "side": -1,
+                "order_type": 1,
+                "status": 6,
+                "create_at": 1574744151.836
             }, 
         ]
     }, 
@@ -871,28 +887,30 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': {
-        'order_id': '11574751725833010',
-        'trade_no': '499073202290421221116', 
-        'symbol': 'BTC-USDT', 
-        'price': '70000', 
-        'quantity': '0.0001', 
-        'match_amt': '7', 
-        'match_qty': '0.0001',
-        'match_price': '70000',  
-        'fee': '0.0112',
-        'side': -1, 
-        'order_type': 1,
-        'status': 4,
-        'create_at': 1574922846832,
-        'trades': [{
-            'trade_id': "1",
-            'amount': '7', 
-            'price': '70000', 
-            'quantity': '0.0001',
-            'fee': '0.0112',  
-            'time': 1574922846833
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": {
+        "order_id": "11574751725833010",
+        "trade_no": "499073202290421221116", 
+        "symbol": "BTC-USDT", 
+        "price": "70000", 
+        "quantity": "0.0001", 
+        "match_amt": "7", 
+        "match_qty": "0.0001",
+        "match_price": "70000",  
+        "fee": "0.0112",
+        "side": -1, 
+        "order_type": 1,
+        "status": 4,
+        "create_at": 1574922846.832,
+        "trades": [{
+            "trade_id": "1",
+            "amount": "7", 
+            "price": "70000", 
+            "quantity": "0.0001",
+            "fee": "0.0112",  
+            "time": 1574922846.833
             }]
     }
 }
@@ -948,19 +966,21 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': {
-        'count': 10,
-        'trades': [
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": {
+        "count": 10,
+        "trades": [
             {
-              'amount': '11574751725833010',
-              'fee': '499073202290421221116',
-              'symbol': 'BTC-USDT',
-              'price': '70000',
-              'quantity': '0.0001',
-              'side': '7',
-              'time': 1574922846833,
-              'trade_id': 1,
+              "amount": "11574751725833010",
+              "fee": "499073202290421221116",
+              "symbol": "BTC-USDT",
+              "price": "70000",
+              "quantity": "0.0001",
+              "side": "7",
+              "time": 1574922846833,
+              "trade_id": 1,
             }
           ]
     }
@@ -1003,10 +1023,12 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': {
-        'maker_fee': '0.0001',
-        'taker_fee': "0.0002"
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": {
+        "maker_fee": "0.0001",
+        "taker_fee": "0.0002"
     }
 }
 ```
@@ -1043,17 +1065,20 @@ title: BitDa API 文档
 
 ```json
 {  
-    'code': 0, 
-    'data': [
-            {'amount': '1.586',
-            'change': '-0.235462',
-            'high': '3.05',
-            'low': '3.05',
-            'price': '0',
-            'symbol': 'BTC-USDT',
-            'amt_num': 4,
-            'qty_num': 2,
-            'volume': '0.52'
+    "code": 0,
+    "msg": "",
+    "time": 1745208892.421363, 
+    "data": [
+            {
+              "amount": "1.586",
+              "change": "-0.235462",
+              "high": "3.05",
+              "low": "3.05",
+              "price": "0",
+              "symbol": "BTC-USDT",
+              "amt_num": 4,
+              "qty_num": 2,
+              "volume": "0.52"
             }, 
         ]
 }
@@ -1096,20 +1121,21 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': {
-        'bids': [
-            {'price': '2.923', 'quantity': '12'}, 
-            {'price': '2.823', 'quantity': '12'}, 
-            {'price': '2.813', 'quantity': '14'}
+    "code": 0, 
+    "time": 1745208892.421363,
+    "data": {
+        "bids": [
+            {"price": "2.923", "quantity": "12"}, 
+            {"price": "2.823", "quantity": "12"}, 
+            {"price": "2.813", "quantity": "14"}
         ], 
-        'asks': [
-            {'price': '3.05', 'quantity': '3.48'}, 
-            {'price': '3.31', 'quantity': '15'}, 
-            {'price': '3.923', 'quantity': '15'}
+        "asks": [
+            {"price": "3.05", "quantity": "31"}, 
+            {"price": "3.31", "quantity": "15"}, 
+            {"price": "3.92", "quantity": "15"}
             ]
         }, 
-    'msg': 'ok'
+    "msg": "ok"
 }
 ```
 
@@ -1143,13 +1169,15 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': [{
-        'amount': '0.918',
-        'price': '2.04',
-        'side': -1,
-        'time': 1574942822160,
-        'volume': '0.45'
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": [{
+        "amount": "0.918",
+        "price": "2.04",
+        "side": -1,
+        "time": 1574942822160,
+        "volume": "0.45"
         }]
 }
 ```
@@ -1188,16 +1216,18 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
-    'data': [
+    "code": 0, 
+    "msg": "",
+    "time": 1745208892.421363,
+    "data": [
         {
-            'amount': '0',
-            'close': '3.05',    
-            'high': '3.05', 
-            'low': '3.05', 
-            'open': '3.05', 
-            'time': 1571812440, 
-            'volume': '0'
+            "amount": "0",
+            "close": "3.05",    
+            "high": "3.05", 
+            "low": "3.05", 
+            "open": "3.05", 
+            "time": 1571812440, 
+            "volume": "0"
         }
     ]
 }
