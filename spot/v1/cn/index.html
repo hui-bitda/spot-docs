@@ -2889,69 +2889,154 @@
     <span class="n">obj</span><span class="p">[</span><span class="s">"sign"</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">obj</span> 
 
-<span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取open委托中"</span><span class="p">)</span>
-<span class="c1"># 现货交易
-</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/last"</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
-<span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_open_orders</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取open委托中"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/last"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取单个订单成交明细"</span><span class="p">)</span>
-<span class="c1"># 现货交易
-</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/detail"</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
-<span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"order_id"</span><span class="p">:</span> <span class="s">"11574751725833010"</span><span class="p">,</span> <span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get_order_list</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取委托单列表"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"start"</span><span class="p">:</span> <span class="mi">1738886400</span><span class="p">,</span> <span class="s">"end"</span><span class="p">:</span> <span class="mi">1738972800</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"&gt; 分页获取成交明细"</span><span class="p">)</span>
-<span class="c1"># 现货交易
-</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/detailmore"</span>
-<span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
-<span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"pagesize"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s">"pagenum"</span><span class="p">:</span> <span class="mi">1</span><span class="s">"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+<span class="k">def</span> <span class="nf">get_order_detail</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取单个订单成交明细"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/detail"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"order_id"</span><span class="p">:</span> <span class="s">"337"</span><span class="p">,</span> <span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
-print("</span><span class="o">&gt;</span> <span class="n">获取用户某个交易对手续费</span><span class="s">")
-# 现货交易
-path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">orders</span><span class="o">/</span><span class="n">fee</span><span class="o">-</span><span class="n">rate</span><span class="s">"
-obj = gen_sign(client_id, client_key)
-obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+<span class="k">def</span> <span class="nf">get_order_detail_more</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 分页获取成交明细"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/detailmore"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"pagesize"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s">"pagenum"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
-print("</span><span class="o">&gt;</span> <span class="n">获取kline</span><span class="s">")
-# 现货交易
-path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">kline</span><span class="s">"
-obj = gen_sign(client_id, client_key)
-obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">", "</span><span class="nb">type</span><span class="s">": "</span><span class="mi">1</span><span class="n">Min</span><span class="s">"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+<span class="k">def</span> <span class="nf">get_order_fee_rate</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取用户某个交易对手续费"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/fee-rate"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
-print("</span><span class="o">&gt;</span> <span class="n">获取余额</span><span class="s">")
-# 现货交易
-path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">balance</span><span class="s">"
-obj = gen_sign(client_id, client_key)
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+<span class="k">def</span> <span class="nf">get_kline</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取kline"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/kline"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"type"</span><span class="p">:</span> <span class="s">"1Min"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
-print("</span><span class="o">&gt;</span> <span class="n">获取最近成交记录</span><span class="s">")
-# 现货交易
-path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">tickers</span><span class="o">/</span><span class="n">trade</span><span class="s">"
-obj = gen_sign(client_id, client_key)
-obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+<span class="c1"># 获取深度
+</span><span class="k">def</span> <span class="nf">get_depth</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取深度"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/depth"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
-print("</span><span class="o">&gt;</span> <span class="n">下单</span><span class="s">")
-# 现货交易
-path = "</span><span class="o">/</span><span class="nb">open</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">orders</span><span class="o">/</span><span class="n">place</span><span class="s">"
-obj = gen_sign(client_id, client_key)
-obj.update({"</span><span class="n">symbol</span><span class="s">": "</span><span class="n">BTC</span><span class="o">-</span><span class="n">USDT</span><span class="s">", "</span><span class="n">price</span><span class="s">": "</span><span class="mf">8850.21</span><span class="s">", "</span><span class="n">quantity</span><span class="s">": "</span><span class="mf">0.1</span><span class="s">", "</span><span class="n">side</span><span class="s">": "</span><span class="mi">1</span><span class="s">", "</span><span class="n">order_type</span><span class="s">": "</span><span class="n">LIMIT</span><span class="s">"})
-res = requests.post(host + path, data=obj)
-print(ujson.loads(res.content))
-</span></code></pre></div><h1 id='websocket-2'>Websocket示例</h1><div class="highlight"><pre class="highlight python tab-python"><code><span class="c1"># -*- coding:utf-8 -*-
+<span class="k">def</span> <span class="nf">get_balance</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取余额"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/balance"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_trade_tickers</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取最近成交记录"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/tickers/trade"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">place_order</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 下单"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/place"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"ETH-USDT"</span><span class="p">,</span> <span class="s">"price"</span><span class="p">:</span> <span class="s">"10"</span><span class="p">,</span> <span class="s">"quantity"</span><span class="p">:</span> <span class="s">"0.2"</span><span class="p">,</span> <span class="s">"side"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span> <span class="s">"order_type"</span><span class="p">:</span> <span class="s">"LIMIT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">cancel_order</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 撤单"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/cancel"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"order_id"</span><span class="p">:</span> <span class="s">"327"</span><span class="p">,</span> <span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="c1"># 批量撤单
+</span><span class="k">def</span> <span class="nf">bat_cancel_order</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 批量撤单"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/batcancel"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="s">"123"</span><span class="p">,</span> <span class="s">"124"</span><span class="p">,</span> <span class="s">"125"</span><span class="p">]</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"ETH-USDT"</span><span class="p">,</span> <span class="s">"order_ids"</span><span class="p">:</span> <span class="s">","</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">ids</span><span class="p">)})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_tickers</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取ticker"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/tickers"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="c1"># 获取服务器时间
+</span><span class="k">def</span> <span class="nf">get_server_time</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取服务器时间"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/timestamp"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="c1"># 获取最新的成交
+</span><span class="k">def</span> <span class="nf">get_trade</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取最新的成交"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/tickers/trade"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="c1"># 获取用户手续费
+</span><span class="k">def</span> <span class="nf">get_fee_rate</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"&gt; 获取用户手续费"</span><span class="p">)</span>
+    <span class="c1"># 现货交易
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/fee-rate"</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+</code></pre></div><h1 id='websocket-2'>Websocket示例</h1><div class="highlight"><pre class="highlight python tab-python"><code><span class="c1"># -*- coding:utf-8 -*-
 </span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">hmac</span>
@@ -2971,23 +3056,64 @@ print(ujson.loads(res.content))
 <span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">())</span>
     <span class="n">nonce</span> <span class="o">=</span> <span class="s">"abcdefg"</span>
-    <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">"ts"</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span> <span class="s">"nonce"</span><span class="p">:</span> <span class="n">nonce</span><span class="p">,</span> <span class="s">"sign"</span><span class="p">:</span> <span class="s">""</span><span class="p">,</span> <span class="s">"client_id"</span><span class="p">:</span> <span class="n">client_id</span><span class="p">,</span> <span class="s">"op"</span><span class="p">:</span> <span class="s">"apilogin"</span><span class="p">}</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"sign"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{</span><span class="s">"ts"</span><span class="p">:</span> <span class="n">ts</span><span class="p">,</span> <span class="s">"nonce"</span><span class="p">:</span> <span class="n">nonce</span><span class="p">,</span> <span class="s">"client_id"</span><span class="p">:</span> <span class="n">client_id</span><span class="p">,</span> <span class="s">"sign"</span><span class="p">:</span> <span class="s">""</span><span class="p">},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
     <span class="n">s</span> <span class="o">=</span> <span class="s">"client_id=%s&amp;nonce=%s&amp;ts=%s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">nonce</span><span class="p">,</span> <span class="n">ts</span><span class="p">)</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">client_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">s</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">)</span>
     <span class="n">obj</span><span class="p">[</span><span class="s">"sign"</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">obj</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
-    <span class="n">sub</span> <span class="o">=</span> <span class="s">"depth:0:BTC-USDT"</span>
-    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"op"</span><span class="p">:</span> <span class="s">"sub"</span><span class="p">,</span> <span class="s">"topic"</span><span class="p">:</span> <span class="n">sub</span><span class="p">}))</span>
+<span class="c1"># 心跳
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="n">ping</span> <span class="o">=</span> <span class="p">{</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"ping"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ping</span><span class="p">))</span>
+
+<span class="c1"># 订阅深度
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic_depth</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"subscribe.depth"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{</span><span class="s">"market"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"merge"</span><span class="p">:</span> <span class="s">"step1"</span><span class="p">},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+
+<span class="c1"># 订阅K线
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic_kline</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"subscribe.kline"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{</span><span class="s">"period"</span><span class="p">:</span> <span class="s">"1Min"</span><span class="p">,</span> <span class="s">"market"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+
+<span class="c1"># 订阅订单
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic_order</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"subscribe.orders"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{</span><span class="s">"market"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+
+<span class="c1"># 订阅成交
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic_trade</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"subscribe.trade"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{</span><span class="s">"market"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+
+<span class="c1"># 行情
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic_quotes</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"subscribe.quote"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{</span><span class="s">"market"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+
+<span class="c1"># 资产
+</span><span class="k">async</span> <span class="k">def</span> <span class="nf">sub_topic_asset</span><span class="p">(</span><span class="n">ws</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">({</span><span class="s">"method"</span><span class="p">:</span> <span class="s">"subscribe.asset"</span><span class="p">,</span> <span class="s">"params"</span><span class="p">:</span> <span class="p">{},</span> <span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">startup</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"start to connect %s..."</span> <span class="o">%</span> <span class="n">host</span><span class="p">)</span>
     <span class="n">ws</span> <span class="o">=</span> <span class="k">await</span> <span class="n">websockets</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
 
-    <span class="n">obj</span> <span class="o">=</span> <span class="n">login</span><span class="p">()</span>
+    <span class="c1"># 心跳
+</span>    <span class="k">await</span> <span class="n">ping</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+
+    <span class="c1"># 登录
+</span>    <span class="n">obj</span> <span class="o">=</span> <span class="n">login</span><span class="p">()</span>
     <span class="k">await</span> <span class="n">ws</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
-    <span class="k">await</span> <span class="n">sub_topic</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+
+    <span class="c1"># 订阅深度
+</span>    <span class="k">await</span> <span class="n">sub_topic_depth</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+    <span class="c1"># 订阅K线
+</span>    <span class="k">await</span> <span class="n">sub_topic_kline</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+    <span class="c1"># 订阅订单
+</span>    <span class="k">await</span> <span class="n">sub_topic_order</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+    <span class="c1"># 订阅成交
+</span>    <span class="k">await</span> <span class="n">sub_topic_trade</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+    <span class="c1"># 行情
+</span>    <span class="k">await</span> <span class="n">sub_topic_quotes</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+    <span class="c1"># 资产
+</span>    <span class="k">await</span> <span class="n">sub_topic_asset</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 
     <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
