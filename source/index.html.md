@@ -1449,68 +1449,153 @@ def gen_sign(client_id, client_key):
     obj["sign"] = v.hexdigest()
     return obj 
 
-print("> 获取open委托中")
-# 现货交易
-path = "/open/v1/orders/last"
-obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+def get_open_orders():
+    print("> 获取open委托中")
+    # 现货交易
+    path = "/open/v1/orders/last"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-print("> 获取单个订单成交明细")
-# 现货交易
-path = "/open/v1/orders/detail"
-obj = gen_sign(client_id, client_key)
-obj.update({"order_id": "11574751725833010", "symbol": "BTC-USDT"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+def get_order_list():
+    print("> 获取委托单列表")
+    # 现货交易
+    path = "/open/v1/orders"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT", "start": 1738886400, "end": 1738972800})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-print("> 分页获取成交明细")
-# 现货交易
-path = "/open/v1/orders/detailmore"
-obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT", "pagesize": 10, "pagenum": 1"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+def get_order_detail():
+    print("> 获取单个订单成交明细")
+    # 现货交易
+    path = "/open/v1/orders/detail"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"order_id": "337", "symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-print("> 获取用户某个交易对手续费")
-# 现货交易
-path = "/open/v1/orders/fee-rate"
-obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+def get_order_detail_more():
+    print("> 分页获取成交明细")
+    # 现货交易
+    path = "/open/v1/orders/detailmore"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT", "pagesize": 10, "pagenum": 1})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-print("> 获取kline")
-# 现货交易
-path = "/open/v1/kline"
-obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT", "type": "1Min"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+def get_order_fee_rate():
+    print("> 获取用户某个交易对手续费")
+    # 现货交易
+    path = "/open/v1/orders/fee-rate"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-print("> 获取余额")
-# 现货交易
-path = "/open/v1/balance"
-obj = gen_sign(client_id, client_key)
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+def get_kline():
+    print("> 获取kline")
+    # 现货交易
+    path = "/open/v1/kline"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT", "type": "1Min"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-print("> 获取最近成交记录")
-# 现货交易
-path = "/open/v1/tickers/trade"
-obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT"})
-res = requests.get(host + path, params=obj)
-print(ujson.loads(res.content))
+# 获取深度
+def get_depth():
+    print("> 获取深度")
+    # 现货交易
+    path = "/open/v1/depth"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-print("> 下单")
-# 现货交易
-path = "/open/v1/orders/place"
-obj = gen_sign(client_id, client_key)
-obj.update({"symbol": "BTC-USDT", "price": "8850.21", "quantity": "0.1", "side": "1", "order_type": "LIMIT"})
-res = requests.post(host + path, data=obj)
-print(ujson.loads(res.content))
+def get_balance():
+    print("> 获取余额")
+    # 现货交易
+    path = "/open/v1/balance"
+    obj = gen_sign(client_id, client_key)
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+def get_trade_tickers():
+    print("> 获取最近成交记录")
+    # 现货交易
+    path = "/open/v1/tickers/trade"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+def place_order():
+    print("> 下单")
+    # 现货交易
+    path = "/open/v1/orders/place"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "ETH-USDT", "price": "10", "quantity": "0.2", "side": "2", "order_type": "LIMIT"})
+    res = requests.post(host + path, data=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+def cancel_order():
+    print("> 撤单")
+    # 现货交易
+    path = "/open/v1/orders/cancel"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"order_id": "327", "symbol": "BTC-USDT"})
+    res = requests.post(host + path, data=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+# 批量撤单
+def bat_cancel_order():
+    print("> 批量撤单")
+    # 现货交易
+    path = "/open/v1/orders/batcancel"
+    obj = gen_sign(client_id, client_key)
+    ids = ["123", "124", "125"]
+    obj.update({"symbol": "ETH-USDT", "order_ids": ",".join(ids)})
+    res = requests.post(host + path, data=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+def get_tickers():
+    print("> 获取ticker")
+    # 现货交易
+    path = "/open/v1/tickers"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+# 获取服务器时间
+def get_server_time():
+    print("> 获取服务器时间")
+    # 现货交易
+    path = "/open/v1/timestamp"
+    obj = gen_sign(client_id, client_key)
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+# 获取最新的成交
+def get_trade():
+    print("> 获取最新的成交")
+    # 现货交易
+    path = "/open/v1/tickers/trade"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
+
+# 获取用户手续费
+def get_fee_rate():
+    print("> 获取用户手续费")
+    # 现货交易
+    path = "/open/v1/fee-rate"
+    obj = gen_sign(client_id, client_key)
+    obj.update({"symbol": "BTC-USDT"})
+    res = requests.get(host + path, params=obj)
+    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 ```
 
 # Websocket示例
@@ -1536,23 +1621,64 @@ client_key = ""
 def login():
     ts = int(time.time())
     nonce = "abcdefg"
-    obj = {"ts": ts, "nonce": nonce, "sign": "", "client_id": client_id, "op": "apilogin"}
+    obj = {"method": "sign", "params": {"ts": ts, "nonce": nonce, "client_id": client_id, "sign": ""}, "id": 1}
     s = "client_id=%s&nonce=%s&ts=%s" % (client_id, nonce, ts)
     v = hmac.new(client_key.encode(), s.encode(), digestmod=hashlib.sha256)
     obj["sign"] = v.hexdigest()
     return obj
 
-async def sub_topic(ws):
-    sub = "depth:0:BTC-USDT"
-    await ws.send(json.dumps({"op": "sub", "topic": sub}))
+# 心跳
+async def ping(ws):
+    ping = {"method": "ping", "params": {}, "id": 1}
+    await ws.send(json.dumps(ping))
+
+# 订阅深度
+async def sub_topic_depth(ws):
+    await ws.send(json.dumps({"method": "subscribe.depth", "params": {"market": "BTC-USDT", "merge": "step1"}, "id": 1}))
+
+# 订阅K线
+async def sub_topic_kline(ws):
+    await ws.send(json.dumps({"method": "subscribe.kline", "params": {"period": "1Min", "market": "BTC-USDT"}, "id": 1}))
+
+# 订阅订单
+async def sub_topic_order(ws):
+    await ws.send(json.dumps({"method": "subscribe.orders", "params": {"market": "BTC-USDT"}, "id": 1}))
+
+# 订阅成交
+async def sub_topic_trade(ws):
+    await ws.send(json.dumps({"method": "subscribe.trade", "params": {"market": "BTC-USDT"}, "id": 1}))
+
+# 行情
+async def sub_topic_quotes(ws):
+    await ws.send(json.dumps({"method": "subscribe.quote", "params": {"market": "BTC-USDT"}, "id": 1}))
+
+# 资产
+async def sub_topic_asset(ws):
+    await ws.send(json.dumps({"method": "subscribe.asset", "params": {}, "id": 1}))
 
 async def startup():
     print("start to connect %s..." % host)
     ws = await websockets.connect(host)
 
+    # 心跳
+    await ping(ws)
+
+    # 登录
     obj = login()
     await ws.send(json.dumps(obj))
-    await sub_topic(ws)
+
+    # 订阅深度
+    await sub_topic_depth(ws)
+    # 订阅K线
+    await sub_topic_kline(ws)
+    # 订阅订单
+    await sub_topic_order(ws)
+    # 订阅成交
+    await sub_topic_trade(ws)
+    # 行情
+    await sub_topic_quotes(ws)
+    # 资产
+    await sub_topic_asset(ws)
 
     while 1:
         try:
