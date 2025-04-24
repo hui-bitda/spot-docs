@@ -73,42 +73,54 @@ title: BitDa API 文档
 
 1. 需要先进行鉴权，才可进行订阅。
 
-2. 鉴权格式: {"op":"apilogin","sign":"","client_id":"","nonce":"","ts": int type},如:{"op":"apilogin","sign":"abc123","client_id":"abc123","nonce":"1","ts": 1576207749}
+2. 鉴权格式: {"method": "sign", "params": {"ts":"", "nonce":"", "client_id":"", "sign": ""}, "id": 1},如:{"method": "sign", "params": {"ts":"1738944827", "nonce":"abcdef", "client_id":"xxxx", "sign": "xxxxx"}, "id": 1}
 
-3. 心跳处理，客户端需定时上发心跳信息，任意字符串，服务端每30秒会检查心跳，超时没有收到自动关闭连接。{"op":"sub", "topic":"hb"}
+3. 心跳处理，客户端需定时上发心跳信息，任意字符串，服务端每30秒会检查心跳，超时没有收到自动关闭连接。{"method": "ping", "params": {}, "id": 1}
 
 ## 订阅主题
-    {"op":"sub", "topic": ""}
+    {"method":"sub", "params": {}, "id": 1}
 
 ### K线数据
 #### 请求参数
 
 ```json
-{"op":"sub", "topic": "kline:1Min:BTC-USDT"}
+{"method": "subscribe.kline", "params": {"period": "1Min", "market": "BTC-USDT"}, "id": 1}
 ```
 
-|        参数         |        说明        |
-| :-----------------: | :----------------: |
-| kline:1Min:BTC-USDT | BTC-USDT的1分钟k线 |
+| 参数名 | 参数类型 |   描述    |
+| :----: | :------: | :-------: |
+| period |  string  | Kline周期 |
+| market |  string  |   市场    |
 
 > Responds:
 
 ```json
 {
-    "symbol":"BTC-USDT",
-    "ticks":[
-        {
-            "close":"2.62",
-            "high":"3.11",
-            "low":"2.62",
-            "open":"3.01",
-            "timestamp":1572851100,
-            "volume":"17.55"
-        }
-    ],
-    "timestamp":1572851160.917,
-    "topic":"kline:1Min:BTC-USDT",
-    "type":"60000"
+    "id": 1,
+    "method": "update.kline",
+    "result": {
+        "data": {
+            "symbol": "BTC-USDT",
+            "ticks": [
+                {
+                    "amount": "1803565.8537891",
+                    "close": "92613.10",
+                    "high": "92613.18",
+                    "low": "92613.01",
+                    "open": "92613.01",
+                    "timestamp": 1745474460,
+                    "volume": "19.47420"
+                }
+            ],
+            "timestamp": 1745474460,
+            "topic": "kline:1Min:BTC-USDT",
+            "tpp": 13,
+            "type": "1Min"
+        },
+        "period": "1Min"
+    },
+    "error": null,
+    "timestamp": 1745474480.5352995
 }
 ```
 
@@ -116,78 +128,115 @@ title: BitDa API 文档
 |  参数名   | 参数类型 |     描述     |
 | :-------: | :------: | :----------: |
 |  symbol   |  string  |    交易对    |
-|   ticks   |  object  |   ␈k线信息   |
+|   ticks   |  object  |   k线信息    |
+|  amount   |  string  | 本阶段交易额 |
 |   close   |  string  | 本阶段收盘价 |
 |   high    |  string  | 本阶段最高价 |
 |    low    |  string  | 本阶段最低价 |
 |   open    |  string  | 本阶段开盘价 |
-| timestamp |  float   |  时间戳 秒   |
-|  volume   |  string  |    成交量    |
+| timestamp |  number  |  时间戳 秒   |
+|  volume   |  string  | 本阶段成交量 |
 
 ### 逐笔成交
 #### 请求参数
 
 ```json
-{"op":"sub", "topic": "trade:BTC-USDT"}
+{"method": "subscribe.trade", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-|      参数      |         说明         |
-| :------------: | :------------------: |
-| trade:BTC-USDT | BTC-USDT逐笔成交记录 |
+| 参数名 | 参数类型 | 描述  |
+| :----: | :------: | :---: |
+| market |  string  | 市场  |
 
 > Responds:
 
 ```json
 {
-    "amount":"7.473",
-    "price":"2.82",
-    "side":1,
-    "symbol":"BTC-USDT",
-    "timestamp":1572851197.910,
-    "topic":"trade:BTC-USDT",
-    "volume":"2.65"
+    "id": 1,
+    "method": "update.trade",
+    "result": {
+        "amount": "35112.4213533",
+        "price": "92618.03",
+        "side": 2,
+        "symbol": "BTC-USDT",
+        "timestamp": 1745474636.571989,
+        "topic": "trade:BTC-USDT",
+        "tpp": 13,
+        "volume": "0.37911"
+    },
+    "error": null,
+    "timestamp": 1745474636.586593
 }
 ```
 
 #### 数据更新字段列表
 
-|  参数名   | 参数类型 |        描述         |
-| :-------: | :------: | :-----------------: |
-|  amount   |  string  |       成交额        |
-|   price   |  string  |       成交价        |
-|   side    | integer  | 成交方向，1买，-1卖 |
-|  symbol   |  string  |       交易对        |
-| timestamp |  float   |      时间戳 秒      |
-|  volume   |  string  |       成交量        |
+|  参数名   | 参数类型 |        描述        |
+| :-------: | :------: | :----------------: |
+|  amount   |  string  |       成交额       |
+|   price   |  string  |       成交价       |
+|   side    | integer  | 成交方向，1卖，2买 |
+|  symbol   |  string  |       交易对       |
+| timestamp |  number  |     时间戳 秒      |
+|  volume   |  string  |       成交量       |
 
 ### 深度
 #### 请求参数
 
 ```json
-{"op":"sub", "topic": "depth:0:BTC-USDT"}
+{"method": "subscribe.depth", "params": {"market": "BTC-USDT", "merge": "step1"}, "id": 1}
 ```
 
-|       参数       | 说明  |
-| :--------------: | :---: |
-| depth:0:BTC-USDT | 深度  |
+| 参数名 | 参数类型 |           描述            |
+| :----: | :------: | :-----------------------: |
+| market |  string  |           市场            |
+| merge  |  string  | 合并深度，支持4级合并深度 |
 
 > Responds:
 
 ```json
 {
-    "bids":[
-        {'price': '2.923', 'quantity': '12'},
-        {'price': '2.823', 'quantity': '12'},
-        {'price': '2.723', 'quantity': '16'}
-    ], 
-    "asks":[
-        {'price': '3.05', 'quantity': '3.48'},
-        {'price': '3.31', 'quantity': '5'},
-        {'price': '3.55', 'quantity': '10'}
-    ],
-    "symbol":"BTC-USDT",
-    "timestamp":1572851208.935,
-    "topic":"depth:0:BTC-USDT"
+    "id": 1,
+    "method": "update.depth",
+    "result": {
+        "data": {
+            "asks": [
+                {
+                    "price": "92624.7",
+                    "quantity": "0.24461"
+                },
+                {
+                    "price": "92624.8",
+                    "quantity": "0.22173"
+                },
+                {
+                    "price": "92624.9",
+                    "quantity": "0.21227"
+                }
+            ],
+            "bids": [
+                {
+                    "price": "92607.8",
+                    "quantity": "4.09932"
+                },
+                {
+                    "price": "92602.3",
+                    "quantity": "0.82077"
+                },
+                {
+                    "price": "92592.4",
+                    "quantity": "0.99661"
+                }
+            ],
+            "symbol": "BTC-USDT",
+            "timestamp": 1745474746.4458873,
+            "topic": "depth:step1:BTC-USDT",
+            "tpp": 13
+        },
+        "merge": "step1"
+    },
+    "error": null,
+    "timestamp": 1745474746.4458911
 }
 ```
 
@@ -202,57 +251,79 @@ title: BitDa API 文档
 #### 请求参数
 
 ```json
-{"op":"sub", "topic": "quotes"}
+{"method": "subscribe.quote", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-|  参数  | 说明  |
-| :----: | :---: |
-| quotes | 行情  |
+| 参数名 | 参数类型 | 描述  |
+| :----: | :------: | :---: |
+| market |  string  | 市场  |
 
 > Responds:
 
 ```json
 {
-    "amount":"52080.1255",
-    "change":"0.00949367",
-    "price":"3.19",
-    "symbol":"BTC-USDT",
-    "timestamp":1572851216.950,
-    "topic":"quotes",
-    "volume":"17965.65"
+    "id": 1,
+    "method": "update.quote",
+    "result": {
+        "data": {
+            "symbol": "BTC-USDT",
+            "timestamp": 1745474844,
+            "topic": "quote:BTC-USDT",
+            "price": "92565.56",
+            "volume": "232009.60329",
+            "amount": "21672997623.5353922",
+            "high": "94904.3",
+            "low": "91942.82",
+            "change": "-0.0097665217635025",
+            "tpp": 13,
+            "l_price": "92565.56"
+        },
+        "market": "BTC-USDT"
+    },
+    "error": null,
+    "timestamp": 1745474845.0166624
 }
 ```
 #### 数据更新字段列表
 
-|  参数名   | 参数类型 |     描述     |
-| :-------: | :------: | :----------: |
-|  amount   |  string  |    成交额    |
-|  change   |  string  |    涨跌幅    |
-|   price   |  string  |    当前价    |
-|  symbol   |  string  |    交易对    |
-| timestamp |  float   |  时间戳 秒   |
-|  volume   |  string  | 24小时成交量 |
+|  参数名   | 参数类型 |    描述    |
+| :-------: | :------: | :--------: |
+|  amount   |  string  |   成交额   |
+|  change   |  string  |   涨跌幅   |
+|   price   |  string  |   当前价   |
+|  symbol   |  string  |   交易对   |
+| timestamp | numbert  | 时间戳 秒  |
+|   high    |  string  |   最高价   |
+|    low    |  string  |   最低价   |
+|  l_price  |  string  | 上一次价格 |
+|  volume   |  string  |   成交量   |
 
 ### 账户余额变化
 #### 请求参数
 
 ```json
-{"op":"sub", "topic": "accounts"}
+{"method": "subscribe.asset", "params": {}, "id": 1}
 ```
 
-|   参数   |     说明     |
-| :------: | :----------: |
-| accounts | 账户余额变化 |
+| 参数  | 说明  |
+| :---: | :---: |
+无
 
 > Responds:
 
 ```json
 {
-    "available":"4194.3466678",
-    "freeze":"71.609185",
-    "symbol":"USDT",
-    "topic":"accounts",
-    "total":"4265.9558528"
+    "id": 1,
+    "method": "update.asset"
+    "result": {
+        "available": "10186.04408055", 
+        "freeze": "0", 
+        "symbol": "USDT", 
+        "topic": "accounts", 
+        "total": "10186.04408055"
+    }
+    "error": null, 
+    "timestamp": 1745475263.2521095
 }
 ```
 
@@ -269,67 +340,68 @@ title: BitDa API 文档
 #### 请求参数
 
 ```json
-{"op":"sub", "topic": "orders:BTC-USDT"}
+{"method": "subscribe.orders", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-|      参数       |   说明   |
-| :-------------: | :------: |
-| orders:BTC-USDT | 委托变化 |
+| 参数名 | 参数类型 | 描述  |
+| :----: | :------: | :---: |
+| market |  string  | 市场  |
 
 > Responds:
 
 ```json
-// 下单
 {
-    "left":"1",
-    "order_id":"11574948935833473",
-    "order_type":1,
-    "price":"80000",
-    "quantity":"1",
-    "side":-1,
-    "status":2,
-    "symbol":"BTC-USDT",
-    "timestamp":1574949805.841,
-    "topic":"orders:BTC-USDT",
-    "trade_no":"499081745280826070655",
-    "match_qty":"0"
-}
-
-// 撤单
-{
-    "left":"0",
-    "order_id":"11574948935833473",
-    "order_type":1,
-    "price":"80000",
-    "quantity":"1",
-    "side":-1,
-    "status":6,
-    "symbol":"BTC-USDT",
-    "timestamp":1574949805.841,
-    "topic":"orders:BTC-USDT",
-    "trade_no":"499081745280826070655",
-    "match_qty":"0",
-    "match_price":"0"
+    "id": 1,
+    "method": "update.orders"
+    "result": {
+        "frm": "USDT",
+        "left": "0.0439925710",
+        "match_amt": "999.9560074290",
+        "match_price": "0",
+        "match_qty": "0.010807",
+        "order_id": "16693603",
+        "order_sub_type": 0,
+        "order_type": 2,
+        "price": "0",
+        "quantity": "1000.000000",
+        "real_order_id": "16693603",
+        "side": 2,
+        "status": 4,
+        "stop_price": "0",
+        "symbol": "BTC-USDT",
+        "ticker_id": 13,
+        "timestamp": 1745475263.240633,
+        "to": "BTC",
+        "topic": "orders",
+        "tpp": 13,
+        "trade_no": "553119111551218040041",
+        "update_timestamp": 1745475263.240749
+    }
+    "error": null, 
+    "timestamp": 1745475263.2521095
 }
 ```
 
 #### 返回字段
 
-|   参数名    | 参数类型 |                              描述                               |
-| :---------: | :------: | :-------------------------------------------------------------: |
-|    left     |  string  |                            剩余数量                             |
-|  order_id   |  string  |                             订单id                              |
-| order_type  |   int    |                      订单类型,1限价，3市价                      |
-|    price    |  string  |                             委托价                              |
-|  quantity   |  string  |                            委托数量                             |
-|    side     |   int    |                         方向，1买，-1卖                         |
-|   status    |   int    | 状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消 |
-|   symbol    |  string  |                             交易对                              |
-|  timestamp  |  float   |                           创建时间 秒                           |
-|  trade_no   |  string  |                           订单流水号                            |
-|  match_qty  |  string  |                           已成交数量                            |
-| match_price |  string  |                            成交均价                             |
-
+|      参数名      | 参数类型 |                                 描述                                  |
+| :--------------: | :------: | :-------------------------------------------------------------------: |
+|       frm        |  string  |                               价格币种                                |
+|       left       |  string  |                               剩余数量                                |
+|    match_amt     |  string  |                               成交金额                                |
+|   match_price    |  string  |                               成交价格                                |
+|    match_qty     |  string  |                               成交数量                                |
+|     order_id     |  string  |                               委托单ID                                |
+|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
+|      price       |  string  |                                 价格                                  |
+|     quantity     |  string  |                                 数量                                  |
+|       side       | integer  |                         委托单方向，1卖，2买                          |
+|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
+|      symbol      |  string  |                                交易对                                 |
+|    timestamp     |  number  |                               下单时间                                |
+|        to        |  string  |                               数量币种                                |
+|     trade_no     |  string  |                              委托单流水                               |
+| update_timestamp |  number  |                               更新时间                                |
 
 # 基础信息
 
@@ -360,20 +432,22 @@ title: BitDa API 文档
 ```json
 {  
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": [
-            {"amount": "1.586",
+        {
+            "amount": "1.586",
             "change": "-0.235462",
             "high": "3.05",
             "low": "3.05",
-            "price": "0",
+            "price": "98000",
+            "l_price": "98000",
             "symbol": "BTC-USDT",
             "amt_num": 4,
             "qty_num": 2,
             "volume": "0.52"
-            }, 
-        ]
+        }, 
+    ]
 }
 ```
 
@@ -386,6 +460,7 @@ title: BitDa API 文档
 |  high   |  string  |  24小时最高  |
 |   low   |  string  |  24小时最低  |
 |  price  |  string  |    当前价    |
+| l_price |  string  |   上次价格   |
 | symbol  |  string  |    交易对    |
 | amt_num | integer  |   价格精度   |
 | qty_num | integer  |   数量精度   |
@@ -412,13 +487,13 @@ title: BitDa API 文档
 ```json
 {
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": [
         {
-            "amount": '4317.6696678', 
+            "amount": "4317.6696678", 
             "symbol": "USDT", 
-            "freeze": '71.609185'
+            "freeze": "71.609185"
         },
     ]
 }
@@ -484,27 +559,27 @@ title: BitDa API 文档
 <aside class="notice">限速0.1r/s</aside>
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |              描述              |
-| :----: | :------: | :------: | :----------------------------: |
-| symbol |  string  |    是    |      交易对，如: BTC-USDT      |
-|  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min等 |
+| 参数名 | 参数类型 | 是否必须 |                                   描述                                   |
+| :----: | :------: | :------: | :----------------------------------------------------------------------: |
+| symbol |  string  |    是    |                           交易对，如: BTC-USDT                           |
+|  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week等 |
 
 > Responds:
 
 ```json
 {
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": [
         {
-            'amount': '0',
-            'close': '3.05',    
-            'high': '3.05', 
-            'low': '3.05', 
-            'open': '3.05', 
-            'time': 1571812440, 
-            'volume': '0'
+            "amount": "0",
+            "close": "3.05",    
+            "high": "3.05", 
+            "low": "3.05", 
+            "open": "3.05", 
+            "time": 1571812440, 
+            "volume": "0"
         }
     ]
 }
@@ -545,7 +620,7 @@ title: BitDa API 文档
 
 ```json
 {
-    'code': 0, 
+    "code": 0, 
     "time": 1745208892.421363,
     "data": {
         "bids": [
@@ -559,7 +634,7 @@ title: BitDa API 文档
             {"price": "3.92", "quantity": "15"}
             ]
         }, 
-    "msg": "ok"
+    "msg": "Ok"
 }
 ```
 
@@ -594,12 +669,12 @@ title: BitDa API 文档
 ```json
 {
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": [{
         "amount": "0.918",
         "price": "2.04",
-        "side": -1,
+        "side": 1,
         "time": 1574942822160,
         "volume": "0.45"
         }]
@@ -608,13 +683,13 @@ title: BitDa API 文档
 
 ### 返回字段
 
-| 参数名 | 参数类型 |        描述         |
-| :----: | :------: | :-----------------: |
-| amount |  string  |       成交额        |
-| price  |  string  |       成交价        |
-|  side  | integer  | 成交方向，1买，-1卖 |
-|  time  | integer  |        时间         |
-| volume |  string  |       成交量        |
+| 参数名 | 参数类型 |        描述        |
+| :----: | :------: | :----------------: |
+| amount |  string  |       成交额       |
+| price  |  string  |       成交价       |
+|  side  | integer  | 成交方向，1卖，2买 |
+|  time  | integer  |        时间        |
+| volume |  string  |       成交量       |
 
 
 # 现货
@@ -637,10 +712,10 @@ title: BitDa API 文档
 |   symbol   |  string  |    是    |                   交易对                    |
 |   price    |  string  |    否    |          价格，如果是限价单，必填           |
 |  quantity  |  string  |    是    |                    数量                     |
-|    side    |   int    |    是    |               方向,1买，-1卖                |
+|    side    |   int    |    是    |                方向,1卖，2买                |
 | order_type |  string  |    否    | 买卖单类型,LIMIT限价单（默认）,MARKET市价单 |
 
-<aside class="warning">无论买或卖，quantity都表示交易币，如BTC-USDT，quantity都代表eos的数量</aside>
+<aside class="warning">无论买或卖，quantity都表示交易币，如BTC-USDT，quantity都代表BTC的数量</aside>
 <aside class="warning">现货新上交易对第一笔订单必须通过此接口下单，成交后用户才能下单</aside>
 
 > Responds:
@@ -651,18 +726,52 @@ title: BitDa API 文档
     "msg": "ok",
     "time": 1745208892.421363,
     "data": {
-        "order_id": "xxx",
-        "trade_no": "xxx",
+        "create_at": 1738919982.01731,
+        "frm": "USDT",
+        "left": "0.000000",
+        "match_amt": "9400.0000000000",
+        "match_price": "94000",
+        "match_qty": "0.100000",
+        "order_id": "324",
+        "order_sub_type": 0,
+        "order_type": "LIMIT",
+        "price": "8850.2100",
+        "quantity": "0.100000",
+        "side": 1,
+        "status": 3,
+        "stop_price": "0",
+        "symbol": "BTC-USDT",
+        "ticker": "BTC-USDT",
+        "ticker_id": 13,
+        "timestamp": 1738919982.01731,
+        "to": "BTC",
+        "trade_no": "40551041825640507172314",
+        "update_timestamp": 1738919982.017397
     },
 }
 ```
 
 ### 返回字段
 
-|  参数名  | 参数类型 |  描述  |
-| :------: | :------: | :----: |
-| order_id |  string  | 委托号 |
-| trade_no |  string  | 流水号 |
+|      参数名      | 参数类型 |                                 描述                                  |
+| :--------------: | :------: | :-------------------------------------------------------------------: |
+|       frm        |  string  |                               价格币种                                |
+|       left       |  string  |                               剩余数量                                |
+|    match_amt     |  string  |                               成交金额                                |
+|   match_price    |  string  |                               成交价格                                |
+|    match_qty     |  string  |                               成交数量                                |
+|     order_id     |  string  |                               委托单ID                                |
+|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
+|      price       |  string  |                                 价格                                  |
+|     quantity     |  string  |                                 数量                                  |
+|       side       | integer  |                         委托单方向，1卖，2买                          |
+|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
+|      symbol      |  string  |                                交易对                                 |
+|    timestamp     |  number  |                               下单时间                                |
+|        to        |  string  |                               数量币种                                |
+|     trade_no     |  string  |                              委托单流水                               |
+| update_timestamp |  number  |                               更新时间                                |
+|    create_at     |  number  |                               下单时间                                |
 
 ## 撤销单个订单
 
@@ -681,7 +790,6 @@ title: BitDa API 文档
 | :------: | :------: | :------: | :----: |
 |  symbol  |  string  |    是    | 交易对 |
 | order_id |  string  |    是    | 委托号 |
-| trade_no |  string  |    是    | 流水号 |
 
 > Responds:
 
@@ -689,15 +797,54 @@ title: BitDa API 文档
 {
     "code": 0,
     "msg": "ok",
+    "data": {
+        "create_at": 1738923199.205091,
+        "frm": "USDT",
+        "left": "0.100000",
+        "match_amt": "0",
+        "match_price": "0",
+        "match_qty": "0",
+        "order_id": "327",
+        "order_sub_type": 0,
+        "order_type": "LIMIT",
+        "price": "98850.2100",
+        "quantity": "9885.021",
+        "side": 1,
+        "status": 6,
+        "stop_price": "0",
+        "symbol": "BTC-USDT",
+        "ticker": "BTC-USDT",
+        "ticker_id": 13,
+        "timestamp": 1738923199.205091,
+        "to": "BTC",
+        "trade_no": "40551042845121219120919",
+        "update_timestamp": 0
+    },
     "time": 1745208892.421363,
 }
 ```
 
 ### 返回字段
 
-| 参数名 | 参数类型 | 描述  |
-| :----: | :------: | :---: |
-无
+|      参数名      | 参数类型 |                                 描述                                  |
+| :--------------: | :------: | :-------------------------------------------------------------------: |
+|    create_at     |  number  |                               创建时间                                |
+|       frm        |  string  |                               价格币种                                |
+|       left       |  string  |                               剩余数量                                |
+|    match_amt     |  string  |                               成交金额                                |
+|   match_price    |  string  |                               成交价格                                |
+|    match_qty     |  string  |                               成交数量                                |
+|     order_id     |  string  |                               委托单ID                                |
+|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
+|      price       |  string  |                                 价格                                  |
+|     quantity     |  string  |                                 数量                                  |
+|       side       | integer  |                               1卖，2买                                |
+|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
+|    timestamp     |  number  |                               下单时间                                |
+|        to        |  string  |                               数量币种                                |
+|     trade_no     |  string  |                                流水号                                 |
+| update_timestamp |  string  |                               更新时间                                |
+
 
 ## 撤销部分或所有委托中订单
 
@@ -724,16 +871,24 @@ title: BitDa API 文档
 ```json
 {
     "code": 0,
-    "msg": "ok",
+    "msg": "Ok",
+    "data": {
+        "success": [
+        331,
+        332
+        ],
+        "failed": []
+    },
     "time": 1745208892.421363,
 }
 ```
 
 ### 返回字段
 
-| 参数名 | 参数类型 | 描述  |
-| :----: | :------: | :---: |
-无
+| 参数名  | 参数类型 |     描述     |
+| :-----: | :------: | :----------: |
+| success |  array   | 成功的订单ID |
+| failed  |  array   | 失败的订单ID |
 
 ## 委托中列表
 
@@ -761,37 +916,53 @@ title: BitDa API 文档
     "time": 1745208892.421363,
     "data": [
         {
-            "symbol": "BTC-USDT",
-            "order_id": "11574744030837944",
-            "trade_no": "499016576021202015341",
-            "price": "7900",
-            "quantity": "1",
+            "create_at": 1738928701.630487,
+            "frm": 80,
+            "left": "0.100000",
             "match_amt": "0",
+            "match_price": "0",
             "match_qty": "0",
-            "match_price'"": "",
-            "side": -1,
-            "order_type": 1,
-            "create_at": 1574744151.836
-        }, 
+            "order_id": "333",
+            "order_sub_type": 0,
+            "order_type": "LIMIT",
+            "price": "98850.2100",
+            "quantity": "0.100000",
+            "side": 1,
+            "status": 2,
+            "stop_price": "",
+            "symbol": "BTC-USDT",
+            "ticker": "BTC-USDT",
+            "ticker_id": 13,
+            "timestamp": 1738928701.630487,
+            "to": 81,
+            "trade_no": "40551044588771203011001",
+            "update_timestamp": 1738928701.630487
+        }
     ], 
 }
 ```
 
 ### 返回字段
 
-|   参数名    | 参数类型 |         描述          |
-| :---------: | :------: | :-------------------: |
-|   symbol    |  string  |        交易对         |
-|  order_id   |  string  |        订单ID         |
-|  trade_no   |  string  |      订单流水号       |
-|    price    |  string  |        委托价         |
-|  quantity   |  string  |       委托数量        |
-|  match_amt  |  string  |      已成交金额       |
-|  match_qty  |  string  |      已成交数量       |
-| match_price |  string  |       成交均价        |
-|    side     |   int    |    方向，1买，-1卖    |
-| order_type  |   int    | 订单类型,1限价，3市价 |
-|  create_at  |   int    |       创建时间        |
+|      参数名      | 参数类型 |                                 描述                                  |
+| :--------------: | :------: | :-------------------------------------------------------------------: |
+|    create_at     |  number  |                               下单时间                                |
+|       frm        |  string  |                               价格币种                                |
+|       left       |  string  |                               剩余数量                                |
+|    match_amt     |  string  |                               成交金额                                |
+|   match_price    |  string  |                               成交价格                                |
+|    match_qty     |  string  |                               成交数量                                |
+|     order_id     |  string  |                               委托单ID                                |
+|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
+|      price       |  string  |                                 价格                                  |
+|     quantity     |  string  |                                 数量                                  |
+|       side       | integer  |                               1卖，2买                                |
+|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
+|      symbol      |  string  |                                交易对                                 |
+|    timestamp     |  number  |                               创建时间                                |
+|        to        |  string  |                               数量币种                                |
+|     trade_no     |  string  |                               委托流水                                |
+| update_timestamp |  number  |                               更新时间                                |
 
 ## 订单列表
 
@@ -811,36 +982,37 @@ title: BitDa API 文档
 |  参数名  | 参数类型 | 是否必须 |             描述             |
 | :------: | :------: | :------: | :--------------------------: |
 |  symbol  |  string  |    是    |      交易对,如BTC-USDT       |
-| pagenum  |   int    |    否    |             页码             |
-| pagesize |   int    |    否    | 页大小,最小10, 最大50,默认20 |
-|   side   |   int    |    否    |    方向，1买，-1卖，0所有    |
-|  start   |   int    |    否    |         时间，时间戳         |
-|   end    |   int    |    否    |       结束时间，时间戳       |
+| pagenum  | integer  |    否    |             页码             |
+| pagesize | integer  |    否    | 页大小,最小10, 最大50,默认20 |
+|   side   | integer  |    否    |    方向，1卖，2买，0所有     |
+|  start   | integer  |    否    |       时间，时间戳，秒       |
+|   end    | integer  |    否    |     结束时间，时间戳，秒     |
 
 > Responds:
 
 ```json
 {
     "code": 0, 
-    "msg": 'ok',
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": {
         "count": 4, 
         "orders": [
             {
-                "order_id": "11574744030837944",
-                "trade_no": "499016576021202015341",
+                "create_at": 1738932323.230282,
+                "match_amt": "9400",
+                "match_price": "94000",
+                "match_qty": "0.1",
+                "order_id": "337",
+                "order_type": "LIMIT",
+                "price": "8850.21",
+                "quantity": "0.1",
+                "side": 1,
+                "status": 4,
                 "symbol": "BTC-USDT",
-                "price": "7900",
-                "quantity": "1",
-                "match_amt": "0",
-                "match_qty": "0",
-                "match_price": "",
-                "side": -1,
-                "order_type": 1,
-                "status": 6,
-                "create_at": 1574744151.836
-            }, 
+                "ticker": "BTC-USDT",
+                "trade_no": "40551045736411111022504"
+            }
         ]
     }, 
 }
@@ -848,20 +1020,20 @@ title: BitDa API 文档
 
 ### 返回字段
 
-|   参数名    | 参数类型 |                              描述                               |
-| :---------: | :------: | :-------------------------------------------------------------: |
-|  order_id   |  string  |                             订单id                              |
-|  trade_no   |  string  |                           订单流水号                            |
-|   symbol    |  string  |                             交易对                              |
-|    price    |  string  |                             委托价                              |
-|  quantity   |  string  |                            委托数量                             |
-|  match_amt  |  string  |                           已成交金额                            |
-|  match_qty  |  string  |                           已成交数量                            |
-| match_price |  string  |                            成交均价                             |
-|    side     |   int    |                         方向，1买，-1卖                         |
-| order_type  |   int    |                      订单类型,1限价，3市价                      |
-|   status    |   int    | 状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消 |
-|  create_at  |   int    |                            创建时间                             |
+|   参数名    | 参数类型 |                                 描述                                  |
+| :---------: | :------: | :-------------------------------------------------------------------: |
+|  order_id   |  string  |                               委托单ID                                |
+|  trade_no   |  string  |                               委托流水                                |
+|   symbol    |  string  |                                交易对                                 |
+|    price    |  string  |                                 价格                                  |
+|  quantity   |  string  |                                 数量                                  |
+|  match_amt  |  string  |                                成交额                                 |
+|  match_qty  |  string  |                               成交数量                                |
+| match_price |  string  |                               成交价格                                |
+|    side     | integer  |                            方向，1卖，2买                             |
+| order_type  |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
+|   status    | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
+|  create_at  |  number  |                               创建时间                                |
 
 ## 单个订单成交明细
 
@@ -888,58 +1060,61 @@ title: BitDa API 文档
 ```json
 {
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": {
-        "order_id": "11574751725833010",
-        "trade_no": "499073202290421221116", 
-        "symbol": "BTC-USDT", 
-        "price": "70000", 
-        "quantity": "0.0001", 
-        "match_amt": "7", 
-        "match_qty": "0.0001",
-        "match_price": "70000",  
-        "fee": "0.0112",
-        "side": -1, 
-        "order_type": 1,
+        "create_at": 1738932323.230282,
+        "fee": "0",
+        "match_amt": "9400",
+        "match_price": "94000",
+        "match_qty": "0.1",
+        "order_id": "337",
+        "order_type": "LIMIT",
+        "price": "8850.21",
+        "quantity": "0.1",
+        "side": 1,
         "status": 4,
-        "create_at": 1574922846.832,
-        "trades": [{
-            "trade_id": "1",
-            "amount": "7", 
-            "price": "70000", 
-            "quantity": "0.0001",
-            "fee": "0.0112",  
-            "time": 1574922846.833
-            }]
+        "symbol": "BTC-USDT",
+        "ticker": "BTC-USDT",
+        "trade_no": "40551045736411111022504",
+        "trades": [
+            {
+                "amount": "9400",
+                "fee": "0",
+                "price": "94000",
+                "quantity": "0.1",
+                "time": 1738932323.230371,
+                "trade_id": "208"
+            }
+        ]
     }
 }
 ```
 
 ### 返回字段
 
-|   参数名    | 参数类型 |                              描述                               |
-| :---------: | :------: | :-------------------------------------------------------------: |
-|  order_id   |  string  |                             订单id                              |
-|  trade_no   |  string  |                           订单流水号                            |
-|   symbol    |  string  |                             交易对                              |
-|    price    |  string  |                             委托价                              |
-|  quantity   |  string  |                            委托数量                             |
-|  match_amt  |  string  |                           已成交金额                            |
-|  match_qty  |  string  |                           已成交数量                            |
-| match_price |  string  |                            成交均价                             |
-|     fee     |  string  |                             手续费                              |
-|    side     |   int    |                         方向，1买，-1卖                         |
-| order_type  |   int    |                      订单类型,1限价，3市价                      |
-|   status    |   int    | 状态 2 委托中，3部分成交，4全部成交，5部分成交后撤消，6全部撤消 |
-|  create_at  |   int    |                         委托单创建时间                          |
-|   trades    |  object  |                          已成交数据[{                           |
-|  trade_id   |  string  |                           成交记录id                            |
-|   amount    |  string  |                      每条成交记录的成交额                       |
-|    price    |  string  |                      每条成交记录的成交价                       |
-|  quantity   |  string  |                      每条成交记录的成交量                       |
-|     fee     |  string  |                      每条成交记录的手续费                       |
-|    time     |   int    |                    每条成交记录的成交时间}]                     |
+|   参数名    | 参数类型 |                                 描述                                  |
+| :---------: | :------: | :-------------------------------------------------------------------: |
+|  create_at  |  number  |                               下单时间                                |
+|     fee     |  string  |                                手续费                                 |
+|  match_amt  |  string  |                                成交额                                 |
+| match_price |  string  |                               成交价格                                |
+|  match_qty  |  string  |                               成交数量                                |
+|  order_id   |  string  |                               委托单ID                                |
+| order_type  |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
+|    price    |  string  |                                 价格                                  |
+|  quantity   |  string  |                                 数量                                  |
+|    side     | integer  |                            方向，1卖，2买                             |
+|   status    | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
+|   symbol    |  string  |                                交易对                                 |
+|  trade_no   |  string  |                              委托单流水                               |
+|   trades    |  object  |                              成交订单[{                               |
+|   amount    |  string  |                               成交金额                                |
+|     fee     |  string  |                                手续费                                 |
+|    price    |  string  |                                 价格                                  |
+|  quantity   |  string  |                                 数量                                  |
+|    time     |  number  |                                 时间                                  |
+|  trade_id   |  string  |                              成交单ID}]                               |
 
 ## 分页获取订单成交明细
 
@@ -959,28 +1134,28 @@ title: BitDa API 文档
 |  参数名  | 参数类型 | 是否必须 |             描述             |
 | :------: | :------: | :------: | :--------------------------: |
 |  symbol  |  string  |    是    |      交易对,如BTC-USDT       |
-| pagesize |   int    |    否    | 页大小,最小10, 最大50,默认10 |
-| pagenum  |   int    |    否    |        页码，默认为1         |
+| pagesize | integer  |    否    | 页大小,最小10, 最大50,默认10 |
+| pagenum  | integer  |    否    |        页码，默认为1         |
 
 > Responds:
 
 ```json
 {
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": {
         "count": 10,
         "trades": [
             {
-              "amount": "11574751725833010",
-              "fee": "499073202290421221116",
-              "symbol": "BTC-USDT",
-              "price": "70000",
-              "quantity": "0.0001",
-              "side": "7",
-              "time": 1574922846833,
-              "trade_id": 1,
+                "amount": "9400",
+                "fee": "0",
+                "price": "94000",
+                "quantity": "0.1",
+                "side": 1,
+                "symbol": "BTC-USDT",
+                "time": 1738932325.981797,
+                "trade_id": "209"
             }
           ]
     }
@@ -989,18 +1164,18 @@ title: BitDa API 文档
 
 ### 返回字段
 
-|  参数名  | 参数类型 |           描述           |
-| :------: | :------: | :----------------------: |
-|  count   |   int    |       成交订单数量       |
-|  trades  |  object  |       已成交数据[{       |
-|  symbol  |  string  |          交易对          |
-|   side   |   int    |     方向，1买，-1卖      |
-| trade_id |   int    |        成交记录id        |
-|  amount  |  string  |   每条成交记录的成交额   |
-|  price   |  string  |   每条成交记录的成交价   |
-| quantity |  string  |   每条成交记录的成交量   |
-|   fee    |  string  |   每条成交记录的手续费   |
-|   time   |   int    | 每条成交记录的成交时间}] |
+|  参数名  | 参数类型 |      描述      |
+| :------: | :------: | :------------: |
+|  count   | integer  |  成交订单数量  |
+|  trades  |  object  |   成交订单[{   |
+|  symbol  |  string  |     交易对     |
+|   side   | integer  | 方向，1卖，2买 |
+| trade_id |  string  |    成交单ID    |
+|  amount  |  string  |      金额      |
+|  price   |  string  |      价格      |
+| quantity |  string  |      数量      |
+|   fee    |  string  |     手续费     |
+|   time   |  number  |     时间}]     |
 
 ## 获取用户某个交易对手续费
 
@@ -1024,7 +1199,7 @@ title: BitDa API 文档
 ```json
 {
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": {
         "maker_fee": "0.0001",
@@ -1066,21 +1241,22 @@ title: BitDa API 文档
 ```json
 {  
     "code": 0,
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363, 
     "data": [
-            {
-              "amount": "1.586",
-              "change": "-0.235462",
-              "high": "3.05",
-              "low": "3.05",
-              "price": "0",
-              "symbol": "BTC-USDT",
-              "amt_num": 4,
-              "qty_num": 2,
-              "volume": "0.52"
-            }, 
-        ]
+        {
+            "amount": "432142479.011539",
+            "amt_num": 2,
+            "change": "0.0089719236045157",
+            "high": "88849.39",
+            "low": "86328.39",
+            "price": "88272.3",
+            "l_price": "88272.3",
+            "qty_num": 5,
+            "symbol": "BTC-USDT",
+            "volume": "4936.852"
+        }
+    ]
 }
 ```
 
@@ -1093,6 +1269,7 @@ title: BitDa API 文档
 |  high   |  string  |  24小时最高  |
 |   low   |  string  |  24小时最低  |
 |  price  |  string  |    当前价    |
+| l_price |  string  |   上次价格   |
 | symbol  |  string  |    交易对    |
 | amt_num | integer  |   价格精度   |
 | qty_num | integer  |   数量精度   |
@@ -1135,7 +1312,7 @@ title: BitDa API 文档
             {"price": "3.92", "quantity": "15"}
             ]
         }, 
-    "msg": "ok"
+    "msg": "Ok"
 }
 ```
 
@@ -1170,13 +1347,13 @@ title: BitDa API 文档
 ```json
 {
     "code": 0, 
-    "msg": "",
+    "msg": "Ok",
     "time": 1745208892.421363,
     "data": [{
         "amount": "0.918",
         "price": "2.04",
-        "side": -1,
-        "time": 1574942822160,
+        "side": 1,
+        "time": 1745307169.312,
         "volume": "0.45"
         }]
 }
@@ -1184,13 +1361,13 @@ title: BitDa API 文档
 
 ### 返回字段
 
-| 参数名 | 参数类型 |        描述         |
-| :----: | :------: | :-----------------: |
-| amount |  string  |       成交额        |
-| price  |  string  |       成交价        |
-|  side  | integer  | 成交方向，1买，-1卖 |
-|  time  | integer  |        时间         |
-| volume |  string  |       成交量        |
+| 参数名 | 参数类型 |        描述        |
+| :----: | :------: | :----------------: |
+| amount |  string  |       成交额       |
+| price  |  string  |       成交价       |
+|  side  | integer  | 成交方向，1卖，2买 |
+|  time  | integer  |        时间        |
+| volume |  string  |       成交量       |
 
 ## k线数据
 
@@ -1207,10 +1384,10 @@ title: BitDa API 文档
 <aside class="notice">限速1r/s</aside>
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |              描述              |
-| :----: | :------: | :------: | :----------------------------: |
-| symbol |  string  |    是    |      交易对，如: BTC-USDT      |
-|  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min等 |
+| 参数名 | 参数类型 | 是否必须 |                                   描述                                   |
+| :----: | :------: | :------: | :----------------------------------------------------------------------: |
+| symbol |  string  |    是    |                           交易对，如: BTC-USDT                           |
+|  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week等 |
 
 > Responds:
 
@@ -1221,13 +1398,13 @@ title: BitDa API 文档
     "time": 1745208892.421363,
     "data": [
         {
-            "amount": "0",
-            "close": "3.05",    
-            "high": "3.05", 
-            "low": "3.05", 
-            "open": "3.05", 
-            "time": 1571812440, 
-            "volume": "0"
+            "timestamp": 1745298300,
+            "open": "88065.43",
+            "close": "88095.91",
+            "high": "88095.91",
+            "low": "88054.81",
+            "volume": "2.54120",
+            "amount": "223811.1117750"
         }
     ]
 }
@@ -1235,15 +1412,15 @@ title: BitDa API 文档
 
 ### 返回字段
 
-| 参数名 | 参数类型 |     描述     |
-| :----: | :------: | :----------: |
-| amount |  string  |    成交额    |
-| close  |  string  | 本阶段收盘价 |
-|  high  |  string  | 本阶段最高价 |
-|  low   |  string  | 本阶段最低价 |
-|  open  |  string  | 本阶段开盘价 |
-|  time  | integer  |     时间     |
-| volume |  string  |    成交量    |
+|  参数名   | 参数类型 |     描述     |
+| :-------: | :------: | :----------: |
+|  amount   |  string  |    成交额    |
+|   close   |  string  | 本阶段收盘价 |
+|   high    |  string  | 本阶段最高价 |
+|    low    |  string  | 本阶段最低价 |
+|   open    |  string  | 本阶段开盘价 |
+| timestamp | integer  |     时间     |
+|  volume   |  string  |    成交量    |
 
 # 现货API调用示例
 
