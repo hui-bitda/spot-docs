@@ -7,7 +7,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="images/favicon-dede8a83.ico" rel="icon" type="image/ico" />
-    <title>BitDa API 文档</title>
+    <title>BitDa Spot API 文档</title>
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -1903,6 +1903,18 @@
 <td style="text-align: center">是</td>
 <td style="text-align: center">市场交易对</td>
 </tr>
+<tr>
+<td style="text-align: center">page_num</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">页码</td>
+</tr>
+<tr>
+<td style="text-align: center">page_size</td>
+<td style="text-align: center">integer</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">页大小,最小10, 最大50,默认20</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -2056,13 +2068,13 @@
 <td style="text-align: center">市场交易对,如BTC-USDT</td>
 </tr>
 <tr>
-<td style="text-align: center">pagenum</td>
+<td style="text-align: center">page_num</td>
 <td style="text-align: center">integer</td>
 <td style="text-align: center">否</td>
 <td style="text-align: center">页码</td>
 </tr>
 <tr>
-<td style="text-align: center">pagesize</td>
+<td style="text-align: center">page_size</td>
 <td style="text-align: center">integer</td>
 <td style="text-align: center">否</td>
 <td style="text-align: center">页大小,最小10, 最大50,默认20</td>
@@ -2382,13 +2394,13 @@
 <td style="text-align: center">市场交易对,如BTC-USDT</td>
 </tr>
 <tr>
-<td style="text-align: center">pagesize</td>
+<td style="text-align: center">page_size</td>
 <td style="text-align: center">integer</td>
 <td style="text-align: center">否</td>
 <td style="text-align: center">页大小,最小10, 最大50,默认10</td>
 </tr>
 <tr>
-<td style="text-align: center">pagenum</td>
+<td style="text-align: center">page_num</td>
 <td style="text-align: center">integer</td>
 <td style="text-align: center">否</td>
 <td style="text-align: center">页码，默认为1</td>
@@ -2921,7 +2933,7 @@
     <span class="c1"># 现货交易
 </span>    <span class="n">path</span> <span class="o">=</span> <span class="s">"/open/v1/orders/detailmore"</span>
     <span class="n">obj</span> <span class="o">=</span> <span class="n">gen_sign</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_key</span><span class="p">)</span>
-    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"pagesize"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s">"pagenum"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">"symbol"</span><span class="p">:</span> <span class="s">"BTC-USDT"</span><span class="p">,</span> <span class="s">"page_size"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s">"page_num"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">host</span> <span class="o">+</span> <span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">ujson</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">content</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
 
