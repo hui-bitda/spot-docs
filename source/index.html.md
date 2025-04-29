@@ -56,7 +56,7 @@ title: BitDa API 文档
 ## 鉴权说明
 
 
-1. 所有接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。
+1. 所有鉴权接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。
 
 2. client_id为api key，ts为当前时间戳，与服务器时间差正负5秒会被拒绝，nonce为随机字符串，不能与上次请求所使用相同。
 
@@ -87,10 +87,10 @@ title: BitDa API 文档
 {"method": "subscribe.kline", "params": {"period": "1Min", "market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 |   描述    |
-| :----: | :------: | :-------: |
-| period |  string  | Kline周期 |
-| market |  string  |   市场    |
+| 参数名 | 参数类型 |    描述    |
+| :----: | :------: | :--------: |
+| period |  string  | Kline周期  |
+| market |  string  | 市场交易对 |
 
 > Responds:
 
@@ -127,7 +127,7 @@ title: BitDa API 文档
 #### 数据更新字段列表
 |  参数名   | 参数类型 |     描述     |
 | :-------: | :------: | :----------: |
-|  symbol   |  string  |    交易对    |
+|  symbol   |  string  |  市场交易对  |
 |   ticks   |  object  |   k线信息    |
 |  amount   |  string  | 本阶段交易额 |
 |   close   |  string  | 本阶段收盘价 |
@@ -144,9 +144,9 @@ title: BitDa API 文档
 {"method": "subscribe.trade", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 | 描述  |
-| :----: | :------: | :---: |
-| market |  string  | 市场  |
+| 参数名 | 参数类型 |    描述    |
+| :----: | :------: | :--------: |
+| market |  string  | 市场交易对 |
 
 > Responds:
 
@@ -189,7 +189,7 @@ title: BitDa API 文档
 
 | 参数名 | 参数类型 |           描述            |
 | :----: | :------: | :-----------------------: |
-| market |  string  |           市场            |
+| market |  string  |        市场交易对         |
 | merge  |  string  | 合并深度，支持4级合并深度 |
 
 > Responds:
@@ -254,9 +254,9 @@ title: BitDa API 文档
 {"method": "subscribe.quote", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 | 描述  |
-| :----: | :------: | :---: |
-| market |  string  | 市场  |
+| 参数名 | 参数类型 |    描述    |
+| :----: | :------: | :--------: |
+| market |  string  | 市场交易对 |
 
 > Responds:
 
@@ -343,9 +343,9 @@ title: BitDa API 文档
 {"method": "subscribe.orders", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 | 描述  |
-| :----: | :------: | :---: |
-| market |  string  | 市场  |
+| 参数名 | 参数类型 |    描述    |
+| :----: | :------: | :--------: |
+| market |  string  | 市场交易对 |
 
 > Responds:
 
@@ -397,7 +397,7 @@ title: BitDa API 文档
 |     quantity     |  string  |                                 数量                                  |
 |       side       | integer  |                         委托单方向，1卖，2买                          |
 |      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
-|      symbol      |  string  |                                交易对                                 |
+|      symbol      |  string  |                              市场交易对                               |
 |    timestamp     |  number  |                               下单时间                                |
 |        to        |  string  |                               数量币种                                |
 |     trade_no     |  string  |                              委托单流水                               |
@@ -423,9 +423,9 @@ title: BitDa API 文档
 <aside class="notice">限速1r/s</aside>
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |         描述         |
-| :----: | :------: | :------: | :------------------: |
-| symbol |  string  |    否    | 交易对，如: BTC-USDT |
+| 参数名 | 参数类型 | 是否必须 |           描述           |
+| :----: | :------: | :------: | :----------------------: |
+| symbol |  string  |    否    | 市场交易对，如: BTC-USDT |
 
 > Responds:
 
@@ -461,7 +461,7 @@ title: BitDa API 文档
 |   low   |  string  |  24小时最低  |
 |  price  |  string  |    当前价    |
 | l_price |  string  |   上次价格   |
-| symbol  |  string  |    交易对    |
+| symbol  |  string  |  市场交易对  |
 | amt_num | integer  |   价格精度   |
 | qty_num | integer  |   数量精度   |
 | volume  |  string  | 24小时成交量 |
@@ -561,7 +561,7 @@ title: BitDa API 文档
 ### 请求参数
 | 参数名 | 参数类型 | 是否必须 |                                   描述                                   |
 | :----: | :------: | :------: | :----------------------------------------------------------------------: |
-| symbol |  string  |    是    |                           交易对，如: BTC-USDT                           |
+| symbol |  string  |    是    |                         市场交易对，如: BTC-USDT                         |
 |  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week等 |
 
 > Responds:
@@ -595,7 +595,7 @@ title: BitDa API 文档
 |  low   |  string  | 本阶段最低价 |
 |  open  |  string  | 本阶段开盘价 |
 |  time  | integer  |     时间     |
-| volume |  string  |    成交量    |
+| volume |  string  | 本阶段成交量 |
 
 ## 市场深度数据
 
@@ -612,9 +612,9 @@ title: BitDa API 文档
 <aside class="notice">限速10r/s</aside>
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |  描述  |
-| :----: | :------: | :------: | :----: |
-| symbol |  string  |    是    | 交易对 |
+| 参数名 | 参数类型 | 是否必须 |    描述    |
+| :----: | :------: | :------: | :--------: |
+| symbol |  string  |    是    | 市场交易对 |
 
 > Responds:
 
@@ -660,9 +660,9 @@ title: BitDa API 文档
 <aside class="notice">限速10r/s</aside>
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |  描述  |
-| :----: | :------: | :------: | :----: |
-| symbol |  string  |    是    | 交易对 |
+| 参数名 | 参数类型 | 是否必须 |    描述    |
+| :----: | :------: | :------: | :--------: |
+| symbol |  string  |    是    | 市场交易对 |
 
 > Responds:
 
@@ -709,7 +709,7 @@ title: BitDa API 文档
 ### 请求参数
 |   参数名   | 参数类型 | 是否必须 |                    描述                     |
 | :--------: | :------: | :------: | :-----------------------------------------: |
-|   symbol   |  string  |    是    |                   交易对                    |
+|   symbol   |  string  |    是    |                 市场交易对                  |
 |   price    |  string  |    否    |          价格，如果是限价单，必填           |
 |  quantity  |  string  |    是    |                    数量                     |
 |    side    |   int    |    是    |                方向,1卖，2买                |
@@ -786,10 +786,10 @@ title: BitDa API 文档
 - POST ` /open/v1/orders/cancel`
 
 ### 请求参数
-|  参数名  | 参数类型 | 是否必须 |  描述  |
-| :------: | :------: | :------: | :----: |
-|  symbol  |  string  |    是    | 交易对 |
-| order_id |  string  |    是    | 委托号 |
+|  参数名  | 参数类型 | 是否必须 |    描述    |
+| :------: | :------: | :------: | :--------: |
+|  symbol  |  string  |    是    | 市场交易对 |
+| order_id |  string  |    是    |   委托号   |
 
 > Responds:
 
@@ -903,9 +903,9 @@ title: BitDa API 文档
 - GET ` /open/v1/orders/last`
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |  描述  |
-| :----: | :------: | :------: | :----: |
-| symbol |  string  |    是    | 交易对 |
+| 参数名 | 参数类型 | 是否必须 |    描述    |
+| :----: | :------: | :------: | :--------: |
+| symbol |  string  |    是    | 市场交易对 |
 
 > Responds:
 
@@ -981,7 +981,7 @@ title: BitDa API 文档
 ### 请求参数
 |  参数名  | 参数类型 | 是否必须 |             描述             |
 | :------: | :------: | :------: | :--------------------------: |
-|  symbol  |  string  |    是    |      交易对,如BTC-USDT       |
+|  symbol  |  string  |    是    |    市场交易对,如BTC-USDT     |
 | pagenum  | integer  |    否    |             页码             |
 | pagesize | integer  |    否    | 页大小,最小10, 最大50,默认20 |
 |   side   | integer  |    否    |    方向，1卖，2买，0所有     |
@@ -1050,10 +1050,10 @@ title: BitDa API 文档
 <aside class="notice">限速6r/s</aside>
 
 ### 请求参数
-|  参数名  | 参数类型 | 是否必须 |       描述        |
-| :------: | :------: | :------: | :---------------: |
-|  symbol  |  string  |    是    | 交易对,如BTC-USDT |
-| order_id |  string  |    是    |    委托订单id     |
+|  参数名  | 参数类型 | 是否必须 |         描述          |
+| :------: | :------: | :------: | :-------------------: |
+|  symbol  |  string  |    是    | 市场交易对,如BTC-USDT |
+| order_id |  string  |    是    |      委托订单id       |
 
 > Responds:
 
@@ -1133,7 +1133,7 @@ title: BitDa API 文档
 ### 请求参数
 |  参数名  | 参数类型 | 是否必须 |             描述             |
 | :------: | :------: | :------: | :--------------------------: |
-|  symbol  |  string  |    是    |      交易对,如BTC-USDT       |
+|  symbol  |  string  |    是    |    市场交易对,如BTC-USDT     |
 | pagesize | integer  |    否    | 页大小,最小10, 最大50,默认10 |
 | pagenum  | integer  |    否    |        页码，默认为1         |
 
@@ -1168,7 +1168,7 @@ title: BitDa API 文档
 | :------: | :------: | :------------: |
 |  count   | integer  |  成交订单数量  |
 |  trades  |  object  |   成交订单[{   |
-|  symbol  |  string  |     交易对     |
+|  symbol  |  string  |   市场交易对   |
 |   side   | integer  | 方向，1卖，2买 |
 | trade_id |  string  |    成交单ID    |
 |  amount  |  string  |      金额      |
@@ -1190,9 +1190,9 @@ title: BitDa API 文档
 - GET ` /open/v1/fee-rate`
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |  描述  |
-| :----: | :------: | :------: | :----: |
-| symbol |  string  |    是    | 交易对 |
+| 参数名 | 参数类型 | 是否必须 |    描述    |
+| :----: | :------: | :------: | :--------: |
+| symbol |  string  |    是    | 市场交易对 |
 
 > Responds:
 
@@ -1270,7 +1270,7 @@ title: BitDa API 文档
 |   low   |  string  |  24小时最低  |
 |  price  |  string  |    当前价    |
 | l_price |  string  |   上次价格   |
-| symbol  |  string  |    交易对    |
+| symbol  |  string  |  市场交易对  |
 | amt_num | integer  |   价格精度   |
 | qty_num | integer  |   数量精度   |
 | volume  |  string  | 24小时成交量 |
@@ -1292,7 +1292,7 @@ title: BitDa API 文档
 ### 请求参数
 | 参数名 | 参数类型 | 是否必须 |         描述          |
 | :----: | :------: | :------: | :-------------------: |
-| symbol |  string  |    是    | 交易对名称,如BTC-USDT |
+| symbol |  string  |    是    | 市场交易对,如BTC-USDT |
 
 > Responds:
 
@@ -1340,7 +1340,7 @@ title: BitDa API 文档
 ### 请求参数
 | 参数名 | 参数类型 | 是否必须 |         描述          |
 | :----: | :------: | :------: | :-------------------: |
-| symbol |  string  |    是    | 交易对名称,如BTC-USDT |
+| symbol |  string  |    是    | 市场交易对,如BTC-USDT |
 
 > Responds:
 
@@ -1386,7 +1386,7 @@ title: BitDa API 文档
 ### 请求参数
 | 参数名 | 参数类型 | 是否必须 |                                   描述                                   |
 | :----: | :------: | :------: | :----------------------------------------------------------------------: |
-| symbol |  string  |    是    |                           交易对，如: BTC-USDT                           |
+| symbol |  string  |    是    |                           市场交易对: BTC-USDT                           |
 |  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week等 |
 
 > Responds:
@@ -1420,7 +1420,7 @@ title: BitDa API 文档
 |    low    |  string  | 本阶段最低价 |
 |   open    |  string  | 本阶段开盘价 |
 | timestamp | integer  |     时间     |
-|  volume   |  string  |    成交量    |
+|  volume   |  string  | 本阶段成交量 |
 
 # 现货API调用示例
 
