@@ -1,5 +1,5 @@
 ---
-title: BitDa API 文档
+title: BitDa Spot API 文档
 ---
 
 # 简介
@@ -903,9 +903,11 @@ title: BitDa API 文档
 - GET ` /open/v1/orders/last`
 
 ### 请求参数
-| 参数名 | 参数类型 | 是否必须 |    描述    |
-| :----: | :------: | :------: | :--------: |
-| symbol |  string  |    是    | 市场交易对 |
+|  参数名   | 参数类型 | 是否必须 |             描述             |
+| :-------: | :------: | :------: | :--------------------------: |
+|  symbol   |  string  |    是    |          市场交易对          |
+| page_num  | integer  |    否    |             页码             |
+| page_size | integer  |    否    | 页大小,最小10, 最大50,默认20 |
 
 > Responds:
 
@@ -979,14 +981,14 @@ title: BitDa API 文档
 <aside class="notice">限速0.5r/s</aside>
 
 ### 请求参数
-|  参数名  | 参数类型 | 是否必须 |             描述             |
-| :------: | :------: | :------: | :--------------------------: |
-|  symbol  |  string  |    是    |    市场交易对,如BTC-USDT     |
-| pagenum  | integer  |    否    |             页码             |
-| pagesize | integer  |    否    | 页大小,最小10, 最大50,默认20 |
-|   side   | integer  |    否    |    方向，1卖，2买，0所有     |
-|  start   | integer  |    否    |       时间，时间戳，秒       |
-|   end    | integer  |    否    |     结束时间，时间戳，秒     |
+|  参数名   | 参数类型 | 是否必须 |             描述             |
+| :-------: | :------: | :------: | :--------------------------: |
+|  symbol   |  string  |    是    |    市场交易对,如BTC-USDT     |
+| page_num  | integer  |    否    |             页码             |
+| page_size | integer  |    否    | 页大小,最小10, 最大50,默认20 |
+|   side    | integer  |    否    |    方向，1卖，2买，0所有     |
+|   start   | integer  |    否    |       时间，时间戳，秒       |
+|    end    | integer  |    否    |     结束时间，时间戳，秒     |
 
 > Responds:
 
@@ -1131,11 +1133,11 @@ title: BitDa API 文档
 <aside class="notice">限速6r/s</aside>
 
 ### 请求参数
-|  参数名  | 参数类型 | 是否必须 |             描述             |
-| :------: | :------: | :------: | :--------------------------: |
-|  symbol  |  string  |    是    |    市场交易对,如BTC-USDT     |
-| pagesize | integer  |    否    | 页大小,最小10, 最大50,默认10 |
-| pagenum  | integer  |    否    |        页码，默认为1         |
+|  参数名   | 参数类型 | 是否必须 |             描述             |
+| :-------: | :------: | :------: | :--------------------------: |
+|  symbol   |  string  |    是    |    市场交易对,如BTC-USDT     |
+| page_size | integer  |    否    | 页大小,最小10, 最大50,默认10 |
+| page_num  | integer  |    否    |        页码，默认为1         |
 
 > Responds:
 
@@ -1481,7 +1483,7 @@ def get_order_detail_more():
     # 现货交易
     path = "/open/v1/orders/detailmore"
     obj = gen_sign(client_id, client_key)
-    obj.update({"symbol": "BTC-USDT", "pagesize": 10, "pagenum": 1})
+    obj.update({"symbol": "BTC-USDT", "page_size": 10, "page_num": 1})
     res = requests.get(host + path, params=obj)
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 

@@ -490,7 +490,7 @@
     wss://api.bitda.com/ws</p>
 <h2 id='17fef2a7cd'>鉴权说明</h2>
 <ol>
-<li><p>所有接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。</p></li>
+<li><p>所有鉴权接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。</p></li>
 <li><p>client_id为api key，ts为当前时间戳，与服务器时间差正负5秒会被拒绝，nonce为随机字符串，不能与上次请求所使用相同。</p></li>
 <li><p>签名方法, 将client_id, ts, nonce进行排序连接，使用hmac-sha256方法进行签名，例如待签名字符串为: client_id=abc&amp;nonce=xyz&amp;ts=1571293029</p></li>
 <li><p>签名: sign = hmac.New(client_key, sign_str, sha256)</p></li>
@@ -522,7 +522,7 @@
 <tr>
 <td style="text-align: center">market</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">市场</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -567,7 +567,7 @@
 <tr>
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">ticks</td>
@@ -622,7 +622,7 @@
 <tr>
 <td style="text-align: center">market</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">市场</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -696,7 +696,7 @@
 <tr>
 <td style="text-align: center">market</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">市场</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">merge</td>
@@ -782,7 +782,7 @@
 <tr>
 <td style="text-align: center">market</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">市场</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -934,7 +934,7 @@
 <tr>
 <td style="text-align: center">market</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">市场</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -1037,7 +1037,7 @@
 <tr>
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">timestamp</td>
@@ -1084,7 +1084,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">否</td>
-<td style="text-align: center">交易对，如: BTC-USDT</td>
+<td style="text-align: center">市场交易对，如: BTC-USDT</td>
 </tr>
 </tbody></table>
 
@@ -1151,7 +1151,7 @@
 <tr>
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">amt_num</td>
@@ -1281,7 +1281,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对，如: BTC-USDT</td>
+<td style="text-align: center">市场交易对，如: BTC-USDT</td>
 </tr>
 <tr>
 <td style="text-align: center">type</td>
@@ -1351,7 +1351,7 @@
 <tr>
 <td style="text-align: center">volume</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">成交量</td>
+<td style="text-align: center">本阶段成交量</td>
 </tr>
 </tbody></table>
 <h2 id='0f7bd4961a'>市场深度数据</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>现货交易
@@ -1375,7 +1375,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -1439,7 +1439,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -1511,7 +1511,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">price</td>
@@ -1687,7 +1687,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">order_id</td>
@@ -1901,7 +1901,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -2053,7 +2053,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对,如BTC-USDT</td>
+<td style="text-align: center">市场交易对,如BTC-USDT</td>
 </tr>
 <tr>
 <td style="text-align: center">pagenum</td>
@@ -2205,7 +2205,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对,如BTC-USDT</td>
+<td style="text-align: center">市场交易对,如BTC-USDT</td>
 </tr>
 <tr>
 <td style="text-align: center">order_id</td>
@@ -2379,7 +2379,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对,如BTC-USDT</td>
+<td style="text-align: center">市场交易对,如BTC-USDT</td>
 </tr>
 <tr>
 <td style="text-align: center">pagesize</td>
@@ -2439,7 +2439,7 @@
 <tr>
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">side</td>
@@ -2496,7 +2496,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 </tbody></table>
 
@@ -2613,7 +2613,7 @@
 <tr>
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">交易对</td>
+<td style="text-align: center">市场交易对</td>
 </tr>
 <tr>
 <td style="text-align: center">amt_num</td>
@@ -2652,7 +2652,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对名称,如BTC-USDT</td>
+<td style="text-align: center">市场交易对,如BTC-USDT</td>
 </tr>
 </tbody></table>
 
@@ -2716,7 +2716,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对名称,如BTC-USDT</td>
+<td style="text-align: center">市场交易对,如BTC-USDT</td>
 </tr>
 </tbody></table>
 
@@ -2790,7 +2790,7 @@
 <td style="text-align: center">symbol</td>
 <td style="text-align: center">string</td>
 <td style="text-align: center">是</td>
-<td style="text-align: center">交易对，如: BTC-USDT</td>
+<td style="text-align: center">市场交易对: BTC-USDT</td>
 </tr>
 <tr>
 <td style="text-align: center">type</td>
@@ -2860,7 +2860,7 @@
 <tr>
 <td style="text-align: center">volume</td>
 <td style="text-align: center">string</td>
-<td style="text-align: center">成交量</td>
+<td style="text-align: center">本阶段成交量</td>
 </tr>
 </tbody></table>
 <h1 id='api-2'>现货API调用示例</h1>
