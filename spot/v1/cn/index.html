@@ -225,16 +225,19 @@
           <img src="images/logo-4042ab18.svg" class="logo" alt="" />
         </a>
         <div class="nav_box">
-          <span class="nav_cell" style="display: none">
+          <!-- <span class="nav_cell" style="display: none">
             <a href="javascript:;" class="nav_first">v1<i class="icon_nav"></i></a>
             <ul class="nav_ul">
               <li>
                 <a href="/spot/v1/en/" id="v1_url">v1</a>
               </li>
             </ul>
+          </span> -->
+          <span class="nav_cell nav_tab nav_active">
+            <a href="/spot/v1/en/" id="btn_spot">现货API</a>
           </span>
           <span class="nav_cell nav_tab">
-            <a href="/spot/v1/en/" id="btn_spot">现货API</a>
+            <a href="/futures/v1/cn/" id="btn_futures">合约API</a>
           </span>
         </div>
       </div>
@@ -3154,14 +3157,17 @@
         //如果是中文环境
         lang_btn.innerHTML = 'English';
         btn_spot.innerHTML = '现货API';
+        btn_futures.innerHTML = '合约API';
         lang_btn.href = url.replace('cn/', 'en/');
         btn_spot.href = btn_spot.href.replace('en/', 'cn/');
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
         btn_spot.innerHTML = 'Spot API';
+        btn_futures.innerHTML = 'Futures API';
         lang_btn.href = url.replace('en/', 'cn/');
         btn_spot.href = btn_spot.href.replace('cn/', 'en/');
+        btn_futures.href = btn_futures.href.replace('cn/', 'en/');
         v1_url.href = '/spot/v1/en/';
       }
       lang_btn.style.display = 'block';
