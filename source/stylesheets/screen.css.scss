@@ -786,3 +786,11 @@ header{
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+.nav_active {
+  background-color: $nav-active-bg;
+}
+
+header .nav_box .nav_active a {
+  color: #ffffff;
+}
