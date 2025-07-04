@@ -1,96 +1,96 @@
 ---
-title: BitDa Spot API 文档
+title: BitDa Spot API Documentation
 ---
 
-# 简介
+# Introduction
 
-## API 简介
+## API Introduction
 
-欢迎使用BitDa API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。
+Welcome to use BitDa API！ You can use this API get market information, trading and managing your account.
 
-在文档的右侧是代码，目前我们仅提供针对 `shell` 的代码示例。
+The code will display on the right side of this document. Currently we only provide `shell` code examples.
 
-可以使用以下域名访问：api.bitda.com
+It can be accessed using the following domain names: api.bitda.com
 
-欢迎有优秀 maker 策略且交易量大的机构参与长期做市商项目。
+Welcome all professional maker strategies and organizations for long term market making program.
 
-## 公共接口
-不需要鉴权可访问接口如下：
+## Public API
+Verification free for below portals:
 
-| 接口                                         | 说明       | 市场 |
-| -------------------------------------------- | ---------- | ---- |
-| [GET /open/v1/tickers/market](#495cebdeec-2) | 所有交易对 | 现货 |
-| [GET /open/v1/depth/market](#a1128a972d-2)   | 深度       | 现货 |
-| [GET /open/v1/trade/market](#775841b581-2)   | 逐笔成交   | 现货 |
-| [GET /open/v1/kline/market](#k-3)            | k线数据    | 现货 |
+| API                                          | Introduction            | Trading area |
+| -------------------------------------------- | ----------------------- | ------------ |
+| [GET /open/v1/tickers/market](#495cebdeec-2) | Get Market List         | Spot         |
+| [GET /open/v1/depth/market](#a1128a972d-2)   | Get Market Depth        | Spot         |
+| [GET /open/v1/trade/market](#775841b581-2)   | Get Market Transactions | Spot         |
+| [GET /open/v1/kline/market](#k-3)            | Get Market K-line       | Spot         |
 
-## 鉴权接口
-可以访问的接口如下：
+## Private API
+Eligible to access portals:
 
-| 接口                                          | 说明                     | 市场 |
-| --------------------------------------------- | ------------------------ | ---- |
-| [GET /open/v1/tickers](#ebe64e52ff)           | 全部或指定交易对         | 现货 |
-| [GET /open/v1/balance](#870c0ab88b)           | 获取余额                 | 现货 |
-| [GET /open/v1/timestamp](#fc5a31ea39)         | 服务器时间戳             | 现货 |
-| [GET /open/v1/kline](#k-2)                    | 市场k线数据              | 现货 |
-| [GET /open/v1/depth](#0f7bd4961a)             | 市场深度数据             | 现货 |
-| [GET /open/v1/tickers/trade](#5)              | 获取最近5条成交记录      | 现货 |
-| [POST /open/v1/orders/place](#fd6ce2a756)     | 下单                     | 现货 |
-| [POST /open/v1/orders/cancel](#7742416be6)    | 撤销单个订单             | 现货 |
-| [POST /open/v1/orders/batcancel](#cedb99e805) | 撤销全部或部分委托中订单 | 现货 |
-| [GET /open/v1/orders/last](#c2313ec9bf)       | 委托中列表               | 现货 |
-| [GET /open/v1/orders](#cbbcc98be2)            | 订单列表                 | 现货 |
-| [GET /open/v1/orders/detail](#3fbc9cb788)     | 单个订单成交明细         | 现货 |
-| [GET /open/v1/orders/detailmore](#d1baf83d74) | 分页获取成交明细         | 现货 |
-| [GET /open/v1/orders/fee-rate](#6033256dc0)   | 获取用户某个交易对手续费 | 现货 |
+| API                                           | Introduction                   | Trading area |
+| --------------------------------------------- | ------------------------------ | ------------ |
+| [GET /open/v1/tickers](#ebe64e52ff)           | Get All Market                 | Spot         |
+| [GET /open/v1/balance](#870c0ab88b)           | Get Balance                    | Spot         |
+| [GET /open/v1/timestamp](#fc5a31ea39)         | Get Sever Time                 | Spot         |
+| [GET /open/v1/kline](#k-2)                    | Get Market K-line              | Spot         |
+| [GET /open/v1/depth](#0f7bd4961a)             | Get Market Depth               | Spot         |
+| [GET /open/v1/tickers/trade](#5)              | Get Latest Transaction Records | Spot         |
+| [POST /open/v1/orders/place](#fd6ce2a756)     | Place Order                    | Spot         |
+| [POST /open/v1/orders/cancel](#7742416be6)    | Cancel Order                   | Spot         |
+| [POST /open/v1/orders/batcancel](#cedb99e805) | Batch Cancel Orders            | Spot         |
+| [GET /open/v1/orders/last](#c2313ec9bf)       | Pending orders                 | Spot         |
+| [GET /open/v1/orders](#cbbcc98be2)            | Get Completed Orders List      | Spot         |
+| [GET /open/v1/orders/detail](#3fbc9cb788)     | Get Order Detail               | Spot         |
+| [GET /open/v1/orders/detailmore](#d1baf83d74) | Get Order Detail List          | Spot         |
+| [GET /open/v1/fee-rate](#6033256dc0)          | Get Fee Rate                   | Spot         |
 
-# 接入说明
+# Connection Guide
 
 ## Restful host:
     https://api.bitda.com
 
 ## Websocket host:
-    现货交易
+    spot
     wss://api.bitda.com/ws
 
-## 鉴权说明
+## Verification Notice
 
 
-1. 所有鉴权接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。
+1. All portals need to conduct verification. Parameters are "client_id","ts","Nonce","sign". "client_id" is the api key. "client_key" is the secret key. Please be careful.
 
-2. client_id为api key，ts为当前时间戳，与服务器时间差正负5秒会被拒绝，nonce为随机字符串，不能与上次请求所使用相同。
+1. Ts is the current time stamp. Query with more than 5 seconds time difference will be rejected. "Nonce" is a random code that should Not be the same with last time query.
 
-3. 签名方法, 将client_id, ts, nonce进行排序连接，使用hmac-sha256方法进行签名，例如待签名字符串为: client_id=abc&nonce=xyz&ts=1571293029
+2. Signature method: link "client_id","ts","Nonce" in correct order, use hmac-sha256 to sign. e.g. the unsigned code: client_id=abc&Nonce=xyz&ts=1571293029
 
-4. 签名: sign = hmac.New(client_key, sign_str, sha256)
+4. Signature: sign = hmac.New(client_key, sign_str, sha256)
 
 5. Content-Type: application/x-www-form-urlencoded
 
-6. 现货接口，post接口请求请将参数放在请求体里面，get接口请求携带在url链接中。
+6. Please put the parameters in the request body for the post interface request, and carry the get interface request in the url link
 
 
-# WebSocket说明
+# WebSocket Guide
 
-1. 需要先进行鉴权，才可进行订阅。
+1. Need verification before subscription.
 
-2. 鉴权格式: {"method": "sign", "params": {"ts":"", "nonce":"", "client_id":"", "sign": ""}, "id": 1},如:{"method": "sign", "params": {"ts":"1738944827", "nonce":"abcdef", "client_id":"xxxx", "sign": "xxxxx"}, "id": 1}
+2. Verification method: {"method": "sign", "params": {"ts":"", "nonce":"", "client_id":"", "sign": ""}, "id": 1}, e.g:{"method": "sign", "params": {"ts":"1738944827", "nonce":"abcdef", "client_id":"xxxx", "sign": "xxxxx"}, "id": 1}
 
-3. 心跳处理，客户端需定时上发心跳信息，任意字符串，服务端每30秒会检查心跳，超时没有收到自动关闭连接。{"method": "ping", "params": {}, "id": 1}
+3. Client need to timely upload arbitrary code to check. Server will check status every 30 seconds. Links will be closed if No information received.{"method": "ping", "params": {}, "id": 1}
 
-## 订阅主题
+## Websocket Public API
     {"method":"sub", "params": {}, "id": 1}
 
-### K线数据
-#### 请求参数
+### Market KLine
+#### Request parameters
 
 ```json
 {"method": "subscribe.kline", "params": {"period": "1Min", "market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 |    描述    |
-| :----: | :------: | :--------: |
-| period |  string  | Kline周期  |
-| market |  string  | 市场交易对 |
+| Parameter |  Type  | Description  |
+| :-------: | :----: | :----------: |
+|  period   | string | Kline period |
+|  market   | string | Market name  |
 
 > Responds:
 
@@ -124,29 +124,29 @@ title: BitDa Spot API 文档
 }
 ```
 
-#### 数据更新字段列表
-|  参数名   | 参数类型 |     描述     |
-| :-------: | :------: | :----------: |
-|  symbol   |  string  |  市场交易对  |
-|   ticks   |  object  |   k线信息    |
-|  amount   |  string  | 本阶段交易额 |
-|   close   |  string  | 本阶段收盘价 |
-|   high    |  string  | 本阶段最高价 |
-|    low    |  string  | 本阶段最低价 |
-|   open    |  string  | 本阶段开盘价 |
-| timestamp |  number  |  时间戳 秒   |
-|  volume   |  string  | 本阶段成交量 |
+#### Data refresh string list
+| Parameter |  Type  |    Description     |
+| :-------: | :----: | :----------------: |
+|  symbol   | string |    Market name     |
+|   ticks   | object | Kline information  |
+|  amount   | string | Transaction amount |
+|   close   | string |    Close price     |
+|   high    | string |   Highest price    |
+|    low    | string |    Lowest price    |
+|   open    | string |     Open price     |
+| timestamp | number | timestamp, second  |
+|  volume   | string | Transaction volume |
 
-### 逐笔成交
-#### 请求参数
+### Market Transactions
+#### Request parameters
 
 ```json
 {"method": "subscribe.trade", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 |    描述    |
-| :----: | :------: | :--------: |
-| market |  string  | 市场交易对 |
+| Parameter |  Type  | Description |
+| :-------: | :----: | :---------: |
+|  market   | string | Market name |
 
 > Responds:
 
@@ -169,28 +169,28 @@ title: BitDa Spot API 文档
 }
 ```
 
-#### 数据更新字段列表
+#### Data refresh string list
 
-|  参数名   | 参数类型 |        描述        |
-| :-------: | :------: | :----------------: |
-|  amount   |  string  |       成交额       |
-|   price   |  string  |       成交价       |
-|   side    | integer  | 成交方向，1卖，2买 |
-|  symbol   |  string  |       交易对       |
-| timestamp |  number  |     时间戳 秒      |
-|  volume   |  string  |       成交量       |
+| Parameter |  Type   |           Description           |
+| :-------: | :-----: | :-----------------------------: |
+|  amount   | string  |       Transaction amount        |
+|   price   | string  |        Transaction price        |
+|   side    | integer | Transaction side, 1 sell, 2 buy |
+|  symbol   | string  |           Market name           |
+| timestamp | number  |       Timestamp, sencond        |
+|  volume   | string  |       Transaction volume        |
 
-### 深度
-#### 请求参数
+### Market Depth
+#### Request parameters
 
 ```json
 {"method": "subscribe.depth", "params": {"market": "BTC-USDT", "merge": "step1"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 |           描述            |
-| :----: | :------: | :-----------------------: |
-| market |  string  |        市场交易对         |
-| merge  |  string  | 合并深度，支持4级合并深度 |
+| Parameter |  Type  |                  Description                  |
+| :-------: | :----: | :-------------------------------------------: |
+|  market   | string |                  Market name                  |
+|   merge   | string | Merge depth, supports 4 levels of merge depth |
 
 > Responds:
 
@@ -240,23 +240,23 @@ title: BitDa Spot API 文档
 }
 ```
 
-#### 数据更新字段列表
+#### Data refresh string list
 
-| 参数名 | 参数类型 |                   描述                    |
-| :----: | :------: | :---------------------------------------: |
-|  bids  |  object  | 当前所有买单[{price 价格, quantity 数量}] |
-|  asks  |  object  | 当前所有卖单[{price 价格, quantity 数量}] |
+| Parameter |  Type  |         Description          |
+| :-------: | :----: | :--------------------------: |
+|   bids    | object | bid depth[{price, quantity}] |
+|   asks    | object | ask depth[{price, quantity}] |
 
-### 行情
-#### 请求参数
+### Market quotes
+#### Request parameters
 
 ```json
 {"method": "subscribe.quote", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 |    描述    |
-| :----: | :------: | :--------: |
-| market |  string  | 市场交易对 |
+| Parameter |  Type  | Description |
+| :-------: | :----: | :---------: |
+|  market   | string | Market name |
 
 > Responds:
 
@@ -284,30 +284,30 @@ title: BitDa Spot API 文档
     "timestamp": 1745474845.0166624
 }
 ```
-#### 数据更新字段列表
+#### Data refresh string list
 
-|  参数名   | 参数类型 |    描述    |
-| :-------: | :------: | :--------: |
-|  amount   |  string  |   成交额   |
-|  change   |  string  |   涨跌幅   |
-|   price   |  string  |   当前价   |
-|  symbol   |  string  |   交易对   |
-| timestamp | numbert  | 时间戳 秒  |
-|   high    |  string  |   最高价   |
-|    low    |  string  |   最低价   |
-|  l_price  |  string  | 上一次价格 |
-|  volume   |  string  |   成交量   |
+| Parameter |  Type   |    Description     |
+| :-------: | :-----: | :----------------: |
+|  amount   | string  | Transaction amount |
+|  change   | string  |   Rise and fall    |
+|   price   | string  |       Price        |
+|  symbol   | string  |    Market name     |
+| timestamp | numbert | Timestamp, second  |
+|   high    | string  |   Highest price    |
+|    low    | string  |    Lowest price    |
+|  l_price  | string  |     Last price     |
+|  volume   | string  | Transaction volume |
 
-### 账户余额变化
-#### 请求参数
+### Account balance changes
+#### Request parameters
 
 ```json
 {"method": "subscribe.asset", "params": {}, "id": 1}
 ```
 
-| 参数  | 说明  |
-| :---: | :---: |
-无
+| Parameter | Type  | Description |
+| :-------: | :---: | :---------: |
+None
 
 > Responds:
 
@@ -327,25 +327,25 @@ title: BitDa Spot API 文档
 }
 ```
 
-#### 数据更新字段列表
+#### Data refresh string list
 
-|  参数名   | 参数类型 |   描述   |
-| :-------: | :------: | :------: |
-| available |  string  | 可用余额 |
-|  freeze   |  string  | 冻结余额 |
-|  symbol   |  string  |   币种   |
-|   total   |  string  |  总余额  |
+| Parameter |  Type  |    Description    |
+| :-------: | :----: | :---------------: |
+| available | string | Available balance |
+|  freeze   | string |  Freeze Balance   |
+|  symbol   | string |     Coin name     |
+|   total   | string |   Total balance   |
 
-### 委托变化
-#### 请求参数
+### Order changes
+#### Request parameters
 
 ```json
 {"method": "subscribe.orders", "params": {"market": "BTC-USDT"}, "id": 1}
 ```
 
-| 参数名 | 参数类型 |    描述    |
-| :----: | :------: | :--------: |
-| market |  string  | 市场交易对 |
+| Parameter |  Type  | Description |
+| :-------: | :----: | :---------: |
+|  market   | string | Market name |
 
 > Responds:
 
@@ -382,50 +382,50 @@ title: BitDa Spot API 文档
 }
 ```
 
-#### 返回字段
+#### Response Content
 
-|      参数名      | 参数类型 |                                 描述                                  |
-| :--------------: | :------: | :-------------------------------------------------------------------: |
-|       frm        |  string  |                               价格币种                                |
-|       left       |  string  |                               剩余数量                                |
-|    match_amt     |  string  |                               成交金额                                |
-|   match_price    |  string  |                               成交价格                                |
-|    match_qty     |  string  |                               成交数量                                |
-|     order_id     |  string  |                               委托单ID                                |
-|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
-|      price       |  string  |                                 价格                                  |
-|     quantity     |  string  |                                 数量                                  |
-|       side       | integer  |                         委托单方向，1卖，2买                          |
-|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
-|      symbol      |  string  |                              市场交易对                               |
-|    timestamp     |  number  |                               下单时间                                |
-|        to        |  string  |                               数量币种                                |
-|     trade_no     |  string  |                              委托单流水                               |
-| update_timestamp |  number  |                               更新时间                                |
+|    Parameter     |  Type   |                                                                         Description                                                                         |
+| :--------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|       frm        | string  |                                                                      Money token name                                                                       |
+|       left       | string  |                                                                     Remaining quantity                                                                      |
+|    match_amt     | string  |                                                                        Match amount                                                                         |
+|   match_price    | string  |                                                                         Match price                                                                         |
+|    match_qty     | string  |                                                                       Match quantity                                                                        |
+|     order_id     | string  |                                                                          Order ID                                                                           |
+|    order_type    | string  |                                                              Order type,LIMIT(default),MARKET                                                               |
+|      price       | string  |                                                                            Price                                                                            |
+|     quantity     | string  |                                                                          Quantity                                                                           |
+|       side       | integer |                                                                  Order side, 1 sell, 2 buy                                                                  |
+|      status      | integer | Status, 2 pending，3 some transactions have not been completed ，4 all transactions completed，5 some transactions have been cancelled，6 cancel all orders |
+|      symbol      | string  |                                                                         Market name                                                                         |
+|    timestamp     | number  |                                                                         Create time                                                                         |
+|        to        | string  |                                                                      Stock token name                                                                       |
+|     trade_no     | string  |                                                                          Trade no                                                                           |
+| update_timestamp | number  |                                                                         Update time                                                                         |
 
-# 基础信息
+# Basic information
 
-## 所有交易对
-此接口返回全部或指定BitDa支持的交易对。
+## Get All Market 
+This api returns all or specified trading pairs supported by BitDa.
 
 ```shell
-现货市场
+spot
 
 "https://api.bitda.com/open/v1/tickers"
 
 ```
 
-### HTTP请求
-现货市场
+### HTTP Query
+spot
 - GET ` /open/v1/tickers`
 
 
-<aside class="notice">限速1r/s</aside>
+<aside class="notice">limit 1r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |           描述           |
-| :----: | :------: | :------: | :----------------------: |
-| symbol |  string  |    否    | 市场交易对，如: BTC-USDT |
+### Request parameters
+| Parameter |  Type  | Required |        Description         |
+| :-------: | :----: | :------: | :------------------------: |
+|  symbol   | string |    no    | Market name, e.g: BTC-USDT |
 
 > Responds:
 
@@ -451,36 +451,36 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名  | 参数类型 |     描述     |
-| :-----: | :------: | :----------: |
-| amount  |  string  | 24小时成交额 |
-| change  |  string  | 24小时涨跌幅 |
-|  high   |  string  |  24小时最高  |
-|   low   |  string  |  24小时最低  |
-|  price  |  string  |    当前价    |
-| l_price |  string  |   上次价格   |
-| symbol  |  string  |  市场交易对  |
-| amt_num | integer  |   价格精度   |
-| qty_num | integer  |   数量精度   |
-| volume  |  string  | 24小时成交量 |
+| Parameter |  Type   |         Description         |
+| :-------: | :-----: | :-------------------------: |
+|  amount   | string  | 24-hour transactions amount |
+|  change   | string  |       24-hour change        |
+|   high    | string  |    24-hour highest price    |
+|    low    | string  |    24-hour lowest price     |
+|   price   | string  |        Current price        |
+|  l_price  | string  |         Last price          |
+|  symbol   | string  |         Market name         |
+|  amt_num  | integer |       Price precision       |
+|  qty_num  | integer |      Volume precision       |
+|  volume   | string  | 24-hour transactions volume |
 
-## 账户余额
+## Get Balance
 
 ```shell
-现货市场
+spot
 
 "https://api.bitda.com/open/v1/balance"
 
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/balance`
 
-### 请求参数
-无
+### Request parameters
+None
 
 > Responds:
 
@@ -499,31 +499,31 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名 | 参数类型 |   描述   |
-| :----: | :------: | :------: |
-| amount |  string  | 可用余额 |
-| symbol |  string  |   币种   |
-| freeze |  string  | 冻结余额 |
+| Parameter |  Type  |    Description    |
+| :-------: | :----: | :---------------: |
+|  amount   | string | Available balance |
+|  symbol   | string |     Coin name     |
+|  freeze   | string |  Freeze balance   |
 
-## 服务器时间戳
+## Get Sever Time
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/timestamp"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/timestamp`
 
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 | 描述  |
-| :----: | :------: | :------: | :---: |
-无
+### Request parameters
+| Parameter | Type  | Required | Description |
+| :-------: | :---: | :------: | :---------: |
+None
 > Responds:
 
 ```json
@@ -535,34 +535,34 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名 | 参数类型 |  描述  |
-| :----: | :------: | :----: |
-|  data  |  string  | 时间戳 |
+| Parameter |  Type  |   Description    |
+| :-------: | :----: | :--------------: |
+|   data    | string | Server timestamp |
 
 
-# 行情数据
+# Market data
 
-## 市场k线数据
+## Get Market K-line
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/kline"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/kline`
 
-<aside class="notice">限速0.1r/s</aside>
+<aside class="notice">limit 0.1r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |                                   描述                                   |
-| :----: | :------: | :------: | :----------------------------------------------------------------------: |
-| symbol |  string  |    是    |                         市场交易对，如: BTC-USDT                         |
-|  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week等 |
+### Request parameters
+| Parameter |  Type  | Required |                               Description                                |
+| :-------: | :----: | :------: | :----------------------------------------------------------------------: |
+|  symbol   | string |   yes    |                        Market name, e.g: BTC-USDT                        |
+|   type    | string |   yes    | Type: 1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week |
 
 > Responds:
 
@@ -585,36 +585,36 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名 | 参数类型 |     描述     |
-| :----: | :------: | :----------: |
-| amount |  string  |    成交额    |
-| close  |  string  | 本阶段收盘价 |
-|  high  |  string  | 本阶段最高价 |
-|  low   |  string  | 本阶段最低价 |
-|  open  |  string  | 本阶段开盘价 |
-|  time  | integer  |     时间     |
-| volume |  string  | 本阶段成交量 |
+| Parameter |  Type   |    Description     |
+| :-------: | :-----: | :----------------: |
+|  amount   | string  | Transaction amount |
+|   close   | string  |    Close price     |
+|   high    | string  |   Highest price    |
+|    low    | string  |    Lowest price    |
+|   open    | string  |     Open price     |
+|   time    | integer | Timestamp, second  |
+|  volume   | string  | Transaction volume |
 
-## 市场深度数据
+## Get Market Depth
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/depth"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/depth`
 
-<aside class="notice">限速10r/s</aside>
+<aside class="notice">limit 10r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |    描述    |
-| :----: | :------: | :------: | :--------: |
-| symbol |  string  |    是    | 市场交易对 |
+### Request parameters
+| Parameter |  Type  | Required | Description |
+| :-------: | :----: | :------: | :---------: |
+|  symbol   | string |   yes    | Market name |
 
 > Responds:
 
@@ -638,31 +638,31 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名 | 参数类型 |                   描述                    |
-| :----: | :------: | :---------------------------------------: |
-|  bids  |  object  | 当前所有买单[{price 价格, quantity 数量}] |
-|  asks  |  object  | 当前所有卖单[{price 价格, quantity 数量}] |
+| Parameter |  Type  |       Description        |
+| :-------: | :----: | :----------------------: |
+|   bids    | object | Bids [{price, quantity}] |
+|   asks    | object | Asks [{price, quantity}] |
 
-## 获取最近5条成交
+## Get Latest Transaction Records
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/tickers/trade"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/tickers/trade`
 
-<aside class="notice">限速10r/s</aside>
+<aside class="notice">limit 10r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |    描述    |
-| :----: | :------: | :------: | :--------: |
-| symbol |  string  |    是    | 市场交易对 |
+### Request parameters
+| Parameter |  Type  | Required | Description |
+| :-------: | :----: | :------: | :---------: |
+|  symbol   | string |   yes    | market name |
 
 > Responds:
 
@@ -681,42 +681,42 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名 | 参数类型 |        描述        |
-| :----: | :------: | :----------------: |
-| amount |  string  |       成交额       |
-| price  |  string  |       成交价       |
-|  side  | integer  | 成交方向，1卖，2买 |
-|  time  | integer  |        时间        |
-| volume |  string  |       成交量       |
+| Parameter |  Type   |     Description     |
+| :-------: | :-----: | :-----------------: |
+|  amount   | string  | Transaction amount  |
+|   price   | string  |  Transaction price  |
+|   side    | integer | side, 1 sell, 2 buy |
+|   time    | integer | timestamp, sencond  |
+|  volume   | string  | Transaction volume  |
 
 
-# 现货
+# Spot
 
-## 下单
+## Place Order 
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/orders/place"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - POST ` /open/v1/orders/place`
 
-### 请求参数
-|   参数名   | 参数类型 | 是否必须 |                    描述                     |
-| :--------: | :------: | :------: | :-----------------------------------------: |
-|   symbol   |  string  |    是    |                 市场交易对                  |
-|   price    |  string  |    否    |          价格，如果是限价单，必填           |
-|  quantity  |  string  |    是    |                    数量                     |
-|    side    |   int    |    是    |                方向,1卖，2买                |
-| order_type |  string  |    否    | 买卖单类型,LIMIT限价单（默认）,MARKET市价单 |
+### Request parameters
+| Parameter  |  Type  | Required |              Description               |
+| :--------: | :----: | :------: | :------------------------------------: |
+|   symbol   | string |   yes    |              Market name               |
+|   price    | string |    no    | Price, required if it is a limit order |
+|  quantity  | string |   yes    |                 Volume                 |
+|    side    |  int   |   yes    |          Side, 1 sell, 2 buy           |
+| order_type | string |    no    |   Order type LIMIT(default), MARKET    |
 
-<aside class="warning">无论买或卖，quantity都表示交易币，如BTC-USDT，quantity都代表BTC的数量</aside>
-<aside class="warning">现货新上交易对第一笔订单必须通过此接口下单，成交后用户才能下单</aside>
+<aside class="warning">Whether buying or selling, quantity refers to the trading currency, such as BTC-USDT, quantity refers to the number of BTC</aside>
+<aside class="warning">The first order for a new spot trading pair must be placed through this interface. Users can place orders only after the transaction is completed.</aside>
 
 > Responds:
 
@@ -751,45 +751,45 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|      参数名      | 参数类型 |                                 描述                                  |
-| :--------------: | :------: | :-------------------------------------------------------------------: |
-|       frm        |  string  |                               价格币种                                |
-|       left       |  string  |                               剩余数量                                |
-|    match_amt     |  string  |                               成交金额                                |
-|   match_price    |  string  |                               成交价格                                |
-|    match_qty     |  string  |                               成交数量                                |
-|     order_id     |  string  |                               委托单ID                                |
-|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
-|      price       |  string  |                                 价格                                  |
-|     quantity     |  string  |                                 数量                                  |
-|       side       | integer  |                         委托单方向，1卖，2买                          |
-|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
-|      symbol      |  string  |                                交易对                                 |
-|    timestamp     |  number  |                               下单时间                                |
-|        to        |  string  |                               数量币种                                |
-|     trade_no     |  string  |                              委托单流水                               |
-| update_timestamp |  number  |                               更新时间                                |
-|    create_at     |  number  |                               下单时间                                |
+|    Parameter     |  Type   |                                                                         Description                                                                         |
+| :--------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|       frm        | string  |                                                                      Money token name                                                                       |
+|       left       | string  |                                                                     Remaining quantity                                                                      |
+|    match_amt     | string  |                                                                        Match amount                                                                         |
+|   match_price    | string  |                                                                         Match price                                                                         |
+|    match_qty     | string  |                                                                       Match quantity                                                                        |
+|     order_id     | string  |                                                                          Order ID                                                                           |
+|    order_type    | string  |                                                              Order type,LIMIT(default),MARKET                                                               |
+|      price       | string  |                                                                            Price                                                                            |
+|     quantity     | string  |                                                                          Quantity                                                                           |
+|       side       | integer |                                                                  Order side, 1 sell, 2 buy                                                                  |
+|      status      | integer | Status, 2 pending，3 some transactions have not been completed ，4 all transactions completed，5 some transactions have been cancelled，6 cancel all orders |
+|      symbol      | string  |                                                                         Market name                                                                         |
+|    timestamp     | number  |                                                                         Create time                                                                         |
+|        to        | string  |                                                                      Stock token name                                                                       |
+|     trade_no     | string  |                                                                          Trade no                                                                           |
+| update_timestamp | number  |                                                                         Update time                                                                         |
+|    create_at     | number  |                                                                         Create time                                                                         |
 
-## 撤销单个订单
+## Cancel Order
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/orders/cancel"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - POST ` /open/v1/orders/cancel`
 
-### 请求参数
-|  参数名  | 参数类型 | 是否必须 |    描述    |
-| :------: | :------: | :------: | :--------: |
-|  symbol  |  string  |    是    | 市场交易对 |
-| order_id |  string  |    是    |   委托号   |
+### Request parameters
+| Parameter |  Type  | Required |        Description         |
+| :-------: | :----: | :------: | :------------------------: |
+|  symbol   | string |   yes    | Market name, e.g: BTC-USDT |
+| order_id  | string |   yes    |        Order number        |
 
 > Responds:
 
@@ -824,47 +824,47 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|      参数名      | 参数类型 |                                 描述                                  |
-| :--------------: | :------: | :-------------------------------------------------------------------: |
-|    create_at     |  number  |                               创建时间                                |
-|       frm        |  string  |                               价格币种                                |
-|       left       |  string  |                               剩余数量                                |
-|    match_amt     |  string  |                               成交金额                                |
-|   match_price    |  string  |                               成交价格                                |
-|    match_qty     |  string  |                               成交数量                                |
-|     order_id     |  string  |                               委托单ID                                |
-|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
-|      price       |  string  |                                 价格                                  |
-|     quantity     |  string  |                                 数量                                  |
-|       side       | integer  |                               1卖，2买                                |
-|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
-|    timestamp     |  number  |                               下单时间                                |
-|        to        |  string  |                               数量币种                                |
-|     trade_no     |  string  |                                流水号                                 |
-| update_timestamp |  string  |                               更新时间                                |
+|    Parameter     |  Type   |                                                                         Description                                                                         |
+| :--------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|    create_at     | number  |                                                                         Create time                                                                         |
+|       frm        | string  |                                                                      Money token name                                                                       |
+|       left       | string  |                                                                     Remaining quantity                                                                      |
+|    match_amt     | string  |                                                                        Match amount                                                                         |
+|   match_price    | string  |                                                                         Match price                                                                         |
+|    match_qty     | string  |                                                                       Match quantity                                                                        |
+|     order_id     | string  |                                                                          Order ID                                                                           |
+|    order_type    | string  |                                                              Order type,LIMIT(default),MARKET                                                               |
+|      price       | string  |                                                                            Price                                                                            |
+|     quantity     | string  |                                                                          Quantity                                                                           |
+|       side       | integer |                                                                  Order side, 1 sell, 2 buy                                                                  |
+|      status      | integer | Status, 2 pending，3 some transactions have not been completed ，4 all transactions completed，5 some transactions have been cancelled，6 cancel all orders |
+|    timestamp     | number  |                                                                         Create time                                                                         |
+|        to        | string  |                                                                      Stock token name                                                                       |
+|     trade_no     | string  |                                                                          Trade no                                                                           |
+| update_timestamp | string  |                                                                         Update time                                                                         |
 
 
-## 撤销部分或所有委托中订单
+## Batch Cancel Orders 
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/orders/batcancel"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - POST ` /open/v1/orders/batcancel`
 
-<aside class="notice">限速1r/s</aside>
+<aside class="notice">limit 1r/s</aside>
 
-### 请求参数
-|  参数名   | 参数类型 | 是否必须 |                            描述                             |
-| :-------: | :------: | :------: | :---------------------------------------------------------: |
-|  symbol   |  string  |    是    |                           交易对                            |
-| order_ids |  string  |    否    | 交易对id，1000,2000,3000， 英文逗号分隔订单id，为空全部撤单 |
+### Request parameters
+| Parameter |  Type  | Required |                      Description                      |
+| :-------: | :----: | :------: | :---------------------------------------------------: |
+|  symbol   | string |   yes    |              Market name, e.g: BTC-USDT               |
+| order_ids | string |    no    | Order id，1000,2000,3000， cancel all orders if empty |
 
 > Responds:
 
@@ -883,31 +883,31 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名  | 参数类型 |     描述     |
-| :-----: | :------: | :----------: |
-| success |  array   | 成功的订单ID |
-| failed  |  array   | 失败的订单ID |
+| Parameter | Type  |          Description           |
+| :-------: | :---: | :----------------------------: |
+|  success  | array | Cancel the successful order ID |
+|  failed   | array |     Cancel failed order ID     |
 
-## 委托中列表
+## Pending orders
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/orders/last"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/orders/last`
 
-### 请求参数
-|  参数名  | 参数类型 | 是否必须 |             描述              |
-| :------: | :------: | :------: | :---------------------------: |
-|  symbol  |  string  |    是    |          市场交易对           |
-| pagenum  | integer  |    否    |             页码              |
-| pagesize | integer  |    否    | 页大小,最小10, 最大100,默认10 |
+### Request parameters
+| Parameter |  Type   | Required |              Description              |
+| :-------: | :-----: | :------: | :-----------------------------------: |
+|  symbol   | string  |   yes    |      Market name, e.g: BTC-USDT       |
+|  pagenum  | integer |    no    |              Page number              |
+| pagesize  | integer |    no    | Page size,min 10, max 100, default 10 |
 
 > Responds:
 
@@ -944,51 +944,51 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|      参数名      | 参数类型 |                                 描述                                  |
-| :--------------: | :------: | :-------------------------------------------------------------------: |
-|    create_at     |  number  |                               下单时间                                |
-|       frm        |  string  |                               价格币种                                |
-|       left       |  string  |                               剩余数量                                |
-|    match_amt     |  string  |                               成交金额                                |
-|   match_price    |  string  |                               成交价格                                |
-|    match_qty     |  string  |                               成交数量                                |
-|     order_id     |  string  |                               委托单ID                                |
-|    order_type    |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
-|      price       |  string  |                                 价格                                  |
-|     quantity     |  string  |                                 数量                                  |
-|       side       | integer  |                               1卖，2买                                |
-|      status      | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
-|      symbol      |  string  |                                交易对                                 |
-|    timestamp     |  number  |                               创建时间                                |
-|        to        |  string  |                               数量币种                                |
-|     trade_no     |  string  |                               委托流水                                |
-| update_timestamp |  number  |                               更新时间                                |
+|    Parameter     |  Type   |                                                                         Description                                                                         |
+| :--------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|    create_at     | number  |                                                                         Create time                                                                         |
+|       frm        | string  |                                                                      Money token name                                                                       |
+|       left       | string  |                                                                     Remaining quantity                                                                      |
+|    match_amt     | string  |                                                                        Match amount                                                                         |
+|   match_price    | string  |                                                                         Match price                                                                         |
+|    match_qty     | string  |                                                                       Match quantity                                                                        |
+|     order_id     | string  |                                                                          Order ID                                                                           |
+|    order_type    | string  |                                                              Order type,LIMIT(default),MARKET                                                               |
+|      price       | string  |                                                                            Price                                                                            |
+|     quantity     | string  |                                                                          Quantity                                                                           |
+|       side       | integer |                                                                  Order side, 1 sell, 2 buy                                                                  |
+|      status      | integer | Status, 2 pending，3 some transactions have not been completed ，4 all transactions completed，5 some transactions have been cancelled，6 cancel all orders |
+|      symbol      | string  |                                                                         Market name                                                                         |
+|    timestamp     | number  |                                                                         Create time                                                                         |
+|        to        | string  |                                                                      Stock token name                                                                       |
+|     trade_no     | string  |                                                                          Trade no                                                                           |
+| update_timestamp | number  |                                                                         Update time                                                                         |
 
-## 订单列表
+## Get Completed Orders List
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/orders"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/orders`
 
-<aside class="notice">限速0.5r/s</aside>
+<aside class="notice">limit 0.5r/s</aside>
 
-### 请求参数
-|  参数名  | 参数类型 | 是否必须 |             描述             |
-| :------: | :------: | :------: | :--------------------------: |
-|  symbol  |  string  |    是    |    市场交易对,如BTC-USDT     |
-| pagenum  | integer  |    否    |             页码             |
-| pagesize | integer  |    否    | 页大小,最小10, 最大50,默认20 |
-|   side   | integer  |    否    |    方向，1卖，2买，0所有     |
-|  start   | integer  |    否    |       时间，时间戳，秒       |
-|   end    | integer  |    否    |     结束时间，时间戳，秒     |
+### Request parameters
+| Parameter |  Type   | Required |             Description              |
+| :-------: | :-----: | :------: | :----------------------------------: |
+|  symbol   | string  |   yes    |      Market name, e.g: BTC-USDT      |
+|  pagenum  | integer |    no    |             Page number              |
+| pagesize  | integer |    no    | Page size,min 10, max 50, default 20 |
+|   side    | integer |    no    |   Order side, 1 sell, 2 buy, 0 all   |
+|   start   | integer |    否    |            Start time, s             |
+|    end    | integer |    no    |             End time, s              |
 
 > Responds:
 
@@ -1020,42 +1020,42 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|   参数名    | 参数类型 |                                 描述                                  |
-| :---------: | :------: | :-------------------------------------------------------------------: |
-|  order_id   |  string  |                               委托单ID                                |
-|  trade_no   |  string  |                               委托流水                                |
-|   symbol    |  string  |                                交易对                                 |
-|    price    |  string  |                                 价格                                  |
-|  quantity   |  string  |                                 数量                                  |
-|  match_amt  |  string  |                                成交额                                 |
-|  match_qty  |  string  |                               成交数量                                |
-| match_price |  string  |                               成交价格                                |
-|    side     | integer  |                            方向，1卖，2买                             |
-| order_type  |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
-|   status    | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
-|  create_at  |  number  |                               创建时间                                |
+|  Parameter  |  Type   |                                                                         Description                                                                         |
+| :---------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  order_id   | string  |                                                                          Order ID                                                                           |
+|  trade_no   | string  |                                                                          Trade no                                                                           |
+|   symbol    | string  |                                                                         Market name                                                                         |
+|    price    | string  |                                                                            price                                                                            |
+|  quantity   | string  |                                                                          Quantity                                                                           |
+|  match_amt  | string  |                                                                        Match amount                                                                         |
+|  match_qty  | string  |                                                                       Match quantity                                                                        |
+| match_price | string  |                                                                         Match price                                                                         |
+|    side     | integer |                                                                  Order side, 1 sell, 2 buy                                                                  |
+| order_type  | string  |                                                              Order type,LIMIT(default),MARKET                                                               |
+|   status    | integer | Status, 2 pending，3 some transactions have not been completed ，4 all transactions completed，5 some transactions have been cancelled，6 cancel all orders |
+|  create_at  | number  |                                                                         Create time                                                                         |
 
-## 单个订单成交明细
+## Get Order Detail
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/orders/detail"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/orders/detail`
 
-<aside class="notice">限速6r/s</aside>
+<aside class="notice">limit 6r/s</aside>
 
-### 请求参数
-|  参数名  | 参数类型 | 是否必须 |         描述          |
-| :------: | :------: | :------: | :-------------------: |
-|  symbol  |  string  |    是    | 市场交易对,如BTC-USDT |
-| order_id |  string  |    是    |      委托订单id       |
+### Request parameters
+| Parameter |  Type  | Required |        Description         |
+| :-------: | :----: | :------: | :------------------------: |
+|  symbol   | string |   yes    | Market name, e.g: BTC-USDT |
+| order_id  | string |   yes    |          Order id          |
 
 > Responds:
 
@@ -1093,51 +1093,51 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|   参数名    | 参数类型 |                                 描述                                  |
-| :---------: | :------: | :-------------------------------------------------------------------: |
-|  create_at  |  number  |                               下单时间                                |
-|     fee     |  string  |                                手续费                                 |
-|  match_amt  |  string  |                                成交额                                 |
-| match_price |  string  |                               成交价格                                |
-|  match_qty  |  string  |                               成交数量                                |
-|  order_id   |  string  |                               委托单ID                                |
-| order_type  |  string  |              委托单类型,LIMIT限价单（默认）,MARKET市价单              |
-|    price    |  string  |                                 价格                                  |
-|  quantity   |  string  |                                 数量                                  |
-|    side     | integer  |                            方向，1卖，2买                             |
-|   status    | integer  | 状态，2委托中，3部分成交未完成，4全部成交，5部分成交已撤单，6全部撤单 |
-|   symbol    |  string  |                                交易对                                 |
-|  trade_no   |  string  |                              委托单流水                               |
-|   trades    |  object  |                              成交订单[{                               |
-|   amount    |  string  |                               成交金额                                |
-|     fee     |  string  |                                手续费                                 |
-|    price    |  string  |                                 价格                                  |
-|  quantity   |  string  |                                 数量                                  |
-|    time     |  number  |                                 时间                                  |
-|  trade_id   |  string  |                              成交单ID}]                               |
+|  Parameter  |  Type   |                                                                         Description                                                                         |
+| :---------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|  create_at  | number  |                                                                         Create time                                                                         |
+|     fee     | string  |                                                                             Fee                                                                             |
+|  match_amt  | string  |                                                                        Match amount                                                                         |
+| match_price | string  |                                                                        成Match price                                                                        |
+|  match_qty  | string  |                                                                      成Match quantity                                                                       |
+|  order_id   | string  |                                                                          Order ID                                                                           |
+| order_type  | string  |                                                              Order type,LIMIT(default),MARKET                                                               |
+|    price    | string  |                                                                            Price                                                                            |
+|  quantity   | string  |                                                                          Quantity                                                                           |
+|    side     | integer |                                                                  Order side, 1 sell, 2 buy                                                                  |
+|   status    | integer | Status, 2 pending，3 some transactions have not been completed ，4 all transactions completed，5 some transactions have been cancelled，6 cancel all orders |
+|   symbol    | string  |                                                                         Market name                                                                         |
+|  trade_no   | string  |                                                                          Trade no                                                                           |
+|   trades    | object  |                                                                       Match orders[{                                                                        |
+|   amount    | string  |                                                                        Match amount                                                                         |
+|     fee     | string  |                                                                             Fee                                                                             |
+|    price    | string  |                                                                            Price                                                                            |
+|  quantity   | string  |                                                                          Quantity                                                                           |
+|    time     | number  |                                                                         Match time                                                                          |
+|  trade_id   | string  |                                                                          Deal ID}]                                                                          |
 
-## 分页获取订单成交明细
+## Get Order Detail List
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/orders/detailmore"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/orders/detailmore`
 
-<aside class="notice">限速6r/s</aside>
+<aside class="notice">limit 6r/s</aside>
 
-### 请求参数
-|  参数名  | 参数类型 | 是否必须 |             描述             |
-| :------: | :------: | :------: | :--------------------------: |
-|  symbol  |  string  |    是    |    市场交易对,如BTC-USDT     |
-| pagesize | integer  |    否    | 页大小,最小10, 最大50,默认10 |
-| pagenum  | integer  |    否    |        页码，默认为1         |
+### Request parameters
+| Parameter |  Type   | Required |             Description             |
+| :-------: | :-----: | :------: | :---------------------------------: |
+|  symbol   | string  |   yes    |     Market name, e.g: BTC-USDT      |
+| pagesize  | integer |    no    | Page size,min 10, max 50,default 10 |
+|  pagenum  | integer |    no    |       Page number，default 1        |
 
 > Responds:
 
@@ -1164,37 +1164,37 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|  参数名  | 参数类型 |      描述      |
-| :------: | :------: | :------------: |
-|  count   | integer  |  成交订单数量  |
-|  trades  |  object  |   成交订单[{   |
-|  symbol  |  string  |   市场交易对   |
-|   side   | integer  | 方向，1卖，2买 |
-| trade_id |  string  |    成交单ID    |
-|  amount  |  string  |      金额      |
-|  price   |  string  |      价格      |
-| quantity |  string  |      数量      |
-|   fee    |  string  |     手续费     |
-|   time   |  number  |     时间}]     |
+| Parameter |  Type   |        Description        |
+| :-------: | :-----: | :-----------------------: |
+|   count   | integer |    Match orders count     |
+|  trades   | object  |      match orders[{       |
+|  symbol   | string  |        Market name        |
+|   side    | integer | Order side, 1 sell, 2 buy |
+| trade_id  | string  |          Deal id          |
+|  amount   | string  |       Match amount        |
+|   price   | string  |           Price           |
+| quantity  | string  |         Quantity          |
+|    fee    | string  |            Fee            |
+|   time    | number  |       Match time}]        |
 
-## 获取用户某个交易对手续费
+## Get Fee Rate
 
 ```shell
-现货市场
+spot
 
 "https://api.bitda.com/open/v1/fee-rate"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/fee-rate`
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |    描述    |
-| :----: | :------: | :------: | :--------: |
-| symbol |  string  |    是    | 市场交易对 |
+### Request parameters
+| Parameter |  Type  | Required |        Description         |
+| :-------: | :----: | :------: | :------------------------: |
+|  symbol   | string |   yes    | Market name, e.g: BTC-USDT |
 
 > Responds:
 
@@ -1210,33 +1210,33 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|  参数名   | 参数类型 |    描述    |
-| :-------: | :------: | :--------: |
-| maker_fee |  string  | 挂单手续费 |
-| taker_fee |  string  | 吃单手续费 |
+| Parameter |  Type  | Description |
+| :-------: | :----: | :---------: |
+| maker_fee | string |  Maker fee  |
+| taker_fee | string |  Taker fee  |
 
 
-# 公共接口
+# Public API
 
-## 所有交易对
+## Get Market List
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/tickers/market"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/tickers/market`
 
-<aside class="notice">限速6r/s</aside>
+<aside class="notice">limit 6r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 | 描述  |
-| :----: | :------: | :------: | :---: |
+### Request parameters
+| Parameter | Type  | Required | Description |
+| :-------: | :---: | :------: | :---------: |
 
 > Responds:
 
@@ -1262,39 +1262,39 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名  | 参数类型 |     描述     |
-| :-----: | :------: | :----------: |
-| amount  |  string  | 24小时成交额 |
-| change  |  string  | 24小时涨跌幅 |
-|  high   |  string  |  24小时最高  |
-|   low   |  string  |  24小时最低  |
-|  price  |  string  |    当前价    |
-| l_price |  string  |   上次价格   |
-| symbol  |  string  |  市场交易对  |
-| amt_num | integer  |   价格精度   |
-| qty_num | integer  |   数量精度   |
-| volume  |  string  | 24小时成交量 |
+| Parameter |  Type   |    Description     |
+| :-------: | :-----: | :----------------: |
+|  amount   | string  | Transaction amount |
+|  change   | string  |   Rise and fall    |
+|   high    | string  |   Highest price    |
+|    low    | string  |    Lowest price    |
+|   price   | string  |       Price        |
+|  l_price  | string  |     Last price     |
+|  symbol   | string  |    Market name     |
+|  amt_num  | integer |   Price decimal    |
+|  qty_num  | integer |  Quantity decimal  |
+|  volume   | string  | Transaction volume |
 
-## 深度
+## Get Market Depth
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/depth/market"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/depth/market`
 
-<aside class="notice">限速5r/s</aside>
+<aside class="notice">limit 5r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |         描述          |
-| :----: | :------: | :------: | :-------------------: |
-| symbol |  string  |    是    | 市场交易对,如BTC-USDT |
+### Request parameters
+| Parameter |  Type  | Required |        Description         |
+| :-------: | :----: | :------: | :------------------------: |
+|  symbol   | string |   yes    | Market name, e.g: BTC-USDT |
 
 > Responds:
 
@@ -1318,31 +1318,31 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名 | 参数类型 |                   描述                    |
-| :----: | :------: | :---------------------------------------: |
-|  bids  |  object  | 当前所有买单[{price 价格, quantity 数量}] |
-|  asks  |  object  | 当前所有卖单[{price 价格, quantity 数量}] |
+| Parameter |  Type  |              Description               |
+| :-------: | :----: | :------------------------------------: |
+|   bids    | object |       Bids[{price , quantity }]        |
+|   asks    | object | Asks[{price price, quantity quantity}] |
 
-## 逐笔成交
+## Get Market Transactions
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/trade/market"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/trade/market`
 
-<aside class="notice">限速10r/s</aside>
+<aside class="notice">limit 10r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |         描述          |
-| :----: | :------: | :------: | :-------------------: |
-| symbol |  string  |    是    | 市场交易对,如BTC-USDT |
+### Request parameters
+| Parameter |  Type  | Required |        Description         |
+| :-------: | :----: | :------: | :------------------------: |
+|  symbol   | string |   yes    | Market name, e.g: BTC-USDT |
 
 > Responds:
 
@@ -1361,35 +1361,35 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-| 参数名 | 参数类型 |        描述        |
-| :----: | :------: | :----------------: |
-| amount |  string  |       成交额       |
-| price  |  string  |       成交价       |
-|  side  | integer  | 成交方向，1卖，2买 |
-|  time  | integer  |        时间        |
-| volume |  string  |       成交量       |
+| Parameter |  Type   |        Description        |
+| :-------: | :-----: | :-----------------------: |
+|  amount   | string  |       Match amount        |
+|   price   | string  |        Match price        |
+|   side    | integer | Order side, 1 sell, 2 buy |
+|   time    | integer |        Match time         |
+|  volume   | string  |      Match quantity       |
 
-## k线数据
+## Get Market K-line
 
 ```shell
-现货交易
+spot
 
 "https://api.bitda.com/open/v1/kline/market"
 ```
 
-### HTTP请求
-现货交易
+### HTTP Query
+spot
 - GET ` /open/v1/kline/market`
 
-<aside class="notice">限速1r/s</aside>
+<aside class="notice">limit 1r/s</aside>
 
-### 请求参数
-| 参数名 | 参数类型 | 是否必须 |                                   描述                                   |
-| :----: | :------: | :------: | :----------------------------------------------------------------------: |
-| symbol |  string  |    是    |                           市场交易对: BTC-USDT                           |
-|  type  |  string  |    是    | 类型1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week等 |
+### Request parameters
+| Parameter |  Type  | Required |                               Description                               |
+| :-------: | :----: | :------: | :---------------------------------------------------------------------: |
+|  symbol   | string |    是    |                       Market name, e.g: BTC-USDT                        |
+|   type    | string |    ye    | Type:1Min, 5Min, 15Min, 30Min,1Hour,2Hour,4Hour,6Hour,12Hour,1Day,1Week |
 
 > Responds:
 
@@ -1412,19 +1412,19 @@ title: BitDa Spot API 文档
 }
 ```
 
-### 返回字段
+### Response Content
 
-|  参数名   | 参数类型 |     描述     |
-| :-------: | :------: | :----------: |
-|  amount   |  string  |    成交额    |
-|   close   |  string  | 本阶段收盘价 |
-|   high    |  string  | 本阶段最高价 |
-|    low    |  string  | 本阶段最低价 |
-|   open    |  string  | 本阶段开盘价 |
-| timestamp | integer  |     时间     |
-|  volume   |  string  | 本阶段成交量 |
+| Parameter |  Type   |    Description     |
+| :-------: | :-----: | :----------------: |
+|  amount   | string  | Transaction amount |
+|   close   | string  |    Close price     |
+|   high    | string  |   Highest price    |
+|    low    | string  |    Lowest price    |
+|   open    | string  |     Open price     |
+| timestamp | integer | Timestamp, second  |
+|  volume   | string  | Transaction volume |
 
-# 现货API调用示例
+# Examples
 
 > Python:
 
@@ -1452,8 +1452,8 @@ def gen_sign(client_id, client_key):
     return obj 
 
 def get_open_orders():
-    print("> 获取open委托中")
-    # 现货交易
+    print("> Pending orders")
+    # spot
     path = "/open/v1/orders/last"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT"})
@@ -1461,8 +1461,8 @@ def get_open_orders():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_order_list():
-    print("> 获取委托单列表")
-    # 现货交易
+    print("> Get Completed Orders List")
+    # spot
     path = "/open/v1/orders"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT", "start": 1738886400, "end": 1738972800})
@@ -1470,8 +1470,8 @@ def get_order_list():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_order_detail():
-    print("> 获取单个订单成交明细")
-    # 现货交易
+    print("> Get Order Detail")
+    # spot
     path = "/open/v1/orders/detail"
     obj = gen_sign(client_id, client_key)
     obj.update({"order_id": "337", "symbol": "BTC-USDT"})
@@ -1479,8 +1479,8 @@ def get_order_detail():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_order_detail_more():
-    print("> 分页获取成交明细")
-    # 现货交易
+    print("> Get Order Detail List")
+    # spot
     path = "/open/v1/orders/detailmore"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT", "pagesize": 10, "page_num": 1})
@@ -1488,27 +1488,26 @@ def get_order_detail_more():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_order_fee_rate():
-    print("> 获取用户某个交易对手续费")
-    # 现货交易
-    path = "/open/v1/orders/fee-rate"
+    print("> Get Fee Rate")
+    # spot
+    path = "/open/v1/fee-rate"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT"})
     res = requests.get(host + path, params=obj)
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_kline():
-    print("> 获取kline")
-    # 现货交易
+    print("> Get Market K-line")
+    # spot
     path = "/open/v1/kline"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT", "type": "1Min"})
     res = requests.get(host + path, params=obj)
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-# 获取深度
 def get_depth():
-    print("> 获取深度")
-    # 现货交易
+    print("> Get Market Depth")
+    # spot
     path = "/open/v1/depth"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT"})
@@ -1516,16 +1515,16 @@ def get_depth():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_balance():
-    print("> 获取余额")
-    # 现货交易
+    print("> Get Balance")
+    # spot
     path = "/open/v1/balance"
     obj = gen_sign(client_id, client_key)
     res = requests.get(host + path, params=obj)
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_trade_tickers():
-    print("> 获取最近成交记录")
-    # 现货交易
+    print("> Get Latest Transaction Records")
+    # spot
     path = "/open/v1/tickers/trade"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT"})
@@ -1533,8 +1532,8 @@ def get_trade_tickers():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def place_order():
-    print("> 下单")
-    # 现货交易
+    print("> Place Order")
+    # spot
     path = "/open/v1/orders/place"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "ETH-USDT", "price": "10", "quantity": "0.2", "side": "2", "order_type": "LIMIT"})
@@ -1542,18 +1541,17 @@ def place_order():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def cancel_order():
-    print("> 撤单")
-    # 现货交易
+    print("> Cancel Order")
+    # spot
     path = "/open/v1/orders/cancel"
     obj = gen_sign(client_id, client_key)
     obj.update({"order_id": "327", "symbol": "BTC-USDT"})
     res = requests.post(host + path, data=obj)
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-# 批量撤单
 def bat_cancel_order():
-    print("> 批量撤单")
-    # 现货交易
+    print("> Batch Cancel Orders")
+    # spot
     path = "/open/v1/orders/batcancel"
     obj = gen_sign(client_id, client_key)
     ids = ["123", "124", "125"]
@@ -1562,45 +1560,24 @@ def bat_cancel_order():
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
 def get_tickers():
-    print("> 获取ticker")
-    # 现货交易
+    print("> Get All Market")
+    # spot
     path = "/open/v1/tickers"
     obj = gen_sign(client_id, client_key)
     obj.update({"symbol": "BTC-USDT"})
     res = requests.get(host + path, params=obj)
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 
-# 获取服务器时间
 def get_server_time():
-    print("> 获取服务器时间")
-    # 现货交易
+    print("> Get Sever Time")
+    # spot
     path = "/open/v1/timestamp"
     obj = gen_sign(client_id, client_key)
     res = requests.get(host + path, params=obj)
     print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
-
-# 获取最新的成交
-def get_trade():
-    print("> 获取最新的成交")
-    # 现货交易
-    path = "/open/v1/tickers/trade"
-    obj = gen_sign(client_id, client_key)
-    obj.update({"symbol": "BTC-USDT"})
-    res = requests.get(host + path, params=obj)
-    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
-
-# 获取用户手续费
-def get_fee_rate():
-    print("> 获取用户手续费")
-    # 现货交易
-    path = "/open/v1/fee-rate"
-    obj = gen_sign(client_id, client_key)
-    obj.update({"symbol": "BTC-USDT"})
-    res = requests.get(host + path, params=obj)
-    print(ujson.dumps(ujson.loads(res.content), ensure_ascii=False))
 ```
 
-# Websocket示例
+# Websocket examples
 
 ```python
 # -*- coding:utf-8 -*-
@@ -1615,7 +1592,7 @@ import uvloop
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-# 现货交易
+# spot
 host = "wss://api.bitda.com/ws"
 client_id = ""
 client_key = ""
@@ -1629,32 +1606,32 @@ def login():
     obj["sign"] = v.hexdigest()
     return obj
 
-# 心跳
+# Heartbeat
 async def ping(ws):
     ping = {"method": "ping", "params": {}, "id": 1}
     await ws.send(json.dumps(ping))
 
-# 订阅深度
+# Depth
 async def sub_topic_depth(ws):
     await ws.send(json.dumps({"method": "subscribe.depth", "params": {"market": "BTC-USDT", "merge": "step1"}, "id": 1}))
 
-# 订阅K线
+# Kline
 async def sub_topic_kline(ws):
     await ws.send(json.dumps({"method": "subscribe.kline", "params": {"period": "1Min", "market": "BTC-USDT"}, "id": 1}))
 
-# 订阅订单
+# Orders
 async def sub_topic_order(ws):
     await ws.send(json.dumps({"method": "subscribe.orders", "params": {"market": "BTC-USDT"}, "id": 1}))
 
-# 订阅成交
+# Trade
 async def sub_topic_trade(ws):
     await ws.send(json.dumps({"method": "subscribe.trade", "params": {"market": "BTC-USDT"}, "id": 1}))
 
-# 行情
+# Quote
 async def sub_topic_quotes(ws):
     await ws.send(json.dumps({"method": "subscribe.quote", "params": {"market": "BTC-USDT"}, "id": 1}))
 
-# 资产
+# Balance
 async def sub_topic_asset(ws):
     await ws.send(json.dumps({"method": "subscribe.asset", "params": {}, "id": 1}))
 
@@ -1662,24 +1639,24 @@ async def startup():
     print("start to connect %s..." % host)
     ws = await websockets.connect(host)
 
-    # 心跳
+    # Heartbeat
     await ping(ws)
 
-    # 登录
+    # Login
     obj = login()
     await ws.send(json.dumps(obj))
 
-    # 订阅深度
+    # Depth
     await sub_topic_depth(ws)
-    # 订阅K线
+    # Kline
     await sub_topic_kline(ws)
-    # 订阅订单
+    # Orders
     await sub_topic_order(ws)
-    # 订阅成交
+    # Trade
     await sub_topic_trade(ws)
-    # 行情
+    # Quote
     await sub_topic_quotes(ws)
-    # 资产
+    # Balance
     await sub_topic_asset(ws)
 
     while 1:
