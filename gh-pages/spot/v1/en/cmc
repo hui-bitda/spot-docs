@@ -1,0 +1,642 @@
+<h2 id='allmarkets'>/allmarkets</h2><div class="highlight"><pre class="highlight plaintext"><code>None
+</code></pre></div><h4 id='api-url'>api URL</h4>
+<blockquote>
+<p>https://spot.bytrade.io/open/cmc/allmarkets</p>
+</blockquote>
+<h4 id='method'>Method</h4>
+<blockquote>
+<p>GET</p>
+</blockquote>
+<h4 id='content-type'>Content-Type</h4>
+<blockquote>
+<p>none</p>
+</blockquote>
+<h4 id='success-response'>Success Response</h4><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">code_num</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">msg</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">base_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">USDT</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">base_volume</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">250346.15610000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">highest_bid</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1904.19000000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">highest_price_24h</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1910.00000000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">last_price</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1904.19000000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">lowest_ask</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1904.20000000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">lowest_price_24h</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1876.65000000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">price_change_percent_24h</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.843</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">quote_currency</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ETH</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">quote_volume</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">474661114.10803600</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">trading_pairs</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ETH-USDT</span><span class="dl">"</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>code_num</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>-</td>
+<td>Array</td>
+<td></td>
+</tr>
+<tr>
+<td>data.base_currency</td>
+<td>USDT</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.base_volume</td>
+<td>250346.15610000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.highest_bid</td>
+<td>1904.19000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.highest_price_24h</td>
+<td>1910.00000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.last_price</td>
+<td>1904.19000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.lowest_ask</td>
+<td>1904.20000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.lowest_price_24h</td>
+<td>1876.65000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.price_change_percent_24h</td>
+<td>0.843</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.quote_currency</td>
+<td>ETH</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.quote_volume</td>
+<td>474661114.10803600</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.trading_pairs</td>
+<td>ETH-USDT</td>
+<td>String</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='allticker'>/allticker</h2><div class="highlight"><pre class="highlight plaintext"><code>None
+</code></pre></div><h4 id='api-url-2'>api URL</h4>
+<blockquote>
+<p>https://spot.bytrade.io/open/cmc/allticker</p>
+</blockquote>
+<h4 id='method-2'>Method</h4>
+<blockquote>
+<p>GET</p>
+</blockquote>
+<h4 id='content-type-2'>Content-Type</h4>
+<blockquote>
+<p>none</p>
+</blockquote>
+<h4 id='79fb3a285b'>成功响应示例</h4><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">code_num</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">msg</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">UNI-USDT</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">base_volume</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">412278.64000000</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">isFrozen</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">last_price</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">5.06400000</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">quote_volume</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2087456.04343000</span><span class="dl">"</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>code_num</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>-</td>
+<td>Array</td>
+<td></td>
+</tr>
+<tr>
+<td>data.UNI-USDT</td>
+<td>-</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>data.UNI-USDT.base_volume</td>
+<td>412278.64000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.UNI-USDT.isFrozen</td>
+<td>1</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>data.UNI-USDT.last_price</td>
+<td>5.06400000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.UNI-USDT.quote_volume</td>
+<td>2087456.04343000</td>
+<td>String</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='orderbook-market_pair'>/orderbook/market_pair</h2><div class="highlight"><pre class="highlight plaintext"><code>None
+</code></pre></div><h4 id='api-url-3'>api URL</h4>
+<blockquote>
+<p>https://spot.bytrade.io/open/cmc/orderbook/market_pair?market_pair=BTC-USDT&amp;depth=50</p>
+</blockquote>
+<h4 id='method-3'>Method</h4>
+<blockquote>
+<p>GET</p>
+</blockquote>
+<h4 id='content-type-3'>Content-Type</h4>
+<blockquote>
+<p>none</p>
+</blockquote>
+<h4 id='query-parameters'>Query Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_pair</td>
+<td>BTC-USDT</td>
+<td>String</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>depth</td>
+<td>50</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h4 id='success-response-2'>Success Response</h4><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">code_num</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">msg</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">asks</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">price</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">27170.18000000</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">quantity</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.93741000</span><span class="dl">"</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="dl">"</span><span class="s2">bids</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="dl">"</span><span class="s2">price</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">27170.17000000</span><span class="dl">"</span><span class="p">,</span>
+                <span class="dl">"</span><span class="s2">quantity</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">7.59207000</span><span class="dl">"</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="dl">"</span><span class="s2">timestamp</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1685778768</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>code_num</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>-</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>data.asks</td>
+<td>-</td>
+<td>Array</td>
+<td></td>
+</tr>
+<tr>
+<td>data.asks.price</td>
+<td>27170.18000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.asks.quantity</td>
+<td>0.93741000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.bids</td>
+<td>-</td>
+<td>Array</td>
+<td></td>
+</tr>
+<tr>
+<td>data.bids.price</td>
+<td>27170.17000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.bids.quantity</td>
+<td>7.59207000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.timestamp</td>
+<td>1685778768</td>
+<td>Integer</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='trades-market_pair'>//trades/market_pair</h2><div class="highlight"><pre class="highlight plaintext"><code>None
+</code></pre></div><h4 id='api-url-4'>api URL</h4>
+<blockquote>
+<p>https://spot.bytrade.io/open/cmc/trades/market_pair?market_pair=BTC-USDT</p>
+</blockquote>
+<h4 id='method-4'>Method</h4>
+<blockquote>
+<p>GET</p>
+</blockquote>
+<h4 id='content-type-4'>Content-Type</h4>
+<blockquote>
+<p>none</p>
+</blockquote>
+<h4 id='query-parameters-2'>Query Parameters</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_pair</td>
+<td>BTC-USDT</td>
+<td>String</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h4 id='success-response-3'>Success Response</h4><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">code_num</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">msg</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">base_volume</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">13.3134372</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">price</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">27170.28000000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">quote_volume</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.00049000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">timestamp</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1685778941711</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">trade_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">3132644023</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sell</span><span class="dl">"</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>code_num</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>-</td>
+<td>Array</td>
+<td></td>
+</tr>
+<tr>
+<td>data.base_volume</td>
+<td>13.3134372</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.price</td>
+<td>27170.28000000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.quote_volume</td>
+<td>0.00049000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.timestamp</td>
+<td>1685778941711</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>data.trade_id</td>
+<td>3132644023</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>data.type</td>
+<td>sell</td>
+<td>String</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='assets'>/assets</h2><div class="highlight"><pre class="highlight plaintext"><code>None
+</code></pre></div><h4 id='api-url-5'>api URL</h4>
+<blockquote>
+<p>https://spot.bytrade.io/open/cmc/assets</p>
+</blockquote>
+<h4 id='method-5'>Method</h4>
+<blockquote>
+<p>GET</p>
+</blockquote>
+<h4 id='content-type-5'>Content-Type</h4>
+<blockquote>
+<p>none</p>
+<h4 id='success-response-4'>Success Response</h4><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+    <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">code_num</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">msg</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ok</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">data</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">ADA</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="dl">"</span><span class="s2">can_deposit</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">can_withdraw</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">maker_fee</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.006</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">max_withdraw </span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2000</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">min_withdraw</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ADA</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">taker_fee</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0.006</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">unified_cryptoasset_id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> 
+            <span class="dl">"</span><span class="s2">contractAddressUrl</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://bscscan.com/address/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47</span><span class="dl">"</span><span class="p">,</span>
+            <span class="dl">"</span><span class="s2">contractAddress</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0x3ee2200efb3400fabb9aacf31297cbdd1d435d47</span><span class="dl">"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Example</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>code_num</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>msg</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>ok</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>-</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA</td>
+<td>-</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.can_deposit</td>
+<td>true</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.can_withdraw</td>
+<td>true</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.maker_fee</td>
+<td>0.006</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.max_withdraw</td>
+<td>2000</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.min_withdraw</td>
+<td>20</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.name</td>
+<td>ADA</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.taker_fee</td>
+<td>0.006</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.unified_cryptoasset_id</td>
+<td>0</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.contractAddressUrl</td>
+<td>-</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>data.ADA.contractAddress</td>
+<td>-</td>
+<td>String</td>
+<td></td>
+</tr>
+</tbody></table>
+</blockquote>
