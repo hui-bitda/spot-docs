@@ -490,7 +490,7 @@
 <p>https://api.bitda.com</p>
 <h2 id='websocket-host'>Websocket host:</h2>
 <p>现货交易
-    wss://api.bitda.com/ws</p>
+    wss://ws.bitda.com/ws</p>
 <h2 id='17fef2a7cd'>鉴权说明</h2>
 <ol>
 <li><p>所有鉴权接口都需要进行鉴权，参数为client_id, ts, nonce, sign。client_id是api key, client_key为密钥，请妥善保管。</p></li>
@@ -3064,7 +3064,7 @@
 <span class="n">asyncio</span><span class="p">.</span><span class="n">set_event_loop_policy</span><span class="p">(</span><span class="n">uvloop</span><span class="p">.</span><span class="n">EventLoopPolicy</span><span class="p">())</span>
 
 <span class="c1"># 现货交易
-</span><span class="n">host</span> <span class="o">=</span> <span class="s">"wss://api.bitda.com/ws"</span>
+</span><span class="n">host</span> <span class="o">=</span> <span class="s">"wss://ws.bitda.com/ws"</span>
 <span class="n">client_id</span> <span class="o">=</span> <span class="s">""</span>
 <span class="n">client_key</span> <span class="o">=</span> <span class="s">""</span>
 
