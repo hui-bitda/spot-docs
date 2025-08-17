@@ -51,7 +51,7 @@ Eligible to access portals:
 
 ## Websocket host:
     spot
-    wss://api.bitda.com/ws
+    wss://ws.bitda.com/ws
 
 ## Verification Notice
 
@@ -1593,7 +1593,7 @@ import uvloop
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 # spot
-host = "wss://api.bitda.com/ws"
+host = "wss://ws.bitda.com/ws"
 client_id = ""
 client_key = ""
 
