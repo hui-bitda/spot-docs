@@ -51,7 +51,7 @@ title: BitDa Spot API 文档
 
 ## Websocket host:
     现货交易
-    wss://api.bitda.com/ws
+    wss://ws.bitda.com/ws
 
 ## 鉴权说明
 
@@ -1616,7 +1616,7 @@ import uvloop
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 # 现货交易
-host = "wss://api.bitda.com/ws"
+host = "wss://ws.bitda.com/ws"
 client_id = ""
 client_key = ""
 
